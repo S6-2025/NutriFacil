@@ -1,4 +1,4 @@
-import './Footer.css'  // ajuste conforme o caminho do seu CSS
+
 import { Link } from 'react-router-dom'  
 const Footer = () => {
   return (
