@@ -1,23 +1,26 @@
-import './Header.css' // ou ajuste conforme onde estiver seu CSS
+import './Header.css' 
+import { Link } from 'react-router-dom'
+
 
 const Header = () => {
   return (
     <div className="super-header">
       <div className="header-container">
-        <a href="/" className="logo">
+        <Link to="/" className="logo">
           <svg className="header__SVG">
             <use xlinkHref="/icons.svg#apple-white"></use>
           </svg>
           NutriFacil
-        </a>
+        </Link>
         <svg id="menu-list" className="header__SVG">
           <use xlinkHref="/icons.svg#menu-white"></use>
         </svg>
         <nav className="nav">
           <ul className="nav-list">
-            <li><a href="#">Início</a></li>
-            <li><a href="#">Contato</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><Link to="/about">Sobre</Link></li>
+            <li><Link to="/about">Sobre</Link></li>
+            <li><Link to="/about">Sobre</Link></li>
+         
           </ul>
         </nav>
       </div>
