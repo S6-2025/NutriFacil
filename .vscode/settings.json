@@ -5,7 +5,14 @@
     "**/.hg": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
-    "**/CVS": true
+    "**/CVS": true,
+    "Front-End/node_modules": true,
+    "nutrifacil/node_modules": true,
+    "Back-End": true
   },
-  "hide-files.files": []
+  "hide-files.files": [
+    "Front-End/node_modules",
+    "nutrifacil/node_modules",
+    "Back-End"
+  ]
 }
