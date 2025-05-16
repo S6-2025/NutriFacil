@@ -1,27 +1,28 @@
 import React from 'react'
-import './LandingPage.css' // depois você cria esse arquivo CSS e adapta o estilo
+import './LandingPage.css'
+import '../index.css'
 
 const LandingPage: React.FC = () => {
   return (
-    <main>
+    <main className="super-container" >
       <section className="text-button-block">
-        <h1>Customize your diets!</h1>
-        <span role="img" aria-label="apple">🍎</span> Discover what works for you in a practical and quick way.
+        <h1>Personalize suas dietas!</h1>
+        <span>🍎Descubra o que funciona para você de forma prática e rápida.</span> 
         <p>
-          If you want to improve your eating habits but don't know where to start, answer our quick questionnaire and receive
-          personalized recommendations based on your profile, goals, and food preferences.
+          Se você quer melhorar sua alimentação, mas não sabe por onde começar, responda nosso rápido questionário e receba
+          recomendações personalizadas com base no seu perfil, objetivos e preferências alimentares.
           <br /><br />
-          Our goal is to make nutrition simple, accessible, and adapted to your routine.
+          Nosso objetivo é tornar a nutrição simples, acessível e adaptada à sua rotina.
           <br />
-          Shall we start?
+          Vamos começar?
         </p>
         <div className="button-wrapper">
-          <button type="button">Start now!</button>
+          <button type="button">Começar agora!</button>
         </div>
       </section>
 
       <section className="image-block" id="image-block-1">
-       <img src="/frutas_semfundo.JPG" alt="Fruits" id="Fruits1" />
+       <img src="/frutas_semfundo.JPG" alt="Frutas" id="Fruits1" />
       </section>
 
       <section className="section-divider">
@@ -35,19 +36,19 @@ const LandingPage: React.FC = () => {
       </section>
 
       <section className="text-button-block" id="block2">
-        <h1>Freedom of choice!</h1>
+        <h1>Liberdade de escolha!</h1>
         <p>
-          Choose which diet to follow, based on the foods you like the most.
+          Escolha qual dieta seguir, com base nos alimentos que mais gosta.
           <br />
-          We use ketogenic, vegetarian, Mediterranean, and low-carb diet routines as the basis.
+          Utilizamos como base as rotinas de dietas cetogênica, vegetariana, mediterrânea e low carb.
         </p>
         <div className="button-wrapper">
-          <button type="button">Build my diet</button>
+          <button type="button">Montar minha dieta</button>
         </div>
       </section>
 
       <section className="image-block">
-        <img src="/healthy_options.png" alt="Healthy Options" id="healthy_options" />
+        <img src="/healthy_options.png" alt="Opções Saudáveis" id="healthy_options" />
       </section>
     </main>
   )
