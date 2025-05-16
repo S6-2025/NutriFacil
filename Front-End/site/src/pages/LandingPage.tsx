@@ -21,8 +21,10 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
+
       <section className="image-block" id="image-block-1">
-       <img src="/frutas_semfundo.JPG" alt="Frutas" id="Fruits1" />
+       <img src="/frutas_semfundo.JPG" alt="Frutas" id="fruits1" />
+
       </section>
 
       <section className="section-divider">
