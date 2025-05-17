@@ -4,13 +4,15 @@ import "../css/LoginRegister.css"
 const LoginRegister: React.FC = () => {
   const { isLogin, toggleForm } = useLoginToggle();
   return (
-    <main className="super-container" id="super-form">
+    <main className="super-container" id="super-container-form">
       {isLogin ? (
         <section className="super-form">
 
           <div className="logo-block">
             <div className="logo">
-              <svg className="header__SVG" id="apple-login"> <use xlinkHref="/icons.svg#apple-white"></use></svg>
+              <svg className="header__SVG" id="apple-login">
+                 <use xlinkHref="/icons.svg#apple"></use>
+                 </svg>
               <p>NutriFacil</p>
             </div>
           </div>
@@ -39,7 +41,7 @@ const LoginRegister: React.FC = () => {
 
           <div className="logo-block">
             <div className="logo">
-              <svg className="header__SVG" id="apple-login"> <use xlinkHref="/icons.svg#apple-white"></use></svg>
+              <svg className="header__SVG" id="apple-login"> <use xlinkHref="/icons.svg#apple-login"></use></svg>
               <p>NutriFacil</p>
             </div>
           </div>
@@ -47,7 +49,7 @@ const LoginRegister: React.FC = () => {
           <form>
 
             <div className="camps">
-              <label htmlFor="name">Nome:</label>
+              <label className='teste-label' htmlFor="name">Nome:</label>
               <input type="text" id="name" name="name" required />
             </div>
 
