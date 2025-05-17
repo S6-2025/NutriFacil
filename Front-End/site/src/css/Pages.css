@@ -4,8 +4,7 @@
 
 
 .text-button-block,
-.text-block,
-.form {
+.text-block {
   flex: 1 1 400px;
   max-width: 600px;
   display: flex;
@@ -26,8 +25,7 @@
 
 }
 
-.text-button-block h1,
-.form h2 {
+.text-button-block h1 {
   font-family: var(--font-titles);
   font-weight: 500;
   margin-top: 1rem;
@@ -41,8 +39,7 @@
   line-height: 3rem;
 }
 
-.text-button-block span,
-.form span {
+.text-button-block span {
   font-size: 1.4rem;
   color: var(--color3);
   font-weight: 600;
@@ -52,8 +49,7 @@
   line-height: 2rem;
 }
 
-.text-button-block p,
-.form p {
+.text-button-block p {
   font-size: 1.2rem;
   font-weight: 500;
   color: #3a3a3a;

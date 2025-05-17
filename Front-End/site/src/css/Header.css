@@ -19,7 +19,7 @@
   width: 100%;                
 }
 
-.header-container a {
+.header-container > .logo {
   font-family: var(--font-logo);
   color: var(--color6);
   text-decoration: none;

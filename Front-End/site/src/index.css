@@ -60,7 +60,6 @@ main {
   display: flex;
   box-sizing: border-box;
   flex-wrap: wrap;
-  background-color: var(--color8);
 }
 
 

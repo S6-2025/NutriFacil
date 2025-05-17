@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./index.css";
+import "./css/LoginRegister.css"
 import "./css/Pages.css"
 import "./css/Footer.css"
 import "./css/Header.css"

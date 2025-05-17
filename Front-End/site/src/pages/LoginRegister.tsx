@@ -1,58 +1,76 @@
 import React from 'react'
 import { useLoginToggle } from '../hooks/useLoginToggle';
-
+import "../css/LoginRegister.css"
 const LoginRegister: React.FC = () => {
   const { isLogin, toggleForm } = useLoginToggle();
   return (
+    <main className="super-container" id="super-form">
+      {isLogin ? (
+        <section className="super-form">
 
-<main className="super-container">
-     
- {isLogin ? (
-        <section className="form">
-          <h2>Login</h2>
+          <div className="logo-block">
+            <div className="logo">
+              <svg className="header__SVG" id="apple-login"> <use xlinkHref="/icons.svg#apple-white"></use></svg>
+              <p>NutriFacil</p>
+            </div>
+          </div>
+
           <form>
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="email" required />
 
-            <label htmlFor="password">Senha:</label>
-            <input type="password" id="password" name="password" required />
+            <div className="camps">
+              <label htmlFor="email">Email:</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div className="camps">
+              <label htmlFor="password">Senha:</label>
+              <input type="password" id="password" name="password" required />
+            </div>
 
             <button type="submit">Entrar</button>
           </form>
+
           <p>
-            Não tem conta ainda?{' '}
-            <span  onClick={toggleForm}>
-              Cadastrar
-            </span>
+            Não tem conta ainda? <span onClick={toggleForm}>Cadastrar</span>
           </p>
         </section>
       ) : (
-        <section className="form">
-          <h2>Register</h2>
+       <section className="super-form">
+
+          <div className="logo-block">
+            <div className="logo">
+              <svg className="header__SVG" id="apple-login"> <use xlinkHref="/icons.svg#apple-white"></use></svg>
+              <p>NutriFacil</p>
+            </div>
+          </div>
+
           <form>
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="email" required />
 
-            <label htmlFor="password">Senha:</label>
-            <input type="password" id="password" name="password" required />
+            <div className="camps">
+              <label htmlFor="name">Nome:</label>
+              <input type="text" id="name" name="name" required />
+            </div>
 
-            <label htmlFor="confirmPassword">Confirmar Senha:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required />
+            <div className="camps">
+              <label htmlFor="email">Email:</label>
+              <input type="email" id="email" name="email" required />
+            </div>
 
-            <button type="submit">Registrar</button>
+            <div className="camps">
+              <label htmlFor="password">Senha:</label>
+              <input type="password" id="password" name="password" required />
+            </div>
+
+            <button type="submit">Entrar</button>
           </form>
+
           <p>
-            Já tem conta?{' '}
-            <span onClick={toggleForm}>
-              Login
-            </span>
+            Já tem conta? <span onClick={toggleForm}>Login</span>
           </p>
         </section>
       )}
-    
     </main>
-
-  )
+  );
 }                   
 
 export default LoginRegister
