@@ -15,10 +15,13 @@ public class Diet {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     @OneToOne
     @JoinColumn(name = "user_profile_id", referencedColumnName = "id")
     private Profile userProfile;
+
     @Enumerated(EnumType.STRING)
     private DietObjective objective;
+
 
 }
