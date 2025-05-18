@@ -10,6 +10,8 @@
   z-index: 1000;
 
 }
+
+
 .header-container {
   display: flex;
   justify-content: space-between; 
