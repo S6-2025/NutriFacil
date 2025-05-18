@@ -1,15 +1,24 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import LandingPage from "./pages/LandingPage";
+import "./index.css";
+import "./css/LoginRegister.css"
+import "./css/Pages.css"
+import "./css/Footer.css"
+import "./css/Header.css"
 
-function App() {
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRoutes from "./routes/AppRoutes";
+
+const App: React.FC = () => {
   return (
-    <>
-      <Header />
-      <LandingPage />
-      <Footer />
-    </>
+    <Router>
+      <div className="app-container">
+        <Header />
+        <AppRoutes />
+        <Footer />
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

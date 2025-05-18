@@ -1,6 +1,6 @@
 import React from 'react'
-import './LandingPage.css'
-import '../index.css'
+
+
 
 const LandingPage: React.FC = () => {
   return (
@@ -22,11 +22,12 @@ const LandingPage: React.FC = () => {
       </section>
 
 
-      <section className="image-block" id="image-block-1">
-       <img src="/frutas_semfundo.JPG" alt="Frutas" id="fruits1" />
+      <section className="image-block-1" id="image-block-1">
+       <img src="/frutas_semfundo.PNG" alt="Frutas" id="fruits1" />
 
       </section>
 
+{/*  waves aqui */}
       <section className="section-divider">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" aria-hidden="true" focusable="false">
           <path
@@ -36,6 +37,8 @@ const LandingPage: React.FC = () => {
           ></path>
         </svg>
       </section>
+
+      {/*  waves acaba aqui */}
 
       <section className="text-button-block" id="block2">
         <h1>Liberdade de escolha!</h1>

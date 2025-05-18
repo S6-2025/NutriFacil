@@ -7,34 +7,14 @@
     "**/Thumbs.db": true,
     "**/CVS": true,
     "Front-End/node_modules": true,
-    "nutrifacil/node_modules": true,
-    "Back-End": true,
     "Front-End/site/node_modules": true,
     "Front-End/site/eslint.config.js": true,
-    "Front-End/site/.gitignore": true,
-    "Front-End/site/package-lock.json": true,
-    "Front-End/site/package.json": true,
-    "Front-End/site/tsconfig.app.json": true,
-    "Front-End/site/tsconfig.node.json": true,
-    "Front-End/site/vite.config.ts": true,
-    "LICENSE": true,
-    "Front-End/site/tsconfig.json": true,
-    "Front-End/site/src/vite-env.d.ts": true
+    "Back-End": true
   },
   "hide-files.files": [
     "Front-End/node_modules",
-    "nutrifacil/node_modules",
-    "Back-End",
     "Front-End/site/node_modules",
     "Front-End/site/eslint.config.js",
-    "Front-End/site/.gitignore",
-    "Front-End/site/package-lock.json",
-    "Front-End/site/package.json",
-    "Front-End/site/tsconfig.app.json",
-    "Front-End/site/tsconfig.node.json",
-    "Front-End/site/vite.config.ts",
-    "LICENSE",
-    "Front-End/site/tsconfig.json",
-    "Front-End/site/src/vite-env.d.ts"
+    "Back-End"
   ]
 }
