@@ -20,6 +20,9 @@ public class User {
     @Column(nullable = false, length = 255)
     private String password;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Profile userProfile;
+
     public User() {
     }
 }

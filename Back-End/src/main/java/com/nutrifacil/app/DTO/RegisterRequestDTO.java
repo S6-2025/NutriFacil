@@ -1,4 +1,15 @@
 package com.nutrifacil.app.DTO;
 
-public record RegisterRequestDTO(String username, String password) {
+import com.nutrifacil.app.Enums.Gender;
+
+public record RegisterRequestDTO(
+        String username,
+        String password,
+        String fullname,
+        String email,
+        Gender gender,
+        int age,
+        Double weight,
+        Double height
+        ) {
 }
