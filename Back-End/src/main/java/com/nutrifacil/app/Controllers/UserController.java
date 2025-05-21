@@ -30,7 +30,5 @@ public class UserController {
         }catch (RuntimeException e){
             return ResponseEntity.status(404).body("Usuário não encontrado");
         }
-
-
     }
 }
