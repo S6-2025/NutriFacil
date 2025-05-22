@@ -1,11 +1,11 @@
 export type StepType = 
-  | { type: "image"; title: string; imageUrl: string }
+  | { type: "image"; title: string; imageUrl: string, description: string }
   | { type: "single"; question: string; options: string[] }
   | { type: "multiple"; question: string; options: string[] }
   | { type: "description"; text: string; question: string; options: string[] };
 
 export const steps: StepType[] = [
-  { type: "image", title: "Welcome!", imageUrl: "/images/welcome.png" },
+  { type: "image", title: "Bem-vindo(a)!", imageUrl: "/select-green.svg", description: "oioioi" },
   { type: "description", text: "Choose your favorite fruit", question: "Fruits", options: ["Apple", "Banana", "Orange"] },
   { type: "single", question: "Pick one drink", options: ["Water", "Juice", "Soda"] },
   { type: "multiple", question: "Select your preferred meals", options: ["Rice", "Pasta", "Salad"] },

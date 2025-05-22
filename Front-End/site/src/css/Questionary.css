@@ -3,60 +3,63 @@
    justify-content: center;
    flex-direction: column;
    margin-top: 10vh;
-   background-color: bisque;
+
  }
 
- .progress-container {
-   background-color: beige;
 
+ .step-image {
    display: flex;
-   flex-direction: row;
+   flex-direction: column;
    justify-content: center;
    align-items: center;
 
-   margin-top: 10vh;
-   position: fixed;
-   top: 0;
-   left: 0;
-   z-index: 1000;
-
-
-   width: 100%;
-   height: 5vh;
-   overflow: hidden;
-   gap: 1vh;
-
  }
-
- .progress-bar {
-   height: 1vh;
-   width: 78%;
-   border-radius: 10px;
-   background-color: #4caf50;
-   /* verde saudável */
-   transition: width 0.3s ease-in-out;
-
- }
-
- .arrow {
-   display: flex;
-
- }
-
- .arrow>.header__SVG {
-   width: 1.4rem;
-   height: 1.4rem;
-
- }
-
-
 
  .step-image,
  .step-description,
  .step-single,
  .step-multiple {
-   background-color: darkgrey;
-   height: 10vh;
+   padding-left: 2rem;
+   padding-right: 2rem;
+   height: 90%;
 
 
+ }
+
+ button {
+   height: 3rem;
+   width: 80%;
+   border-radius: 10px;
+
+
+   font-size: 1.25rem;
+   font-family: var(--font-logo);
+   font-weight: 700;
+   text-align: center;
+   border: none;
+ }
+
+
+ .continues {
+   background-color: var(--color3);
+   color: var(--color8);
+
+ }
+
+ .options {
+   background-color: var(--color8);
+   color: var(--color3);
+   border: 1px solid var(--color3);
+
+ }
+
+ ul {
+   list-style-type: none;
+   padding: 0;
+   margin: 0;
+ }
+
+
+ .super-footer {
+   display: none;
  }

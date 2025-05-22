@@ -1,74 +1,118 @@
+import { useState } from "react";
+import ProgressBar from "./ProgressBar";
+import {
+  steps,
+  handleSingleSelect,
+  handleMultipleSelect,
+} from "./QuestionaryLogic"; // ajuste o path se necessário
+import type { AnswersType } from "./QuestionaryLogic";
 import "./../css/Questionary.css";
 
- function Questionary() {
+function Questionary() {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [answers, setAnswers] = useState<AnswersType>({});
+
+  const step = steps[currentStep];
+
+  function handleNext() {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    }
+  }
+
+  function handleOptionClick(option: string) {
+    if (step.type === "single") {
+      handleSingleSelect(currentStep, option, setAnswers);
+      handleNext();
+    } else if (step.type === "multiple") {
+      handleMultipleSelect(currentStep, option, setAnswers);
+    } else if (step.type === "description") {
+      handleSingleSelect(currentStep, option, setAnswers);
+      handleNext();
+    }
+  }
+
   return (
     <main className="questionary-container">
+      <ProgressBar
+        currentStep={currentStep}
+        setCurrentStep={setCurrentStep}
+        totalSteps={steps.length}
+      />
 
-      <div className="progress-container">
-         <div className="arrow">
-              <svg className="header__SVG" >
-                 <use xlinkHref="/icons.svg#arrowl"></use>
-                 </svg>
-      
-            </div>
-        <div className="progress-bar"></div>
-      </div>
+      {step.type === "image" && (
+        <div className="step-image">
+          <h2>{step.title}</h2>
+          <img src={step.imageUrl} alt={step.title} />
+          <p>{step.description}</p>
+          <button className="continues" onClick={handleNext}>
+            Continuar
+          </button>
+        </div>
+      )}
 
-      {/* Etapa: imagem */}
-      <div className="step-image">
-        <img src="/images/welcome.png" alt="Welcome" />
-        <h2>Welcome!</h2>
-        <button>Continue</button>
-      </div>
+      {step.type === "description" && (
+        <div className="step-description">
+          <p className="description-text">{step.text}</p>
+          <h3>{step.question}</h3>
+          <ul>
+            {step.options.map((option) => (
+              <li key={option}>
+                <button
+                  onClick={() => handleOptionClick(option)}
+                  className="options"
+                >
+                  {option}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
-      {/* Etapa: descrição + pergunta */}
-      <div className="step-description">
-        <p className="description-text">Choose your favorite fruit</p>
-        <h3>Fruits</h3>
-        <ul>
-          <li>
-            <button>Apple</button>
-          </li>
-          <li>
-            <button>Banana</button>
-          </li>
-          <li>
-            <button>Orange</button>
-          </li>
-        </ul>
-      </div>
+      {step.type === "single" && (
+        <div className="step-single">
+          <h3>{step.question}</h3>
+          <ul>
+            {step.options.map((option) => (
+              <li key={option}>
+                <button
+                  onClick={() => handleOptionClick(option)}
+                  className="options"
+                >
+                  {option}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
-      {/* Etapa: escolha única */}
-      <div className="step-single">
-        <h3>Pick one drink</h3>
-        <ul>
-          <li>
-            <button>Water</button>
-          </li>
-          <li>
-            <button>Juice</button>
-          </li>
-          <li>
-            <button>Soda</button>
-          </li>
-        </ul>
-      </div>
-
-      {/* Etapa: múltiplas escolhas */}
-      <div className="step-multiple">
-        <h3>Select your preferred meals</h3>
-        <ul>
-          <li>
-            <button>Rice</button>
-          </li>
-          <li>
-            <button>Pasta</button>
-          </li>
-          <li>
-            <button>Salad</button>
-          </li>
-        </ul>
-      </div>
+      {step.type === "multiple" && (
+        <div className="step-multiple">
+          <h3>{step.question}</h3>
+          <ul>
+            {step.options.map((option) => (
+              <li key={option}>
+                <button
+                  onClick={() => handleOptionClick(option)}
+                  className={`options ${
+                    Array.isArray(answers[currentStep]) &&
+                    (answers[currentStep] as string[]).includes(option)
+                      ? "selected"
+                      : ""
+                  }`}
+                >
+                  {option}
+                </button>
+              </li>
+            ))}
+          </ul>
+          <button className="continues" onClick={handleNext}>
+            Next
+          </button>
+        </div>
+      )}
     </main>
   );
 }

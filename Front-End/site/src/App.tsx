@@ -6,6 +6,7 @@ import "./css/Register.css"
 import "./css/Pages.css"
 import "./css/Footer.css"
 import "./css/Header.css"
+import "./css/ProgressBar.css"
 
 import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
