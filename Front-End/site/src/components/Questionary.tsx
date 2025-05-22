@@ -1,71 +1,47 @@
-import { useState } from "react";
-import {
-  steps,
-  handleSingleSelect,
-  handleMultipleSelect,
-} from "./QuestionaryLogic";
-import type { StepType } from "./QuestionaryLogic";
-export default function Questionary() {
-  const [stepIndex, setStepIndex] = useState(0);
-  const [answers, setAnswers] = useState<any>({});
-  const currentStep: StepType = steps[stepIndex];
+import "./../css/Questionary.css";
 
-  function handleNext() {
-    setStepIndex(prev => prev + 1);
-  }
-
+ function Questionary() {
   return (
-    <main className="super-container">
-      {currentStep.type === "image" && (
-        <div className="step-image">
-          <h2>{currentStep.title}</h2>
-          <img src={currentStep.imageUrl} alt={currentStep.title} />
-          <button onClick={handleNext}>Continue</button>
-        </div>
-      )}
+    <div className="questionary-container">
+      {/* Etapa: imagem */}
+      <div className="step-image">
+        <img src="/images/welcome.png" alt="Welcome" />
+        <h2>Welcome!</h2>
+        <button>Continue</button>
+      </div>
 
-      {currentStep.type === "description" && (
-        <div className="step-description">
-          <p>{currentStep.text}</p>
-          <h3>{currentStep.question}</h3>
-          <ul>
-            {currentStep.options.map((option, i) => (
-              <li key={i} onClick={() => handleSingleSelect(stepIndex, option, setAnswers)}>
-                {option}
-              </li>
-            ))}
-          </ul>
-          <button onClick={handleNext}>Continue</button>
-        </div>
-      )}
+      {/* Etapa: descrição + pergunta */}
+      <div className="step-description">
+        <p className="description-text">Choose your favorite fruit</p>
+        <h3>Fruits</h3>
+        <ul>
+          <li><button>Apple</button></li>
+          <li><button>Banana</button></li>
+          <li><button>Orange</button></li>
+        </ul>
+      </div>
 
-      {currentStep.type === "single" && (
-        <div className="step-single">
-          <h3>{currentStep.question}</h3>
-          <ul>
-            {currentStep.options.map((option, i) => (
-              <li key={i} onClick={() => handleSingleSelect(stepIndex, option, setAnswers)}>
-                {option}
-              </li>
-            ))}
-          </ul>
-          <button onClick={handleNext}>Continue</button>
-        </div>
-      )}
+      {/* Etapa: escolha única */}
+      <div className="step-single">
+        <h3>Pick one drink</h3>
+        <ul>
+          <li><button>Water</button></li>
+          <li><button>Juice</button></li>
+          <li><button>Soda</button></li>
+        </ul>
+      </div>
 
-      {currentStep.type === "multiple" && (
-        <div className="step-multiple">
-          <h3>{currentStep.question}</h3>
-          <ul>
-            {currentStep.options.map((option, i) => (
-              <li key={i} onClick={() => handleMultipleSelect(stepIndex, option, setAnswers)}>
-                {answers[stepIndex]?.includes(option) ? "☑" : "☐"} {option}
-              </li>
-            ))}
-          </ul>
-          <button onClick={handleNext}>Continue</button>
-        </div>
-      )}
-    </main>
+      {/* Etapa: múltiplas escolhas */}
+      <div className="step-multiple">
+        <h3>Select your preferred meals</h3>
+        <ul>
+          <li><button>Rice</button></li>
+          <li><button>Pasta</button></li>
+          <li><button>Salad</button></li>
+        </ul>
+      </div>
+    </div>
   );
 }
+
+export default Questionary;
