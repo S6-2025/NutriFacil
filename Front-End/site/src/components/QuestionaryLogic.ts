@@ -5,7 +5,7 @@ export type StepType =
   | { type: "description"; text: string; question: string; options: string[] };
 
 export const steps: StepType[] = [
-  { type: "image", title: "Bem-vindo(a)!", imageUrl: "/select-green.svg", description: "oioioi" },
+  { type: "image", title: "Bem-vindo(a)!", imageUrl: "/select-green.svg", description: "lorem asd asssss ssushdasuad sdasuhda" },
   { type: "description", text: "Choose your favorite fruit", question: "Fruits", options: ["Apple", "Banana", "Orange"] },
   { type: "single", question: "Pick one drink", options: ["Water", "Juice", "Soda"] },
   { type: "single", question: "Pick one drink", options: ["Water", "Juice", "Soda"] },
