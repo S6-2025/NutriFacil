@@ -53,8 +53,9 @@ function Questionary() {
 
       {step.type === "description" && (
         <div className="step-description">
-          <p className="description-text">{step.text}</p>
-          <h3>{step.question}</h3>
+           <h3>{step.question}</h3>
+      
+         
           <ul>
             {step.options.map((option) => (
               <li key={option}>
