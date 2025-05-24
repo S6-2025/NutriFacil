@@ -96,7 +96,7 @@ function Questionary() {
               <li key={option}>
                 <button
                   onClick={() => handleOptionClick(option)}
-                  className={`options ${
+                  className={`multiple-options ${
                     Array.isArray(answers[currentStep]) &&
                     (answers[currentStep] as string[]).includes(option)
                       ? "selected"

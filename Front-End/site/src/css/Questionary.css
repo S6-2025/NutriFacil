@@ -78,7 +78,19 @@
    border: 1px solid var(--color4);
 
  }
+ .multiple-options {
+   background-color: var(--color8);
+   color: var(--color3);
+   border: 1px solid var(--color3);
 
+ }
+ .multiple-options.selected{
+   background-color: var(--color5);
+   color: var(--color7);
+   border: 1px solid var(--color4);
+
+ }
+ 
  ul {
    list-style-type: none;
    padding: 0;
