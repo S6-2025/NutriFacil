@@ -12,7 +12,7 @@ const NavMenu = ({ onClose }: NavMenuProps) => {
           <use xlinkHref="/icons.svg#close-black" />
         </svg>
       </div>
-        <hr />
+   
       <ul className="nav-list">
         <li>
           <Link to="#" onClick={onClose} className="links-li">
@@ -45,9 +45,9 @@ const NavMenu = ({ onClose }: NavMenuProps) => {
           </Link>
         </li>
       </ul>
-      
+      <hr />   
       <div className="footer-header">
- 
+
         <div className="social-media">
           <a href="">
             <svg className="header__SVG">
@@ -60,7 +60,7 @@ const NavMenu = ({ onClose }: NavMenuProps) => {
             </svg>
           </a>
         </div>
-    <hr />
+  
         <Link to="/" className="logo">
           <svg className="header__SVG">
             <use xlinkHref="/icons.svg#apple-black" />

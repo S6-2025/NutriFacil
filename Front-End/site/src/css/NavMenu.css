@@ -56,17 +56,28 @@
   text-align: center;
   font-family: var(--font-logo);
 }
+ hr {
+   border: none;
+   height: 3px;
 
-
+   background-color: black;
+   width: 100%;
+ 
+   box-shadow: none;
+ }
 
 .footer-header{
+
   height: 10%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 
+
+ 
 
   .social-media{
     display: flex;
