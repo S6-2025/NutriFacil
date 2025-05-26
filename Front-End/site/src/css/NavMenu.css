@@ -50,7 +50,7 @@
 
 .links-li{
   text-decoration: none;
-  color: var(--color1);
+  color: black;
   font-size: 1.7rem;
   font-weight: 700;
   text-align: center;
@@ -98,8 +98,9 @@
     .header__SVG{
       height: 1.5rem;
       width: 1.5rem;
+      
     }
-    
+
   }
 }
 
