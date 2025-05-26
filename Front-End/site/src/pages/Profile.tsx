@@ -91,7 +91,7 @@ const Profile: React.FC = () => {
                 id="password-info"
                 autoComplete="current-password"
                 name="password-info"
-                placeholder="####"
+                placeholder="oiiii"
                 disabled
               />
             </div>
