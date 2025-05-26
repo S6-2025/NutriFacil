@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Profile: React.FC = () => {
   return (
@@ -71,7 +71,7 @@ const Profile: React.FC = () => {
 
         <section className="login-info">
           <h2>Informações de Login</h2>
-          <form>
+          <form className="form-info">
             <div className="info-camps">
               <label htmlFor="email-info">Email:</label>
               <input
@@ -97,7 +97,14 @@ const Profile: React.FC = () => {
             </div>
           </form>
         </section>
+
+
+        <section>
+          <button> teste</button>
+        </section>
       </div>
+
+
     </main>
   );
 };

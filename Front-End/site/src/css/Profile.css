@@ -1,0 +1,44 @@
+ 
+
+.personal-info,
+.login-info,
+.container-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1,
+h2,
+label {
+  font-family: var(--font-logo);
+  
+}
+
+h2{
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+
+
+.personal-camps,
+.info-camps {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-personal, .form-info{
+  height: 25vh;
+  padding: 0;
+}
+
+
+
+
+.container-profile {
+  background-color: antiquewhite;
+  width: 90%;
+  height: 100%;
+ 
+}
