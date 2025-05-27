@@ -1,15 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
- 
+import { useRegisterForm } from "../hooks/useRegisterForm";
 const Register: React.FC = () => {
+  const { form, handleChange, handleSubmit } = useRegisterForm();
 
-
-  
   return (
     <main className="super-container" id="super-container-form">
       <section className="super-form-register">
-        <div className="logo-block " id='logo-block-register'>
+        <div className="logo-block " id="logo-block-register">
           <div className="logo">
             <svg className="header__SVG" id="apple-login">
               {" "}
@@ -21,32 +20,51 @@ const Register: React.FC = () => {
 
         <form className="form-register">
           <div className="camps">
-            <label className="teste-label" htmlFor="name-register">
+            <label htmlFor="fullname">
               Nome:
             </label>
             <input
+              value={form.fullname}
+              onChange={handleChange}
               type="text"
-              id="name-register"
+              id="fullname"
               autoComplete="name"
-              name="name-register"
+              name="fullname"
               required
               placeholder="Digite seu nome"
             />
           </div>
 
           <div className="camps">
-            <label htmlFor="email-register">Email:</label>
+            <label  htmlFor="username">
+              UserName:
+            </label>
             <input
+              value={form.username}
+              onChange={handleChange}
+              type="text"
+              id="username"
+              autoComplete="username"
+              name="username"
+              required
+              placeholder="Digite um username"
+            />
+          </div>
+
+          <div className="camps">
+            <label htmlFor="email">Email:</label>
+            <input
+              value={form.email}
+              onChange={handleChange}
               type="email"
-              id="email-register"
+              id="email"
               autoComplete="new-email"
-              name="email-register"
+              name="email"
               required
               placeholder="Digite seu e-mail"
             />
           </div>
-
-          
+{/* 
           <div className="camps">
             <label htmlFor="telephone-register">Telefone:</label>
             <input
@@ -57,15 +75,17 @@ const Register: React.FC = () => {
               required
               placeholder="Digite seu telefone"
             />
-          </div>
+          </div> */}
 
           <div className="camps">
-            <label htmlFor="password-register">Senha:</label>
+            <label htmlFor="password">Senha:</label>
             <input
+              value={form.password}
+              onChange={handleChange}
               type="password"
-              id="password-register"
-              autoComplete="new-password"
-              name="password-register"
+              id="password"
+              autoComplete="new-password webauthn"
+              name="password"
               required
               placeholder="Digite sua senha"
             />
@@ -75,7 +95,10 @@ const Register: React.FC = () => {
         </form>
 
         <p className="message-login-register">
-          Já tem conta? <Link  className='link' to="/login">Login</Link>
+          Já tem conta?{" "}
+          <Link className="link" to="/login">
+            Login
+          </Link>
         </p>
       </section>
     </main>
