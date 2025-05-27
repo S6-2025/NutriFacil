@@ -1,68 +1,55 @@
- 
-
-.personal-info,
-.login-info,
-.container-profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.container-profile{
+  height: 100vh;
 }
 
-h1,
-h2,
-label {
+h1,label{
   font-family: var(--font-logo);
-  
+}
+
+h1{
+  text-align: center;
 }
 
 label{
-  font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
+}
+.personal-info{
+
+  height: 60%;
+ 
+
 }
 
-h2{
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-
-
-
-.personal-camps,
-.info-camps {
-  display: flex;
-  flex-direction: column;
-
-
-   
-}
-
- .personal-camps > input,
- .info-camps > input{
-  width: 15rem;
-  height: 2rem;
-
-  font-size: 1.2rem;
-  color: black;
-  background-color: var(--color8);
-  border-radius: 10px;
-
-  border: .2px solid var(--color3);
-  padding-left: 10px;
- }
-
-
-
-.form-personal, .form-info{
-  height: 25vh;
-  padding: 0;
-}
-
-
-
-
-.container-profile {
-
-  width: 90%;
+.form-personal{
   height: 100%;
  
 }
+
+.personal-camps, .info-camps{
+ display: flex;
+  flex-direction: column;
+  justify-content: center;
+ 
+
+  width: 100%;
+  height: 20%;
+}
+
+.personal-camps > input,
+.info-camps > input{
+  height: 40%;  
+  background-color: var(--color6);
+  color: black;
+  border: 1px solid var(--color3);
+  border-radius: 10px;
+  padding:10px ;
+}
+ 
+.personal-camps > input::placeholder,
+.info-camps > input::placeholder{
+  color: black;
+  font-size: 1rem;
+   
+}
+
+
