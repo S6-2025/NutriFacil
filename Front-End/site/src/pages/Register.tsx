@@ -1,28 +1,41 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useRegisterForm } from "../hooks/useRegisterForm";
+
 const Register: React.FC = () => {
-  const { form, handleChange, handleSubmit } = useRegisterForm();
+  const { form, handleChange } = useRegisterForm();
+  const navigate = useNavigate();
+
+  function handleNextStep(e: React.FormEvent) {
+    e.preventDefault();
+ 
+    const safeData = {
+      username: form.username,
+      fullname: form.fullname,
+      email: form.email,
+    };
+    localStorage.setItem("register_safe_data", JSON.stringify(safeData));
+
+  
+    navigate("/questionary", { state: form });
+  }
 
   return (
     <main className="super-container" id="super-container-form">
       <section className="super-form-register">
-        <div className="logo-block " id="logo-block-register">
+        <div className="logo-block" id="logo-block-register">
           <div className="logo">
             <svg className="header__SVG" id="apple-login">
-              {" "}
               <use xlinkHref="/icons.svg#apple"></use>
             </svg>
             <p>NutriFacil</p>
           </div>
         </div>
 
-        <form className="form-register">
+        <form className="form-register" onSubmit={handleNextStep}>
           <div className="camps">
-            <label htmlFor="fullname">
-              Nome:
-            </label>
+            <label htmlFor="fullname">Nome:</label>
             <input
               value={form.fullname}
               onChange={handleChange}
@@ -36,9 +49,7 @@ const Register: React.FC = () => {
           </div>
 
           <div className="camps">
-            <label  htmlFor="username">
-              UserName:
-            </label>
+            <label htmlFor="username">UserName:</label>
             <input
               value={form.username}
               onChange={handleChange}
@@ -64,18 +75,6 @@ const Register: React.FC = () => {
               placeholder="Digite seu e-mail"
             />
           </div>
-{/* 
-          <div className="camps">
-            <label htmlFor="telephone-register">Telefone:</label>
-            <input
-              type="text"
-              id="telephone-register"
-              autoComplete="new-email"
-              name="telephone-register"
-              required
-              placeholder="Digite seu telefone"
-            />
-          </div> */}
 
           <div className="camps">
             <label htmlFor="password">Senha:</label>
@@ -91,7 +90,7 @@ const Register: React.FC = () => {
             />
           </div>
 
-          <button type="submit">Entrar</button>
+          <button type="submit">Próxima Etapa</button>
         </form>
 
         <p className="message-login-register">
