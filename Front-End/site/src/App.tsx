@@ -8,6 +8,7 @@ import "./css/Footer.css"
 import "./css/Header.css"
 import "./css/ProgressBar.css"
 import "./css/NavMenu.css"
+import "./css/Profile.css"
 
 import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
