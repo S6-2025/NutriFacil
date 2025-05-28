@@ -1,7 +1,5 @@
 import React from 'react'
 
-
-
 const LandingPage: React.FC = () => {
   return (
     <main className="super-container" >
@@ -9,6 +7,7 @@ const LandingPage: React.FC = () => {
         <h1>Personalize suas dietas!</h1>
         <span>🍎Descubra o que funciona para você de forma prática e rápida.</span> 
         <p>
+         
           Se você quer melhorar sua alimentação, mas não sabe por onde começar, responda nosso rápido questionário e receba
           recomendações personalizadas com base no seu perfil, objetivos e preferências alimentares.
           <br /><br />
