@@ -17,7 +17,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping()
+    @GetMapping("")
     public ResponseEntity<String> getUsers(){
         return ResponseEntity.ok("DEU CERTO");
     }
