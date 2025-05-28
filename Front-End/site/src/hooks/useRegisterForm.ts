@@ -34,5 +34,6 @@ export function useRegisterForm() {
     }
   }
 
+ 
   return { form, handleChange, handleSubmit };
 }
