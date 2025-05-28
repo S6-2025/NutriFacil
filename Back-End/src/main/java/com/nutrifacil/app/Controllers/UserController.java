@@ -17,7 +17,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping()
+    @GetMapping("")
     public ResponseEntity<String> getUsers(){
         return ResponseEntity.ok("DEU CERTO");
     }
@@ -30,7 +30,5 @@ public class UserController {
         }catch (RuntimeException e){
             return ResponseEntity.status(404).body("Usuário não encontrado");
         }
-
-
     }
 }
