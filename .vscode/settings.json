@@ -8,8 +8,7 @@
     "**/CVS": true,
     "Front-End/node_modules": true,
     "Front-End/site/node_modules": true,
-    "Front-End/site/eslint.config.js": true,
-    "Back-End": true
+    "Front-End/site/eslint.config.js": true
   },
   "hide-files.files": [
     "Front-End/node_modules",
