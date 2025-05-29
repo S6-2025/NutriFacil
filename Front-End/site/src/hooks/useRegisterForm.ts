@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import type { RegisterRequestDTO } from '../types/RegisterRequestDTO';
 import { registerUser } from '../services/authService';
+import { useNavigate } from 'react-router-dom';
 
 export function useRegisterForm() {
+  const navigate = useNavigate();
   const [form, setForm] = useState<RegisterRequestDTO>({
     username: '',
     password: '',
@@ -27,8 +29,10 @@ export function useRegisterForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      await registerUser(form);
+      const token = await registerUser(form);
+      sessionStorage.setItem('token', token);
       alert('Usuário registrado com sucesso.');
+      navigate("/");
     } catch (err) {
       alert('Erro ao registrar usuário.');
     }
