@@ -18,7 +18,9 @@ export function useUserLoginForm() {
        e.preventDefault(); 
 
        try{
-         await loginUser(data);
+          const token = await loginUser(data); 
+          sessionStorage.setItem("token",token.token)
+          
        }catch (error) {
          console.error('Login failed:', error);
        }

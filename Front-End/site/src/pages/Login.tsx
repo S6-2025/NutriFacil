@@ -1,11 +1,16 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import { Link } from "react-router-dom";
 import { useUserLoginForm } from '../hooks/userLoginForm';
 
-const Login: React.FC = () => {
+import { useNavigate } from 'react-router-dom';
 
+const Login: React.FC = () => {
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    token ? navigate("/") : null;
+  }, [])
   const {username, password, handleUsernameChange, handlePasswordChange, handleSubmit} = useUserLoginForm();
-  
+  const navigate = useNavigate();
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -15,7 +20,14 @@ const Login: React.FC = () => {
       password: password
     }
     console.log("Form submitted with data:", data);
-    handleSubmit(event, data);
+    try{
+      handleSubmit(event, data);
+      navigate("/");
+    }catch (error) {
+      console.error("Error during form submission:", error);
+      alert("Erro ao fazer login. Por favor, tente novamente.");
+    }
+    
   }
 
   const handleUsernameFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +38,8 @@ const Login: React.FC = () => {
     event.preventDefault(); 
     handlePasswordChange(event);
   }
+
+
   
 
   return (
