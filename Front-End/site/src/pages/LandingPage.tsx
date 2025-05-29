@@ -1,6 +1,5 @@
 import React from 'react'
-
-
+import { Link } from 'react-router-dom'
 
 const LandingPage: React.FC = () => {
   return (
@@ -9,6 +8,7 @@ const LandingPage: React.FC = () => {
         <h1>Personalize suas dietas!</h1>
         <span>🍎Descubra o que funciona para você de forma prática e rápida.</span> 
         <p>
+         
           Se você quer melhorar sua alimentação, mas não sabe por onde começar, responda nosso rápido questionário e receba
           recomendações personalizadas com base no seu perfil, objetivos e preferências alimentares.
           <br /><br />
@@ -17,7 +17,7 @@ const LandingPage: React.FC = () => {
           Vamos começar?
         </p>
         <div className="button-wrapper">
-          <button type="button">Começar agora!</button>
+           <Link to="/register"><button type="button">Comece  agora!</button> </Link>
         </div>
       </section>
 
@@ -48,7 +48,7 @@ const LandingPage: React.FC = () => {
           Utilizamos como base as rotinas de dietas cetogênica, vegetariana, mediterrânea e low carb.
         </p>
         <div className="button-wrapper">
-          <button type="button">Montar minha dieta</button>
+          <Link to="/register"><button type="button">Montar minha dieta</button> </Link>
         </div>
       </section>
 

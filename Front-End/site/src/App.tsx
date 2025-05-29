@@ -9,6 +9,7 @@ import "./css/Header.css"
 import "./css/ProgressBar.css"
 import "./css/NavMenu.css"
 import "./css/Profile.css"
+import api from "./services/api"
 
 import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";

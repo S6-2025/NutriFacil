@@ -1,77 +1,159 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useEffect} from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useRegisterForm } from "../hooks/useRegisterForm";
+import type { RegisterRequestDTO } from "../types/RegisterRequestDTO";
 
 const Register: React.FC = () => {
+  const { form, handleChange, handleSubmit } = useRegisterForm();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    token ? navigate("/") : null;
+  }, [])
+
+  function handleNextStep(e: React.FormEvent) {
+    e.preventDefault();
+ 
+    /* const data = {
+      username: form.username,
+      fullname: form.fullname,
+      email: form.email,
+      password: form.password,
+    }; */
+    const data: RegisterRequestDTO = {
+      username: form.username,
+      fullname: form.fullname,
+      email: form.email,
+      password: form.password,
+      gender: "",
+      age: 0,
+      weight: 0,
+      height: 0
+    }
+    try{
+      handleSubmit(e, data);
+      navigate("/questionary", { state: form });
+    }catch (error) {
+      alert('Erro ao registrar usuário.');
+    }
+    
+    //localStorage.setItem("register_safe_data", JSON.stringify(safeData));
+
+  }
+
   return (
     <main className="super-container" id="super-container-form">
       <section className="super-form-register">
-        <div className="logo-block " id='logo-block-register'>
+        <div className="logo-block" id="logo-block-register">
+        <div className="logo-block" id="logo-block-register">
           <div className="logo">
             <svg className="header__SVG" id="apple-login">
-              {" "}
               <use xlinkHref="/icons.svg#apple"></use>
             </svg>
             <p>NutriFacil</p>
           </div>
         </div>
 
-        <form className="form-register">
+        <form className="form-register" onSubmit={handleNextStep}>
+        <form className="form-register" onSubmit={handleNextStep}>
           <div className="camps">
-            <label className="teste-label" htmlFor="name-register">
-              Nome:
-            </label>
+            <label htmlFor="fullname">Nome:</label>
+            <label htmlFor="fullname">Nome:</label>
             <input
+              value={form.fullname}
+              onChange={handleChange}
+              value={form.fullname}
+              onChange={handleChange}
               type="text"
-              id="name-register"
+              id="fullname"
+              id="fullname"
               autoComplete="name"
-              name="name-register"
+              name="fullname"
+              name="fullname"
               required
               placeholder="Digite seu nome"
             />
           </div>
 
           <div className="camps">
-            <label htmlFor="email-register">Email:</label>
+            <label htmlFor="username">UserName:</label>
+            <label htmlFor="username">UserName:</label>
             <input
-              type="email"
-              id="email-register"
-              autoComplete="new-email"
-              name="email-register"
+              value={form.username}
+              onChange={handleChange}
+              type="text"
+              id="username"
+              autoComplete="username"
+              name="username"
+              value={form.username}
+              onChange={handleChange}
+              type="text"
+              id="username"
+              autoComplete="username"
+              name="username"
               required
+              placeholder="Digite um username"
+              placeholder="Digite um username"
+            />
+          </div>
+
+
+          <div className="camps">
+            <label htmlFor="email">Email:</label>
+            <label htmlFor="email">Email:</label>
+            <input
+              value={form.email}
+              onChange={handleChange}
+              type="email"
+              id="email"
+              value={form.email}
+              onChange={handleChange}
+              type="email"
+              id="email"
+              autoComplete="new-email"
+              name="email"
+              name="email"
+              required
+              placeholder="Digite seu e-mail"
               placeholder="Digite seu e-mail"
             />
           </div>
 
-          
           <div className="camps">
-            <label htmlFor="telephone-register">Telefone:</label>
+            <label htmlFor="password">Senha:</label>
+            <label htmlFor="password">Senha:</label>
             <input
-              type="text"
-              id="telephone-register"
-              autoComplete="new-email"
-              name="telephone-register"
-              required
-              placeholder="Digite seu telefone"
-            />
-          </div>
-
-          <div className="camps">
-            <label htmlFor="password-register">Senha:</label>
-            <input
+              value={form.password}
+              onChange={handleChange}
+              value={form.password}
+              onChange={handleChange}
               type="password"
-              id="password-register"
-              autoComplete="new-password"
-              name="password-register"
+              id="password"
+              autoComplete="new-password webauthn"
+              name="password"
+              id="password"
+              autoComplete="new-password webauthn"
+              name="password"
               required
               placeholder="Digite sua senha"
             />
           </div>
 
-          <button type="submit">Entrar</button>
+          <button type="submit">Próxima Etapa</button>
+          <button type="submit">Próxima Etapa</button>
         </form>
 
         <p className="message-login-register">
-          Já tem conta? <Link  className='link' to="/login">Login</Link>
+          Já tem conta?{" "}
+          <Link className="link" to="/login">
+            Login
+          </Link>
+          Já tem conta?{" "}
+          <Link className="link" to="/login">
+            Login
+          </Link>
         </p>
       </section>
     </main>
