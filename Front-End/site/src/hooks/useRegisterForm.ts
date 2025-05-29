@@ -26,16 +26,13 @@ export function useRegisterForm() {
     }));
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent, data: RegisterRequestDTO) {
     e.preventDefault();
-    try {
-      const token = await registerUser(form);
+    const token = await registerUser(data);
       sessionStorage.setItem('token', token);
       alert('Usuário registrado com sucesso.');
       navigate("/");
-    } catch (err) {
-      alert('Erro ao registrar usuário.');
-    }
+
   }
 
  

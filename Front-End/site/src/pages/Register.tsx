@@ -1,24 +1,46 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useRegisterForm } from "../hooks/useRegisterForm";
+import type { RegisterRequestDTO } from "../types/RegisterRequestDTO";
 
 const Register: React.FC = () => {
-  const { form, handleChange } = useRegisterForm();
+  const { form, handleChange, handleSubmit } = useRegisterForm();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    token ? navigate("/") : null;
+  }, [])
 
   function handleNextStep(e: React.FormEvent) {
     e.preventDefault();
  
-    const safeData = {
+    /* const data = {
       username: form.username,
       fullname: form.fullname,
       email: form.email,
-    };
-    localStorage.setItem("register_safe_data", JSON.stringify(safeData));
+      password: form.password,
+    }; */
+    const data: RegisterRequestDTO = {
+      username: form.username,
+      fullname: form.fullname,
+      email: form.email,
+      password: form.password,
+      gender: "",
+      age: 0,
+      weight: 0,
+      height: 0
+    }
+    try{
+      handleSubmit(e, data);
+      navigate("/questionary", { state: form });
+    }catch (error) {
+      alert('Erro ao registrar usuário.');
+    }
+    
+    //localStorage.setItem("register_safe_data", JSON.stringify(safeData));
 
-  
-    navigate("/questionary", { state: form });
   }
 
   return (
