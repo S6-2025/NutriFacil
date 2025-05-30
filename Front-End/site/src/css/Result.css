@@ -32,7 +32,10 @@
 
 /* User infos:  */
 
- 
+.mini-container > .section-divider{
+  height: fit-content;
+}
+
 
 .user-container {
   background-color: var(--color7); /* azul */
@@ -91,8 +94,13 @@
 /* Resultados tmb e imc:  */
 
 .results-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: blueviolet;
   width: 100%;
+  margin-top: -20px;
 }
 
 
