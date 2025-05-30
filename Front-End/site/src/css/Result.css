@@ -1,21 +1,107 @@
-.result-container {
+.mini-container {
   height: 100vh;
   width: 100%;
- 
-
+  margin-top: 7.5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10rem;
+  justify-content: space-evenly;
+  gap: 1rem;
 
 }
 
-.meal-plan {
-  height: 50%;
+
+.user-container,
+.results-container,
+.kcal-container,
+.meals-container,
+.data-container {
+  width: 100%;
+}
+
+
+.kcal-container {
   width: 90%;
 
 
 }
+
+ #wave-profile{
+  margin-top: 3.92rem;
+ }
+
+/* User infos:  */
+
+ 
+
+.user-container {
+  background-color: var(--color7); /* azul */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+ 
+}
+
+/* Cartão encaixado por cima */
+.square-profile {
+  background-color: var(--color8); /* cartão */
+  width: 80%;
+  padding: 24px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+ 
+}
+
+.square-profile > .header__SVG {
+  margin-top: 20px;
+  margin-bottom: 2px;
+  color: var(--color2);
+  width: 5rem;
+  height: 5rem;
+  border: 2px solid var(--color2);
+  border-radius: 100%;
+}
+
+
+
+
+
+.user-infos {
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1rem;
+  justify-content: space-evenly;
+
+  p {
+    font-size: 1.2rem;
+    font-family: var(--font-logo);
+  }
+}
+
+
+
+/* Resultados tmb e imc:  */
+
+.results-container {
+  background-color: blueviolet;
+  width: 100%;
+}
+
+
+
+
+
+
+/* Tabela Kcal  */
+
 
 h2 {
   text-align: center;
@@ -23,54 +109,59 @@ h2 {
 }
 
 
-.table-meals {
+.table-kcals {
   margin-top: 1rem;
   background-color: var(--color6);
   border: 1px solid var(--color4);
   width: 100%;
-  height: 100%;
   text-align: center;
-  
+
   border-radius: 1rem;
-  border-collapse: separate;  
-  border-spacing: 0; 
+  border-collapse: separate;
+  border-spacing: 0;
   overflow: hidden;
 
   table-layout: fixed;
-  
+
 }
 
-.table-meals tbody tr:nth-child(odd) {
-  background-color: var(--color5); /* verde claro */
+.table-kcals tbody tr:nth-child(odd) {
+  background-color: var(--color5);
+  /* verde claro */
 }
 
-.table-meals tbody tr:nth-child(even) {
-  background-color: var(--color8); /* branco */
+.table-kcals tbody tr:nth-child(even) {
+  background-color: var(--color8);
+  /* branco */
 }
 
 
-.table-meals th,
-.table-meals td {
+.table-kcals th,
+.table-kcals td {
 
   padding: 0.5rem;
 }
 
 
-.table-meals thead {
+.table-kcals thead {
   padding: 0.5rem;
 
 
 }
 
- 
- th {
+
+th {
   font-family: var(--font-logo);
   text-align: center;
   background-color: var(--color6);
 }
 
- 
-.border-left{
+
+.border-left {
 
   border-bottom-left-radius: 10px;
 }
+
+
+
+/*  user profile */
