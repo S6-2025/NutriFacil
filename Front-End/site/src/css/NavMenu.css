@@ -1,4 +1,3 @@
-
 .nav {
   display: none;
   background: var(--color8);
@@ -6,28 +5,29 @@
 
 
 .nav > .close-header{
-  width: 100%;
-  height: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
+  width: 100%;
+  height: 10%;
   padding: 1rem;
 }
 
 
 .nav.open {
+  z-index: 1000;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  align-items: center;
+  text-align: center;
   position: fixed;
   top: 0;
   right: 0;
   width: 100%;
   height: 100%;
-  z-index: 1000;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between; 
-  text-align: center;
+
 
   .header__SVG{
     width: 3rem;
@@ -41,51 +41,54 @@
   flex-direction: column ;
   justify-content: flex-start;
   align-items: center;
-    padding-top: 1rem;
-    gap: 3rem;
-    height: 80%;
-    width: 100%;
+  gap: 3rem;
+  width: 100%;
+  height: 80%;
+  padding-top: 1rem;
 }
 
 
 .links-li{
-  text-decoration: none;
-  color: black;
+  font-family: var(--font-logo);
   font-size: 1.7rem;
   font-weight: 700;
+  text-decoration: none;
   text-align: center;
-  font-family: var(--font-logo);
+  color: black;
 }
 
 
 hr {
-  border: none;
-  height: 3px;
-  background-color: black;
   width: 100%;
+  height: 3px;
+  border: none;
   box-shadow: none;
+  background-color: black;
 }
 
 
 .footer-header{
-  height: 10%;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 10%;
+
 
   .social-media{
     display: flex;
     gap: 2.2rem;
     margin-bottom: .4rem;
 
+
     .header__SVG{
-      fill: var(--color1);
       width: 2rem;
       height: 2rem;
+      fill: var(--color1);
     }
   }
+
 
   .logo{
     display: flex;
@@ -93,20 +96,19 @@ hr {
     justify-content: center;
     align-items: center;
     margin-bottom: .4rem;
-    color: black;
     font-family: var(--font-logo);
     font-weight: 700;
     font-size: 1.5rem;
     text-decoration: none;
     cursor: pointer;
+    color: black;
+
 
     .header__SVG{
-      fill: white;
-      stroke: black;
-      height: 1.5rem;
       width: 1.5rem;
-      
+      height: 1.5rem;
+      stroke: black;
+      fill: white;
     }
-
   }
 }
