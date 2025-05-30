@@ -1,17 +1,19 @@
- 
 .super-form-register{
-
   background-color: var(--color3);
   height: 80vh;
-  width: 80vw;
-
+  width: 100%;
+  padding: 0 5vw;
   border-radius: 25px;
-
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 
+}
+
+
+.login-textImg{
+  display: none;
 }
 
 /* logo */
@@ -31,4 +33,40 @@
   padding-right: 1rem;
 }
 
- 
+@media (min-width: 1024px){
+
+  .super-form-register{
+    width: auto;
+    padding: 0 2vw;
+  }
+
+  .login-textImg{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100vh;
+
+    h1{
+      text-align: left;
+      font-weight: bold;
+      font-family: var(--font-titles);
+      color: var(--color4);
+      width: 50%;
+
+    }
+
+    img{
+      width: 50%;
+
+    }
+  }
+
+  .login-form{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+  }
+
+}

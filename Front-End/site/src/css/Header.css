@@ -12,8 +12,6 @@
   z-index: 1000;
 
 }
- 
-
 
 .header-container {
   display: flex;
@@ -29,7 +27,6 @@
   color: var(--color6);
   text-decoration: none;
   font-size: 2rem;
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -40,10 +37,38 @@
 .logo > .header__SVG {
   width: 2rem;
   height: 2rem;
+  fill: none;
+  stroke: var(--color6);
+}
+
+.menu-links{
+  display: none;
 }
 
 #menu-list{
   width: 2.7rem;
   height: 2.7rem;
 }
- 
+
+@media(min-width:1024px){
+.menu-links a:hover{
+  color: var(--color7);
+}
+
+.menu-links{
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  
+  a{
+
+    text-decoration: none;
+    color: var(--color6);
+  }
+
+}
+
+  #menu-list{
+    display: none;
+  }
+}

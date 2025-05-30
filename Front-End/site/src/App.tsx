@@ -11,17 +11,32 @@ import "./css/NavMenu.css"
 import "./css/Profile.css"
 import api from "./services/api"
 
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
+import useIsLargeScreen from "./hooks/useIsLargeScreen";
+
+const AppContent: React.FC = ()=> {
+  const location = useLocation();
+  const isLargeScreen = useIsLargeScreen();
+  const loginRegisterRoutes = ["/register","/login"];
+  const isSpecialRoute = loginRegisterRoutes.includes(location.pathname);
+  const isHidenRoute = loginRegisterRoutes.includes(location.pathname);
+
+  const sholdShowHeader = !(isLargeScreen && isHidenRoute);
+
+  return(
+    <div className="app-container">
+      {sholdShowHeader && <Header />}
+      <AppRoutes />
+      <Footer specialColor={isSpecialRoute} />
+    </div>
+  );
+};
 
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="app-container">
-        <Header />
-        <AppRoutes />
-        <Footer />
-      </div>
+        <AppContent />
     </Router>
   );
 };

@@ -7,13 +7,11 @@
 }
 
 .super-form {
-
   background-color: var(--color3);
   height: 70vh;
-  width: 80vw;
-
+  width: 100%;
+  padding: 0 5vw;
   border-radius: 25px;
-
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -46,7 +44,7 @@
   width: 2.2rem;
   height: 2.2rem;
   display: inline-block;
-   
+  stroke: var(--color4);
 }
 
 
@@ -147,4 +145,19 @@ form > button:focus {
   color: var(--color5);
   text-decoration: underline;
   cursor: pointer;
+}
+
+@media (min-width:1024px){
+  #super-container-form{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--color2);
+    padding: 2vh;
+  }
+
+  .super-form{
+    width: auto;
+    padding: 0 2vw;
+  }
+
 }

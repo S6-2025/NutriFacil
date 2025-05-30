@@ -44,14 +44,18 @@ const Login: React.FC = () => {
 
   return (
     <main className="super-container" id="super-container-form">
-  
-        <section className="super-form">
+      <div className="login-textImg">
 
+      <h1>Faça login e começe a ter uma vida mais saudável</h1>
+      <img src="/healthy_options.png" alt="Opções saudáveis" />
+      </div>
+      <div className="login-form">
+        <section className="super-form">
           <div className="logo-block" >
             <div className="logo">
               <svg className="header__SVG" id="apple-login">
-                 <use xlinkHref="/icons.svg#apple"></use>
-                 </svg>
+                <use xlinkHref="/icons.svg#apple"></use>
+                </svg>
               <p>NutriFacil</p>
             </div>
           </div>
@@ -75,7 +79,7 @@ const Login: React.FC = () => {
             Não tem conta ainda? <Link className='link' to="/register">Cadastrar</Link>
           </p>
         </section>
-     
+      </div>
     </main>
   );
 }                   

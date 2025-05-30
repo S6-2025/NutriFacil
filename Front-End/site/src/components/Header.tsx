@@ -9,10 +9,17 @@ const Header = () => {
     <div className="super-header">
       <div className="header-container">
         <Link to="/" className="logo">
-          <svg className="header__SVG"><use xlinkHref="/icons.svg#apple-white" /></svg>
+          <svg className="header__SVG"><use xlinkHref="/icons.svg#apple" /></svg>
           NutriFacil
         </Link>
-
+        <div className="menu-links">
+          <a href="">Home</a>
+          <a href="">Perfil</a>
+          <a href="">Meu plano</a>
+          <a href="">Sobre</a>
+          <a href="">Suporte</a>
+          <a href="">Login</a>
+        </div>
         <svg id="menu-list" className="header__SVG" onClick={() => setMenuOpen(true)}>
           <use xlinkHref="/icons.svg#menu-white" />
         </svg>
@@ -24,3 +31,4 @@ const Header = () => {
 };
 
 export default Header;
+
