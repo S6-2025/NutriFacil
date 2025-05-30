@@ -30,13 +30,15 @@ const Result: React.FC = () => {
       <div className="results-container">
         <div className="tmb">
           <h2>Sua Taxa Metábolica Basal</h2>
-
-          <h3>43.9</h3>
+          <h3 className="h3-with-blob">43.9</h3>
+       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia veritatis expedita ea mollitia suscipit? Corporis dolores molestiae praesentium ex, magnam ratione. Maiores possimus molestiae ratione. Consequatur velit ducimus facilis magnam.</p>
         </div>
 
         <div className="imc">
           <h2> Seu IMC</h2>
-          <h3>18.9</h3>
+          <h3 className="h3-with-blob">43.9</h3>
+        
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet iure hic in aperiam quam necessitatibus aut sunt voluptatem provident nostrum non, iusto obcaecati expedita ipsa cum asperiores error, perspiciatis quisquam?</p>
         </div>
       </div>
 
