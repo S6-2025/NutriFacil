@@ -50,7 +50,7 @@ const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
               <use xlinkHref="/icons.svg#instagram-black" />
             </svg>
           </a>
-          <a href="" onClick={onClose}>
+          <a href="https://www.facebook.com/profile.php?id=61576713281077" onClick={onClose}>
             <svg className="header__SVG">
               <use xlinkHref="/icons.svg#facebook-black" />
             </svg>
