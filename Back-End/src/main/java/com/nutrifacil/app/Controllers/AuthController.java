@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -28,17 +30,19 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody LoginRequestDTO body){
+    public ResponseEntity<Object> login(@RequestBody LoginRequestDTO body){
         User user = this.repository.findByUsername(body.username()).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
         if(passwordEncoder.matches(body.password(),user.getPassword())){
             String token = tokenService.generateToken(user);
-            return ResponseEntity.ok(token); //? Caso senha seja igual, retorna o token do usuário
+            HashMap<String, String> resp = new HashMap<>();
+            resp.put("token", token);
+            return ResponseEntity.ok(resp); //? Caso senha seja igual, retorna o token do usuário
         }
         return ResponseEntity.badRequest().build();
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody RegisterRequestDTO body){
+    public ResponseEntity<Object> register(@RequestBody RegisterRequestDTO body){
         if(this.repository.findByUsername(body.username()).isPresent()){
             throw new RuntimeException("Usuário já cadastrado");
 
@@ -59,7 +63,9 @@ public class AuthController {
 
         this.repository.save(user);
         String token = tokenService.generateToken(user);
-        return ResponseEntity.ok(token);//? Apos registrar, retorna o token do usuário
+        HashMap<String, String> resp = new HashMap<>();
+        resp.put("token", token);
+        return ResponseEntity.ok(resp);//? Apos registrar, retorna o token do usuário
 //        Optional<User> user = this.repository.findByUsername(body.username());
 //        if(user.isEmpty()){
 //            User newUser = new User();
