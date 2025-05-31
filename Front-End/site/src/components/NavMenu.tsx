@@ -15,13 +15,13 @@ const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
    
       <ul className="nav-list">
         <li>
-          <Link to="#" onClick={onClose} className="links-li">
+          <Link to="/" onClick={onClose} className="links-li">
             Home
           </Link>
         </li>
         <li>
-          <Link to="#" onClick={onClose} className="links-li">
-            Perfil
+          <Link to="/profile" onClick={onClose} className="links-li">
+           Editar Perfil
           </Link>
         </li>
         <li>
@@ -34,11 +34,7 @@ const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
             Sobre
           </Link>
         </li>
-        <li>
-          <Link to="#" onClick={onClose} className="links-li">
-            Suporte
-          </Link>
-        </li>
+        
         <li>
           <Link to="#" onClick={onClose} className="links-li">
             Sair
@@ -49,7 +45,7 @@ const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
       <div className="footer-header">
 
         <div className="social-media">
-          <a href="" onClick={onClose}>
+          <a href="https://www.instagram.com/nutrifacil25/" onClick={onClose}>
             <svg className="header__SVG">
               <use xlinkHref="/icons.svg#instagram-black" />
             </svg>
