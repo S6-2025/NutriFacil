@@ -170,6 +170,9 @@
   z-index: 1;
 
 }
+#water{
+  background-color: var(--color9);
+}
 
 @keyframes morph {
   0% {
