@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
 interface NavMenuProps {
+  isOpen: boolean;
   onClose: () => void;
 }
-
-const NavMenu = ({ onClose }: NavMenuProps) => {
+const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
   return (
-    <nav className="nav open">
+    <nav  className={`nav ${isOpen ? 'open' : ''}`}>
       <div className="close-header">
         <svg className="header__SVG" onClick={onClose}>
           <use xlinkHref="/icons.svg#close-black" />
