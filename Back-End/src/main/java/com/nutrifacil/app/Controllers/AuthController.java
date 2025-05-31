@@ -9,12 +9,41 @@ import com.nutrifacil.app.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/auth")
+@CrossOrigin(origins = "http://localhost:5173")
+=======
+>>>>>>> 504d1b975a1a208df8a115964229f9da43f95d88
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
 @RestController
 @RequestMapping("/auth")
+<<<<<<< HEAD
+=======
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/auth")
+@CrossOrigin(origins = "http://localhost:5173")
+>>>>>>> 29c64fb (tentativa de fazer login)
+=======
+>>>>>>> 4faf7bf62b657343ebc5bae705f2cc12f14bf74d
+>>>>>>> 504d1b975a1a208df8a115964229f9da43f95d88
 public class AuthController {
     @Autowired
     private final UserRepository repository;
