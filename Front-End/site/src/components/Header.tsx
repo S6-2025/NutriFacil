@@ -18,7 +18,8 @@ const Header = () => {
         </svg>
       </div>
 
-      {menuOpen && <NavMenu onClose={() => setMenuOpen(false)} />}
+      {/* NavMenu SEM condicional, apenas controle pela prop isOpen */}
+      <NavMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
     </div>
   );
 };

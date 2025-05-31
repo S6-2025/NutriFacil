@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
 interface NavMenuProps {
+  isOpen: boolean;
   onClose: () => void;
 }
-
-const NavMenu = ({ onClose }: NavMenuProps) => {
+const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
   return (
-    <nav className="nav open">
+    <nav  className={`nav ${isOpen ? 'open' : ''}`}>
       <div className="close-header">
         <svg className="header__SVG" onClick={onClose}>
           <use xlinkHref="/icons.svg#close-black" />
@@ -15,13 +15,13 @@ const NavMenu = ({ onClose }: NavMenuProps) => {
    
       <ul className="nav-list">
         <li>
-          <Link to="#" onClick={onClose} className="links-li">
+          <Link to="/" onClick={onClose} className="links-li">
             Home
           </Link>
         </li>
         <li>
-          <Link to="#" onClick={onClose} className="links-li">
-            Perfil
+          <Link to="/profile" onClick={onClose} className="links-li">
+           Editar Perfil
           </Link>
         </li>
         <li>
@@ -34,11 +34,7 @@ const NavMenu = ({ onClose }: NavMenuProps) => {
             Sobre
           </Link>
         </li>
-        <li>
-          <Link to="#" onClick={onClose} className="links-li">
-            Suporte
-          </Link>
-        </li>
+        
         <li>
           <Link to="#" onClick={onClose} className="links-li">
             Sair
@@ -49,12 +45,12 @@ const NavMenu = ({ onClose }: NavMenuProps) => {
       <div className="footer-header">
 
         <div className="social-media">
-          <a href="" onClick={onClose}>
+          <a href="https://www.instagram.com/nutrifacil25/" onClick={onClose}>
             <svg className="header__SVG">
               <use xlinkHref="/icons.svg#instagram-black" />
             </svg>
           </a>
-          <a href="" onClick={onClose}>
+          <a href="https://www.facebook.com/profile.php?id=61576713281077" onClick={onClose}>
             <svg className="header__SVG">
               <use xlinkHref="/icons.svg#facebook-black" />
             </svg>
