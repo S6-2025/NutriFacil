@@ -75,8 +75,9 @@
 }
 
 .square-profile>.user-infos>h2 {
-  font-weight: 500;
+  font-weight: 300;
   width: 100%;
+  font-family: var(--font-title);
 }
 
 
@@ -96,14 +97,22 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  padding: 1rem;
+  gap: 2rem;
   width: 100%;
 }
 
 .objectives>div>.header__SVG {
   height: 2rem;
   width: 2rem;
-  background-color: aqua;
+  color: var(--color7);
+ 
+}
+.objectives>div > span{
+  color: var(--color1);
+  margin-top: .3rem;
+  font-weight: 500;
+  font-family: var(--font-title);
 }
 
 .objectives>div {
