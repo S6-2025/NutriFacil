@@ -8,20 +8,33 @@ const Result: React.FC = () => {
   return (
     <div className="mini-container">
       <div className="user-container">
+
         <div className="square-profile">
           <svg className="header__SVG">
             <use xlinkHref="/icons.svg#orange" />
           </svg>
 
           <div className="user-infos">
-            <p>Gabrielle Soares Tei</p>
-            <p>
-              Objetivo:
-              <span> Perder Peso</span>
-            </p>
-            <p>
-              Dieta: <span> Mediterranea</span>
-            </p>
+            <h2>Gabrielle Soares Teixeira</h2>
+
+            <div className="objectives">
+
+              <div>
+                <svg className="header__SVG">
+                  <use xlinkHref="/icons.svg#target" />
+                </svg>
+                <span> Perder Peso</span>
+              </div>
+
+              <div>
+                <svg className="header__SVG">
+                  <use xlinkHref="/icons.svg#diet" />
+                </svg>
+                <span> Mediterranea</span>
+              </div>
+              
+            </div>
+
           </div>
         </div>
       </div>
@@ -39,7 +52,6 @@ const Result: React.FC = () => {
         </svg>
       </section>
 
- 
       <div className="results-container">
         <div className="tmb">
           <h2>Taxa Metábolica Basal</h2>
@@ -57,7 +69,7 @@ const Result: React.FC = () => {
             </span>
           </IgrExpansionPanel>
         </div>
- 
+
         <div className="imc">
           <h2> Seu IMC</h2>
           <h3 className="h3-with-blob">43.9</h3>
@@ -79,7 +91,7 @@ const Result: React.FC = () => {
 
       <div className="kcal-container">
         <h2>Sugestão de distribuição de calorias</h2>
-        
+
         <table className="table-kcals">
           <thead>
             <tr>
@@ -91,69 +103,59 @@ const Result: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-        
             <tr>
               <th>Todos os Dias</th>
-              <td>300
-                kcal</td>
-              <td>300
-                kcal</td>
-              <td>300
-                kcal</td>
-              <th>1000
-                kcal</th>
+              <td>300 kcal</td>
+              <td>300 kcal</td>
+              <td>300 kcal</td>
+              <th>1000 kcal</th>
             </tr>
-            
           </tbody>
         </table>
         <br />
-
-        
       </div>
 
       <div className="meals-container">
         <h2> Sugestão para alimentos</h2>
-  <IgrExpansionPanel >
-            <h1 slot="title">Café da Manhã</h1>
-            <h3 slot="subtitle"></h3>
-            <span>
+        <IgrExpansionPanel>
+          <h1 slot="title">Café da Manhã</h1>
+          <h3 slot="subtitle"></h3>
+          <span>
             <table className="table-kcals">
-          <thead>
-            <tr>
-              <th> </th>
-              <th>Alimento </th>
-              <th>100g</th>
-              <th>80g</th>
-              <th>50g</th>
-               
-            </tr>
-          </thead>
-          <tbody>
-        
-            <tr>
-              <th>Calorias</th>
-              <td>Banana</td>
-              <td>300
-                kcal</td>
-              <td>300
-                kcal</td>
-              <td>1000
-                kcal</td>
-            </tr>
-            
-          </tbody>
-        </table>
-            </span>
-          </IgrExpansionPanel>
-          <br />
-        <IgrExpansionPanel >
-            <h1 slot="title">Jantar</h1>
-            <h3 slot="subtitle"></h3>
-            <span>
-             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto quaerat beatae vel itaque accusamus quis error rem blanditiis eius delectus quos, atque quasi ab dolor molestias corrupti impedit fuga fugit!</p>
-            </span>
-          </IgrExpansionPanel>
-        
+              <thead>
+                <tr>
+                  <th> </th>
+                  <th>Alimento </th>
+                  <th>100g</th>
+                  <th>80g</th>
+                  <th>50g</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Calorias</th>
+                  <td>Banana</td>
+                  <td>300 kcal</td>
+                  <td>300 kcal</td>
+                  <td>1000 kcal</td>
+                </tr>
+              </tbody>
+            </table>
+          </span>
+        </IgrExpansionPanel>
+        <br />
+        <IgrExpansionPanel>
+          <h1 slot="title">Jantar</h1>
+          <h3 slot="subtitle"></h3>
+          <span>
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Architecto quaerat beatae vel itaque accusamus quis error rem
+              blanditiis eius delectus quos, atque quasi ab dolor molestias
+              corrupti impedit fuga fugit!
+            </p>
+          </span>
+        </IgrExpansionPanel>
       </div>
 
       <div className="data-container">

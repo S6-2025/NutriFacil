@@ -52,14 +52,17 @@
 .square-profile {
   background-color: var(--color8);
   width: 80%;
-  padding: 24px;
+  padding: 1.2rem;
   border-radius: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  gap: 1.5rem;
 
 }
+
+
+
 
 .square-profile>.header__SVG {
   margin-top: 20px;
@@ -71,8 +74,10 @@
   border-radius: 100%;
 }
 
-
-
+.square-profile>.user-infos>h2 {
+  font-weight: 500;
+  width: 100%;
+}
 
 
 .user-infos {
@@ -80,15 +85,34 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-left: 1rem;
+  align-items: center;
   justify-content: space-evenly;
+  gap: .5rem;
 
-  p {
-    font-size: 1.2rem;
-    font-family: var(--font-logo);
-  }
 }
 
+.objectives {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.objectives>div>.header__SVG {
+  height: 2rem;
+  width: 2rem;
+  background-color: aqua;
+}
+
+.objectives>div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
 
 
 /* Resultados tmb e imc:  */
@@ -203,7 +227,7 @@ h2 {
   border-collapse: separate;
   border-spacing: 0;
   overflow: hidden;
- 
+
 
 }
 
@@ -304,11 +328,11 @@ th {
 
 .meals-container>igc-expansion-panel::part(content) {
   border: none;
- 
+
 }
 
 
-.meals-container> igc-expansion-panel::part(content) > .table-kcals{
+.meals-container>igc-expansion-panel::part(content)>.table-kcals {
   background-color: black;
 }
 
