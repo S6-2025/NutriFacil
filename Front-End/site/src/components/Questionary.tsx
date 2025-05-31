@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ProgressBar from "./ProgressBar";
-import { registerUser } from "../services/authService";
+import  { registerUser } from "../services/authService";
 import {
   steps,
   handleSingleSelect,
