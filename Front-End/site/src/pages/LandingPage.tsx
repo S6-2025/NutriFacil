@@ -17,7 +17,7 @@ const LandingPage: React.FC = () => {
           Vamos começar?
         </p>
         <div className="button-wrapper">
-           <Link to="/register"><button type="button">Comece  agora!</button> </Link>
+           <Link to="/questionary"><button type="button">Comece  agora!</button> </Link>
         </div>
       </section>
 

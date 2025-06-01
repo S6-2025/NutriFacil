@@ -30,7 +30,7 @@ export interface UserData {
   age?: number;
   weight?: number;
   height?: number;
-  questionnaireAnswers?: AnswersType;
+  questionnaireAnswers?: AnswersType; //? Aqui não deveria ser uma lista?
 }
 
 // Inicializa userData com dados iniciais (exemplo vindo do registro)
