@@ -20,7 +20,7 @@ function ProgressBar({ currentStep, setCurrentStep, totalSteps }: ProgressBarPro
         onClick={() => setCurrentStep(Math.max(currentStep - 1, 0))}
       >
         <svg className="header__SVG">
-          <use xlinkHref="/icons.svg#arrowl" />
+          <use xlinkHref="/icons.svg#arrow" />
         </svg>
       </div>
 

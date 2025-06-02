@@ -1,58 +1,88 @@
+.super-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color8);
+}
+
+
 .text-button-block,
 .text-block {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
-  flex: 1 1 400px;
-  max-width: 600px;
   padding: 2rem;
   background-color: var(--color8);
 }
 
 
+.text-button-block{
+  h1 {
+    text-align: center;
+    width: 100%;
+    margin: 1rem 0;
+    font-family: var(--font-titles);
+    font-size: 3.5rem;
+    font-weight: 500;
+    line-height: 3rem;
+    color: var(--color1);
+  }
+
+
+  p {
+    text-align: justify;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #3a3a3a;
+  }
+
+
+  span {
+    text-align: justify;
+    padding: .2rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 2rem;
+    color: var(--color3);
+  }
+}
+
+
+#fruits1 {
+  width: 100%;
+  height: 100vw;
+  object-fit: cover;
+  transform: rotate(90deg);
+}
+
+
+.section-divider {
+  z-index: 2;
+  width: 100%;
+  margin-top: -10vh;
+  /* sobe a wave um pouco pra sobrepor a imagem */
+}
+
+
+.section-divider svg {
+  display: block;
+  margin-bottom: -1px;
+  line-height: 0;
+}
+
+
 #block2 {
   background-color: var(--color5);
+
+
+  p {
+    color: var(--color3);
+  }
 }
 
 
-#block2 p {
-  color: var(--color3);
-}
-
-
-.text-button-block h1 {
-  text-align: center;
-  width: 100%;
-  margin: 1rem 0;
-  font-family: var(--font-titles);
-  font-size: 3.5rem;
-  font-weight: 500;
-  line-height: 3rem;
-  color: var(--color1);
-}
-
-
-.text-button-block span {
-  text-align: justify;
-  padding: .2rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  line-height: 2rem;
-  color: var(--color3);
-}
-
-
-.text-button-block p {
-  text-align: justify;
-  font-size: 1.2rem;
-  font-weight: 500;
-  line-height: 1.5;
-  color: #3a3a3a;
-}
-
-
-/* Botão */
 .button-wrapper {
   margin-top: 1rem;
 }
@@ -71,8 +101,6 @@
   background-color: var(--color3);
   color: white;
 }
-
-
 .button-wrapper button:hover {
   transform: scale(1.02);
   transition: 0.2s ease-in-out;
@@ -81,60 +109,46 @@
 }
 
 
-/* Imagem */
-.image-block {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1 1 300px;
-  max-width: 100%;
+#healthy_options {
+  width: 100%;
   overflow: hidden;
   background-color: var(--color5);
 }
 
 
-.image-block img {
-  width: 80%;
-  height: auto;
-}
+@media (min-width: 1024px){
+  .text-button-block,
+  .text-block{
+    width: 50%;
+  }
+
+  .personalize-container{
+    display: flex;
+    flex-direction: row;
+  }
 
 
-#fruits1 {
-  width: 180%;
-  height: 100%;
-  transform: rotate(90deg);
-  background-color: var(--color8);
-}
+  #fruits1 {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    transform: rotate(0);
+  }
 
 
-/*  waves */
-#image-block-1 {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  .section-divider {
+    margin-top: -30vh;
+  }
+
+  .liberty-container{
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+
+  #healthy_options {
+  width: 50%;
   overflow: hidden;
-  z-index: 1;
-  /* imagem abaixo */
-  background-color: var(--color8);
+  background-color: var(--color5);
 }
-
-
-.section-divider {
-  width: 100%;
-  position: relative;
-  margin-top: -80px;
-  /* sobe a wave um pouco pra sobrepor a imagem */
-  z-index: 2;
-  /* onda por cima */
-}
-
-
-.section-divider svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-bottom: -1px;
-  line-height: 0;
 }

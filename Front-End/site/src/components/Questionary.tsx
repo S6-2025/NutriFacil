@@ -8,7 +8,6 @@ import {
   handleNextStep,
   finishRegistration,
   initUserData,
- 
 } from "./QuestionaryLogic";
 
 import type { UserData,

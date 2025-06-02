@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 10vh;
 }
 
 
@@ -109,4 +108,16 @@ ul {
   gap: .5rem;
   padding: 0;
   margin: 0;
+}
+
+
+@media(min-width: 1024px){
+  .step-image{
+    padding-bottom: 10vh;
+  }
+
+  .step-image > img{
+    width: 50%;
+  }
+
 }

@@ -4,30 +4,24 @@ import { Link } from 'react-router-dom'
 const LandingPage: React.FC = () => {
   return (
     <main className="super-container" >
-      <section className="text-button-block">
-        <h1>Personalize suas dietas!</h1>
-        <span>🍎Descubra o que funciona para você de forma prática e rápida.</span> 
-        <p>
-         
-          Se você quer melhorar sua alimentação, mas não sabe por onde começar, responda nosso rápido questionário e receba
-          recomendações personalizadas com base no seu perfil, objetivos e preferências alimentares.
-          <br /><br />
-          Nosso objetivo é tornar a nutrição simples, acessível e adaptada à sua rotina.
-          <br />
-          Vamos começar?
-        </p>
-        <div className="button-wrapper">
-           <Link to="/register"><button type="button">Comece  agora!</button> </Link>
+        <div className="personalize-container">
+          <section className="text-button-block">
+            <h1>Personalize suas dietas!</h1>
+            <span>🍎Descubra o que funciona para você de forma prática e rápida.</span>
+            <p>
+              Se você quer melhorar sua alimentação, mas não sabe por onde começar, responda nosso rápido questionário e receba
+              recomendações personalizadas com base no seu perfil, objetivos e preferências alimentares.
+              <br /><br />
+              Nosso objetivo é tornar a nutrição simples, acessível e adaptada à sua rotina.
+            </p>
+            <div className="button-wrapper">
+              <Link to="/register"><button type="button">Comece  agora!</button> </Link>
+            </div>
+          </section>
+          <img src="/frutas_semfundo.PNG" alt="Frutas" id="fruits1" />
         </div>
-      </section>
 
-
-      <section className="image-block-1" id="image-block-1">
-       <img src="/frutas_semfundo.PNG" alt="Frutas" id="fruits1" />
-
-      </section>
-
-{/*  waves aqui */}
+{/* waves aqui */}
       <section className="section-divider">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" aria-hidden="true" focusable="false">
           <path
@@ -37,24 +31,22 @@ const LandingPage: React.FC = () => {
           ></path>
         </svg>
       </section>
+{/* waves acaba aqui */}
 
-      {/*  waves acaba aqui */}
-
-      <section className="text-button-block" id="block2">
-        <h1>Liberdade de escolha!</h1>
-        <p>
-          Escolha qual dieta seguir, com base nos alimentos que mais gosta.
-          <br />
-          Utilizamos como base as rotinas de dietas cetogênica, vegetariana, mediterrânea e low carb.
-        </p>
-        <div className="button-wrapper">
-          <Link to="/register"><button type="button">Montar minha dieta</button> </Link>
-        </div>
-      </section>
-
-      <section className="image-block">
+      <div className="liberty-container">
+        <section className="text-button-block" id="block2">
+          <h1>Liberdade de escolha!</h1>
+          <p>
+            Escolha qual dieta seguir, com base nos alimentos que mais gosta.
+            <br />
+            Utilizamos como base as rotinas de dietas cetogênica, vegetariana, mediterrânea e low carb.
+          </p>
+          <div className="button-wrapper">
+            <Link to="/register"><button type="button">Montar minha dieta</button> </Link>
+          </div>
+        </section>
         <img src="/healthy_options.png" alt="Opções Saudáveis" id="healthy_options" />
-      </section>
+      </div>
     </main>
   )
 }
