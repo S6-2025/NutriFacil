@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const About: React.FC = () => {
   return (
@@ -22,9 +23,7 @@ const About: React.FC = () => {
           Valorizamos a tradição, o equilíbrio e a consistência — princípios que
           sempre fizeram parte de uma boa alimentação.
         </p>
-        {/* <div className="button-wrapper">
-          <button type="button">Voltar para a home</button>
-        </div> */}
+      
       </section>
 
       <section className="image-block-about">
@@ -61,7 +60,12 @@ const About: React.FC = () => {
           estamos aqui para ajudar você a construir hábitos duradouros — uma
           refeição de cada vez.
         </p>
+          <div className="button-wrapper">
+            <Link to="/">  <button type="button">Voltar para a home</button></Link>
+         
+        </div>
       </section>
+      
     </main>
   );
 };
