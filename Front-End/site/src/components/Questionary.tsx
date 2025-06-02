@@ -1,27 +1,25 @@
 import { useState } from "react";
 import ProgressBar from "./ProgressBar";
-import  { registerUser } from "../services/authService";
 import {
   steps,
   handleSingleSelect,
   handleMultipleSelect,
   handleNextStep,
-  finishRegistration,
   initUserData,
- 
 } from "./QuestionaryLogic";
 
-import type { UserData,
-  AnswersType} from './QuestionaryLogic'
+import type { UserData, AnswersType } from "./QuestionaryLogic";
+import { useNavigate } from "react-router-dom";
 
 interface QuestionaryProps {
   registerUser: (data: any) => Promise<void>; // função para registrar na API, você passa por props
 }
 
-function Questionary({ registerUser }: QuestionaryProps) {
+function Questionary() {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<AnswersType>({});
   const [userData, setUserData] = useState<UserData>(initUserData({}));
+  const navigate = useNavigate();
 
   async function handleOptionClick(option: string) {
     const step = steps[currentStep];
@@ -44,7 +42,11 @@ function Questionary({ registerUser }: QuestionaryProps) {
   }
 
   async function handleFinish() {
-    await finishRegistration(userData, answers, registerUser);
+    navigate("/register", {
+      state: userData
+    });
+    
+    /* await finishRegistration(userData, answers, registerUser); */
     // Aqui você pode redirecionar ou mostrar mensagem de sucesso
   }
 
@@ -63,19 +65,31 @@ function Questionary({ registerUser }: QuestionaryProps) {
           <h2>{step.title}</h2>
           <img src={step.imageUrl} alt={step.title} />
           <p>{step.description}</p>
-          <button className="continues" onClick={() => handleNextStep(currentStep, setCurrentStep, steps.length)}>
+          <button
+            className="continues"
+            onClick={() =>
+              handleNextStep(currentStep, setCurrentStep, steps.length)
+            }
+          >
             Continuar
           </button>
         </div>
       )}
 
       {(step.type === "description" || step.type === "single") && (
-        <div className={`step-${step.type === "description" ? "description" : "single"}`}>
+        <div
+          className={`step-${
+            step.type === "description" ? "description" : "single"
+          }`}
+        >
           <h3>{step.question}</h3>
           <ul>
             {step.options.map((option) => (
               <li key={option}>
-                <button onClick={() => handleOptionClick(option)} className="options">
+                <button
+                  onClick={() => handleOptionClick(option)}
+                  className="options"
+                >
                   {option}
                 </button>
               </li>
@@ -93,7 +107,8 @@ function Questionary({ registerUser }: QuestionaryProps) {
                 <button
                   onClick={() => handleOptionClick(option)}
                   className={`multiple-options ${
-                    Array.isArray(answers[currentStep]) && (answers[currentStep] as string[]).includes(option)
+                    Array.isArray(answers[currentStep]) &&
+                    (answers[currentStep] as string[]).includes(option)
                       ? "selected"
                       : ""
                   }`}
@@ -103,7 +118,12 @@ function Questionary({ registerUser }: QuestionaryProps) {
               </li>
             ))}
           </ul>
-          <button className="continues" onClick={() => handleNextStep(currentStep, setCurrentStep, steps.length)}>
+          <button
+            className="continues"
+            onClick={() =>
+              handleNextStep(currentStep, setCurrentStep, steps.length)
+            }
+          >
             Next
           </button>
         </div>
