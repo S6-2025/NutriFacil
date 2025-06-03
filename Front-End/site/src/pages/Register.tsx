@@ -46,89 +46,86 @@ const Register: React.FC = () => {
 
   return (
     <main className="super-container" id="super-container-form">
-      <section className="super-form-register">
-        <div className="logo-block" id="logo-block-register">
-          <div className="logo">
-            <svg className="header__SVG" id="apple-login">
-              <use xlinkHref="/icons.svg#apple"></use>
-            </svg>
-            <p>NutriFacil</p>
+      
+      <div className="login-textImg">
+        <h1>Faça login e começe a ter uma vida mais saudável</h1>
+        <img src="/healthy_options.png" alt="Opções saudáveis" />
+      </div>
+      <div className="login-form">
+        <section className="super-form-register">
+          <div className="logo-block" id="logo-block-register">
+            <div className="logo">
+              <svg className="header__SVG" id="apple-login">
+                <use xlinkHref="/icons.svg#apple"></use>
+              </svg>
+              <p>NutriFacil</p>
+            </div>
           </div>
-        </div>
-
-        <form className="form-register" onSubmit={handleNextStep}>
-          <div className="camps">
-            <label htmlFor="fullname">Nome:</label>
-            <input
-              value={form.fullname}
-              onChange={handleChange}
-              type="text"
-              id="fullname"
-              autoComplete="name"
-              name="fullname"
-              required
-              placeholder="Digite seu nome"
-            />
-          </div>
-
-          <div className="camps">
-            <label htmlFor="username">UserName:</label>
+          <form className="form-register" onSubmit={handleNextStep}>
+            <div className="camps">
+              <label htmlFor="fullname">Nome:</label>
+              <input
+                value={form.fullname}
+                onChange={handleChange}
+                type="text"
+                id="fullname"
+                autoComplete="name"
+                name="fullname"
+                required
+                placeholder="Digite seu nome"
+              />
+            </div>
+            <div className="camps">
+              <label htmlFor="username">UserName:</label>
         
-            <input
-              value={form.username}
-              onChange={handleChange}
-              type="text"
-              id="username"
-              autoComplete="username"
-              name="username"
-              required
-              placeholder="Digite um username"
-            />
-          </div>
-
-
-          <div className="camps">
-            <label htmlFor="email">Email:</label>
-    
-            <input
-              value={form.email}
-              onChange={handleChange}
-              type="email"
-              id="email"
-              autoComplete="new-email"
-              name="email"
-              required
-              placeholder="Digite seu e-mail"
-            />
-          </div>
-
-          <div className="camps">
-            <label htmlFor="password">Senha:</label>
-           
-            <input
-              value={form.password}
-              onChange={handleChange}
-              type="password"
-              id="password"
-              name="password"
-              autoComplete="new-password webauthn"
-              required
-              placeholder="Digite sua senha"
-            />
-          </div>
-
-    
-          <button type="submit">Registrar</button>
-        </form>
-
-        <p className="message-login-register">
-
-          Já tem conta?{" "}
-          <Link className="link" to="/login">
-            Login
-          </Link>
-        </p>
-      </section>
+              <input
+                value={form.username}
+                onChange={handleChange}
+                type="text"
+                id="username"
+                autoComplete="username"
+                name="username"
+                required
+                placeholder="Digite um username"
+              />
+            </div>
+            <div className="camps">
+              <label htmlFor="email">Email:</label>
+              <input
+                value={form.email}
+                onChange={handleChange}
+                type="email"
+                id="email"
+                autoComplete="new-email"
+                name="email"
+                required
+                placeholder="Digite seu e-mail"
+              />
+            </div>
+            <div className="camps">
+              <label htmlFor="password">Senha:</label>
+        
+              <input
+                value={form.password}
+                onChange={handleChange}
+                type="password"
+                id="password"
+                name="password"
+                autoComplete="new-password webauthn"
+                required
+                placeholder="Digite sua senha"
+              />
+            </div>
+            <button type="submit">Próxima Etapa</button>
+          </form>
+          <p className="message-login-register">
+            Já tem conta?{" "}
+            <Link className="link" to="/login">
+              Login
+            </Link>
+          </p>
+        </section>
+      </div>
     </main>
   );
 };

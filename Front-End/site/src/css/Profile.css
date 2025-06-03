@@ -1,55 +1,68 @@
+#super-container-form-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color8);
+}
+
+
 .container-profile{
   height: 100vh;
+  padding-top: 3vh;
 }
+
 
 h1,label{
   font-family: var(--font-logo);
 }
 
+
 h1{
   text-align: center;
 }
 
+
 label{
   font-weight: 700;
 }
-.personal-info{
 
-  height: 60%;
  
-
+.personal-info{
+  height: 60%;
 }
+
 
 .form-personal{
   height: 100%;
- 
 }
 
+
 .personal-camps, .info-camps{
- display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
- 
-
   width: 100%;
   height: 20%;
 }
 
+
 .personal-camps > input,
 .info-camps > input{
   height: 40%;  
-  background-color: var(--color6);
-  color: black;
+  padding:10px ;
   border: 1px solid var(--color3);
   border-radius: 10px;
-  padding:10px ;
-}
- 
+  background-color: var(--color6);
+  color: black;
+} 
+
+
 .personal-camps > input::placeholder,
 .info-camps > input::placeholder{
-  color: black;
   font-size: 1rem;
-   
+  color: black;
 }
 
 
+@media(min-width: 1024px){
+}

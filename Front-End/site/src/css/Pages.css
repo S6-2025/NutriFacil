@@ -1,153 +1,155 @@
-/* Aqui inicialmente era o estilo da LandingPages porém irei reutilizar algumas coisas daqui, então resolvi deixar globalizado para todas as pages mesmo */
-
-
+.super-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color8);
+  align-items: center;
+}
 
 
 .text-button-block,
 .text-block {
-  flex: 1 1 400px;
-  max-width: 600px;
   display: flex;
-  padding: 2rem;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
+  padding: 2rem;
   background-color: var(--color8);
 }
+
+
+.text-button-block{
+  h1 {
+    text-align: center;
+    width: 100%;
+    margin: 1rem 0;
+    font-family: var(--font-titles);
+    font-size: 3.5rem;
+    font-weight: 500;
+    line-height: 3rem;
+    color: var(--color1);
+  }
+
+
+  p {
+    text-align: justify;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #3a3a3a;
+  }
+
+
+  span {
+    text-align: justify;
+    padding: .2rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 2rem;
+    color: var(--color3);
+  }
+}
+
+
+#fruits1 {
+  width: 100%;
+  height: 100vw;
+  object-fit: cover;
+  transform: rotate(90deg);
+}
+
+
+.section-divider {
+  z-index: 2;
+  width: 100%;
+  margin-top: -10vh;
+  /* sobe a wave um pouco pra sobrepor a imagem */
+}
+
+
+.section-divider svg {
+  display: block;
+  margin-bottom: -1px;
+  line-height: 0;
+}
+
 
 #block2 {
   background-color: var(--color5);
 
+
+  p {
+    color: var(--color3);
+  }
 }
 
-#block2 p {
-  color: var(--color3);
 
-}
-
-.text-button-block h1 {
-  font-family: var(--font-titles);
-  font-weight: 500;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-
-  font-size: 3.5rem;
-  color: var(--color1);
-
-  width: 100%;
-  text-align: center;
-  line-height: 3rem;
-}
-
-.text-button-block span {
-  font-size: 1.4rem;
-  color: var(--color3);
-  font-weight: 600;
-  padding: .2rem;
-  text-align: justify;
-
-  line-height: 2rem;
-}
-
-.text-button-block p {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #3a3a3a;
-  line-height: 1.5;
-  text-align: justify;
-  text-justify: inter-word; /* mais equilibrado */
-  hyphens: auto;
-
-}
-
-/* Botão */
 .button-wrapper {
   margin-top: 1rem;
 }
 
+
 .button-wrapper button {
   padding: 0.75rem 2rem;
+  font-family: var(--font-logo);
   font-size: 1.1rem;
   font-weight: bold;
-  color: white;
-  background-color: var(--color3);
   border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-family: var(--font-logo);
   box-shadow: 0 4px 8px rgba(0, 102, 0, 0.2);
-
+  background-color: var(--color3);
+  color: white;
 }
-
 .button-wrapper button:hover {
-  background-color: var(--color7);
-  box-shadow: 0 6px 12px rgba(0, 128, 0, 0.3);
   transform: scale(1.02);
   transition: 0.2s ease-in-out;
+  box-shadow: 0 6px 12px rgba(0, 128, 0, 0.3);
+  background-color: var(--color7);
 }
 
-/* Imagem */
-.image-block {
-  flex: 1 1 300px;
-  max-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+#healthy_options {
+  width: 100%;
   overflow: hidden;
   background-color: var(--color5);
-
-}
-
-.image-block img {
-  width: 80%;
-  height: auto;
-
-}
-
-#fruits1 {
-  width: 180%;
-  height: 100%;
-  transform: rotate(90deg);
-  background-color: var(--color8);
 }
 
 
-/*  waves */
-#image-block-1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+@media (min-width: 1024px){
+  .text-button-block,
+  .text-block{
+    width: 50%;
+  }
+
+  .personalize-container{
+    display: flex;
+    flex-direction: row;
+  }
+
+
+  #fruits1 {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    transform: rotate(0);
+  }
+
+
+  .section-divider {
+    margin-top: -30vh;
+  }
+
+  .liberty-container{
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+
+  #healthy_options {
+  width: 50%;
   overflow: hidden;
-  z-index: 1;
-  width: 100%;
-  /* imagem abaixo */
-
-  background-color: var(--color8);
-
+  background-color: var(--color5);
 }
-
-.section-divider {
-
-  width: 100%;
-  position: relative;
-  margin-top: -80px;
-  /* sobe a wave um pouco pra sobrepor a imagem */
-  z-index: 2;
-  /* onda por cima */
-
 }
-
-.section-divider svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  line-height: 0;
-  margin-bottom: -1px;
-
-
-}
-
-
-

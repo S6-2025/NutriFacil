@@ -48,22 +48,24 @@ const About: React.FC = () => {
 
       {/*  waves acaba aqui */}
 
-      <section className="text-block-about" id="colored">
-        <p>
-          Nosso compromisso é tornar a nutrição algo simples e acessível. Seja
-          para quem deseja emagrecer, melhorar a alimentação ou apenas entender
-          melhor os alimentos, oferecemos ferramentas, conhecimento e suporte ao
-          longo da jornada.
-          <br />
-          <br />
-          Com respeito à sabedoria do passado e foco em disciplina e clareza,
-          estamos aqui para ajudar você a construir hábitos duradouros — uma
-          refeição de cada vez.
-        </p>
-          <div className="button-wrapper">
-            <Link to="/">  <button type="button">Voltar para a home</button></Link>
-         
-        </div>
+      <section className="text-block-about-colored">
+        <section className="text-block-about" id="colored" >
+          <p>
+            Nosso compromisso é tornar a nutrição algo simples e acessível. Seja
+            para quem deseja emagrecer, melhorar a alimentação ou apenas entender
+            melhor os alimentos, oferecemos ferramentas, conhecimento e suporte ao
+            longo da jornada.
+            <br />
+            <br />
+            Com respeito à sabedoria do passado e foco em disciplina e clareza,
+            estamos aqui para ajudar você a construir hábitos duradouros — uma
+            refeição de cada vez.
+          </p>
+            <div className="button-wrapper">
+              <Link to="/">  <button type="button">Voltar para a home</button></Link>
+        
+          </div>
+        </section>
       </section>
       
     </main>

@@ -24,6 +24,7 @@
   font-family: var(--font-read);
 }
 
+
 html, body, #root, .app-container {
   height: 100%;
   margin: 0;
@@ -32,9 +33,11 @@ html, body, #root, .app-container {
   flex-direction: column;
 }
 
+
 .app-container {
   min-height: 100vh;
 }
+
 
 .app-container > main, 
 .app-container > div { 
@@ -43,8 +46,9 @@ html, body, #root, .app-container {
   flex-direction: column;
 }
 
+
 main {
-  padding-top: 11vh; 
+  padding-top: 10vh; 
   flex: 1;
 }
 
@@ -52,16 +56,6 @@ main {
 [include-html] {
   display: contents;
   /* para que o conteúdo real (como .super-header) funcione no flex */
-}
-
-.super-container {
-  flex: 1;
-  
-  padding-top: 10vh;
-  display: flex;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-   background-color: var(--color8);
 }
 
 

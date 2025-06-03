@@ -31,7 +31,7 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <main className="super-container" id="super-container-form">
+    <main className="super-container" id="super-container-form-profile">
       <div className="container-profile">
         <h1>Editar perfil</h1>
 

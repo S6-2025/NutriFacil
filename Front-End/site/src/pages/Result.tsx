@@ -197,7 +197,7 @@ const Result: React.FC = () => {
                   <td>300 kcal</td>
                   <td>1000 kcal</td>
                 </tr>
-                 <tr>
+                <tr>
                   <th>Calorias</th>
                   <td>Aveia</td>
                   <td>300 kcal</td>

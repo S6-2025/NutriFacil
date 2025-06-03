@@ -36,8 +36,8 @@ const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
         </li>
         
         <li>
-          <Link to="#" onClick={onClose} className="links-li">
-            Sair
+          <Link to="/login" onClick={onClose} className="links-li">
+            Login
           </Link>
         </li>
       </ul>
@@ -47,19 +47,19 @@ const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
         <div className="social-media">
           <a href="https://www.instagram.com/nutrifacil25/" onClick={onClose}>
             <svg className="header__SVG">
-              <use xlinkHref="/icons.svg#instagram-black" />
+              <use xlinkHref="/icons.svg#instagram" />
             </svg>
           </a>
           <a href="https://www.facebook.com/profile.php?id=61576713281077" onClick={onClose}>
             <svg className="header__SVG">
-              <use xlinkHref="/icons.svg#facebook-black" />
+              <use xlinkHref="/icons.svg#facebook" />
             </svg>
           </a>
         </div>
   
         <Link to="/" className="logo" onClick={onClose}>
           <svg className="header__SVG">
-            <use xlinkHref="/icons.svg#apple-black" />
+            <use xlinkHref="/icons.svg#apple" />
           </svg>
           NutriFacil
         </Link>
