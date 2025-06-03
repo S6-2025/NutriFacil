@@ -1,23 +1,4 @@
-.image-block-about{
-  max-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  
-
-}
-
-.image-block-about img {
-  width: 80%;
-  height: auto;
-
-}
-
-
 .text-block-about{
-   flex: 1 1 400px;
-  max-width: 600px;
   display: flex;
   padding: 2.5rem;
   flex-direction: column;
@@ -32,24 +13,22 @@
   font-weight: 500;
   margin-top: 1rem;
   margin-bottom: 1rem;
-
   font-size: 3.5rem;
   color: var(--color1);
-
   width: 100%;
   text-align: center;
   line-height: 3rem;
 }
 
+
 .text-block-about > blockquote {
-  
   color: var(--color3);
   font-weight: 600;
   padding: .2rem;
   text-align: center;
-
   line-height: 1.5rem;
 }
+
 
 .text-block-about >p {
   font-size: 1.25rem;
@@ -59,12 +38,43 @@
   text-align: justify;
   text-justify: inter-word; /* mais equilibrado */
   hyphens: auto;
+}
 
+
+.image-block-about{
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+
+.image-block-about img {
+  width: 80%;
+  height: auto;
+
+}
+
+.text-block-about-colored{
+  display: flex;
+  justify-content: center;
+  margin-top: -15px;
+  background-color: var(--color5);
 }
 
 #colored{
   background-color: var(--color5);
-  margin-top: -15px;
-   
+
 }
- 
+
+@media(min-width: 1024px){
+
+  .text-block-about{
+    max-width: 80%;
+  }
+
+  .image-block-about{
+    max-width: 50%;
+  }
+}
