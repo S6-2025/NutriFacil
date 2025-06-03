@@ -11,6 +11,8 @@ import "./css/NavMenu.css"
 import "./css/Profile.css"
 import "./css/Result.css"
 import "./css/About.css"
+import "./css/Subscription.css"
+import "./css/PlanSelector.css"
 
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
