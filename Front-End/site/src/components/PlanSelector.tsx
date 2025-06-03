@@ -17,7 +17,7 @@ const PlanSelector = ({ isOpen, onClose }: PlanSelectorProps) => {
       <h2 className="section-title">Escolha um Plano</h2>
 
       <div className="plans-container">
-        <div className="plan-card">
+        <div className="plan-card" id="free-plan">
           <h3>Free</h3>
           <p>R$0/Mês</p>
           <ul>
@@ -25,11 +25,11 @@ const PlanSelector = ({ isOpen, onClose }: PlanSelectorProps) => {
             <li>Suporte limitado</li>
           </ul>
           <div className="button-wrapper">
-            <button className="change-plan-button">Assinar</button>
+            <button id="free-plan-button" className="change-plan-button">Assinar</button>
           </div>
         </div>
 
-        <div className="plan-card">
+        <div className="plan-card" id="pro-plan">
           <h3>Pro</h3>
           <p>R$39,99/Mês</p>
           <ul>
@@ -38,7 +38,7 @@ const PlanSelector = ({ isOpen, onClose }: PlanSelectorProps) => {
             <li>Análises avançadas</li>
           </ul>
          <div className="button-wrapper">
-            <button className="change-plan-button">Assinar</button>
+            <button id="pro-plan-button" className="change-plan-button">Assinar</button>
           </div>
         </div>
 
