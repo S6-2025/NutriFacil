@@ -27,7 +27,6 @@ export function useRegisterForm() {
   }
 
   async function handleSubmit(e: React.FormEvent, data: RegisterRequestDTO) {
-    e.preventDefault();
     const token = await registerUser(data);
       sessionStorage.setItem('token', token);
       alert('Usuário registrado com sucesso.');

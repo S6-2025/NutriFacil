@@ -26,4 +26,15 @@ public class QuestionsController {
         return ResponseEntity.ok(questions);
     }
 
+
+    @GetMapping("/ans")
+    public ResponseEntity<List<Answer>> getAnswers(){
+        return ResponseEntity.ok(this.answers);
+    }
+
+   @PostMapping("/ans")
+    public void sendAnswer(@RequestBody Answer answer){
+        this.answers.add(answer);
+   }
+
 }

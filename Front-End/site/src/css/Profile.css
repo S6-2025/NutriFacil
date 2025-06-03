@@ -1,5 +1,14 @@
+#super-container-form-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color8);
+}
+
+
 .container-profile{
   height: 100vh;
+  padding-top: 3vh;
 }
 
 
@@ -17,7 +26,7 @@ label{
   font-weight: 700;
 }
 
-
+ 
 .personal-info{
   height: 60%;
 }
@@ -52,4 +61,8 @@ label{
 .info-camps > input::placeholder{
   font-size: 1rem;
   color: black;
+}
+
+
+@media(min-width: 1024px){
 }

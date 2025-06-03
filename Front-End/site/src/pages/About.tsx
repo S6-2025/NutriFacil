@@ -7,7 +7,7 @@ const About: React.FC = () => {
         <h1>Sobre nós</h1>
         <span>🍎 Lorem, ipsum dolor sit amet </span> 
         <p>
-         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore aliquid ab, et saepe id repellendus quae? Nam quidem ipsam tenetur esse exercitationem? Quo quisquam aperiam at consectetur voluptatum veritatis quod.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore aliquid ab, et saepe id repellendus quae? Nam quidem ipsam tenetur esse exercitationem? Quo quisquam aperiam at consectetur voluptatum veritatis quod.
         </p>
         {/* <div className="button-wrapper">
           <button type="button">Voltar para a home</button>
@@ -16,7 +16,7 @@ const About: React.FC = () => {
 
 
       <section className="image-block">
-       <img src="/hamburguer.png" alt="Frutas"  />
+        <img src="/hamburguer.png" alt="Frutas"  />
 
       </section>
 

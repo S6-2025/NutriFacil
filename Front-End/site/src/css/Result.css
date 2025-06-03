@@ -1,0 +1,367 @@
+.mini-container {
+  height: 100vh;
+  width: 100%;
+  margin-top: 7.5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem;
+
+}
+
+
+.user-container,
+.results-container,
+.kcal-container,
+.meals-container,
+.data-container {
+  width: 100%;
+}
+
+
+.kcal-container {
+  width: 90%;
+
+
+}
+
+#wave-profile {
+  margin-top: 3.92rem;
+}
+
+/* User infos:  */
+
+.mini-container>.section-divider {
+  height: fit-content;
+}
+
+
+.user-container {
+  background-color: var(--color3);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+}
+
+
+.square-profile {
+  background-color: var(--color8);
+  width: 80%;
+  padding: 1.2rem;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+
+}
+
+
+
+
+.square-profile>.header__SVG {
+  margin-top: 20px;
+  margin-bottom: 2px;
+  color: var(--color7);
+  width: 5rem;
+  height: 5rem;
+  border: 2px solid var(--color3);
+  border-radius: 100%;
+}
+
+.square-profile>.user-infos>h2 {
+  font-weight: 300;
+  width: 100%;
+  font-family: var(--font-title);
+}
+
+
+.user-infos {
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: .5rem;
+
+}
+
+.objectives {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  gap: 2rem;
+  width: 100%;
+}
+
+.objectives>div>.header__SVG {
+  height: 2rem;
+  width: 2rem;
+  color: var(--color7);
+ 
+}
+.objectives>div > span{
+  color: var(--color1);
+  margin-top: .3rem;
+  font-weight: 500;
+  font-family: var(--font-title);
+}
+
+.objectives>div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+/* Resultados tmb e imc:  */
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  margin-top: -60px;
+}
+
+.tmb,
+.imc {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+
+  width: 100%;
+}
+
+.h3-with-blob {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  text-align: center;
+
+  font-size: 4rem;
+  width: 15rem;
+  height: 13rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  color: var(--color8);
+  background-color: var(--color4);
+  /* qualquer cor que quiser */
+
+  border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+  animation: morph 8s infinite;
+  position: relative;
+  z-index: 1;
+
+}
+#water{
+  background-color: var(--color9);
+}
+
+@keyframes morph {
+  0% {
+    border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+  }
+
+  50% {
+    border-radius: 60% 50% 40% 60% / 40% 50% 60% 50%;
+  }
+
+  100% {
+    border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+  }
+}
+
+/*  parte expansiva */
+
+igc-expansion-panel::part(header) {
+  background-color: var(--color5);
+  border-radius: 10px;
+
+
+}
+
+
+igc-expansion-panel::part(content) {
+  background-color: var(--color5);
+  color: var(--color2);
+  font-weight: 700;
+}
+
+igc-expansion-panel::part(title) {
+  color: var(--color3);
+  font-weight: 700;
+}
+
+
+
+
+
+
+
+/* Tabela Kcal  */
+
+
+h2 {
+  text-align: center;
+  font-family: var(--font-logo);
+}
+
+.kcal-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.table-kcals {
+  margin-top: 1rem;
+  background-color: var(--color8);
+  border: 1px solid var(--color4);
+  width: 100%;
+  text-align: center;
+
+  border-radius: 1rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+
+
+}
+
+.table-kcals tbody tr:nth-child(odd) {
+  background-color: var(--color5);
+  /* verde claro */
+}
+
+.table-kcals tbody tr:nth-child(even) {
+  background-color: var(--color8);
+  /* branco */
+}
+
+
+.table-kcals th,
+.table-kcals td {
+
+  padding: 0.5rem;
+}
+
+
+.table-kcals thead {
+  padding: 0.5rem;
+
+
+}
+
+
+th {
+  font-family: var(--font-logo);
+  text-align: center;
+  text-wrap: inherit;
+  background-color: var(--color6);
+}
+
+
+.border-left {
+
+  border-bottom-left-radius: 10px;
+}
+
+
+
+
+/*  Sugestão de alimentos */
+
+.meals-container {
+  padding: 1rem;
+}
+
+.meals-container>h2 {
+  margin-bottom: 1rem;
+}
+
+.meals-container>igc-expansion-panel::part(header) {
+  background-color: var(--color7);
+
+
+}
+
+.meals-container>igc-expansion-panel[open]::part(header) {
+  background-color: var(--color7);
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  transition:
+
+    border-radius 0.2s ease-in-out,
+    border-color 0.2s ease-in-out, ;
+
+}
+
+.meals-container>igc-expansion-panel::part(title) {
+
+  color: var(--color8);
+
+
+}
+
+.meals-container>igc-expansion-panel::part(indicator) {
+
+  color: var(--color8);
+
+
+}
+
+.meals-container>igc-expansion-panel[open]::part(content) {
+  background-color: var(--color8);
+  border-left: 1px solid var(--color7);
+  border-right: 1px solid var(--color7);
+  border-bottom: 1px solid var(--color7);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+
+}
+
+
+
+.meals-container>igc-expansion-panel::part(content) {
+  border: none;
+
+}
+
+
+.meals-container>igc-expansion-panel::part(content)>.table-kcals {
+  background-color: black;
+}
+
+
+
+
+
+/* 
+ igc-expansion-panel::part(content) {
+  background-color: var(--color5);
+  color: var(--color2);
+  font-weight: 700;
+}
+
+ igc-expansion-panel::part(title) {
+  color: var(--color3);
+  font-weight: 700;
+}
+
+  */

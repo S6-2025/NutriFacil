@@ -13,19 +13,19 @@ const Header = () => {
           NutriFacil
         </Link>
         <div className="menu-links">
-          <a href="">Home</a>
-          <a href="">Perfil</a>
-          <a href="">Meu plano</a>
-          <a href="">Sobre</a>
-          <a href="">Suporte</a>
-          <a href="">Login</a>
+          <a href="/">Home</a>
+          <a href="/profile">Perfil</a>
+          <a href="#">Meu plano</a>
+          <a href="/about">Sobre</a>
+          <a href="/login">Login</a>
         </div>
         <svg id="menu-list" className="header__SVG" onClick={() => setMenuOpen(true)}>
           <use xlinkHref="/icons.svg#menu-white" />
         </svg>
       </div>
 
-      {menuOpen && <NavMenu onClose={() => setMenuOpen(false)} />}
+      {/* NavMenu SEM condicional, apenas controle pela prop isOpen */}
+      <NavMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
     </div>
   );
 };

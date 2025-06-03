@@ -1,11 +1,13 @@
 import React, {useEffect} from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { useRegisterForm } from "../hooks/useRegisterForm";
 import type { RegisterRequestDTO } from "../types/RegisterRequestDTO";
 
 const Register: React.FC = () => {
   const { form, handleChange, handleSubmit } = useRegisterForm();
+  const location = useLocation();
+  const { state } = location;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,14 +29,13 @@ const Register: React.FC = () => {
       fullname: form.fullname,
       email: form.email,
       password: form.password,
-      gender: "",
-      age: 0,
-      weight: 0,
-      height: 0
+      gender: state.gender.toUpperCase(),
+      age: state.age,
+      weight: state.weight,
+      height: state.height,
     }
     try{
       handleSubmit(e, data);
-      navigate("/questionary", { state: form });
     }catch (error) {
       alert('Erro ao registrar usuário.');
     }
