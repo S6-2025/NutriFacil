@@ -127,6 +127,17 @@
     display: flex;
     flex-direction: row;
   }
+  
+  p{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+
+  .button-wrapper button{
+     position: absolute;
+    z-index: 99;
+  }
 
 
   #fruits1 {
@@ -138,13 +149,16 @@
 
 
   .section-divider {
-    margin-top: -30vh;
+   margin-top: -30vh;
+  
+  
   }
 
   .liberty-container{
     display: flex;
     flex-direction: row-reverse;
   }
+
 
 
   #healthy_options {
