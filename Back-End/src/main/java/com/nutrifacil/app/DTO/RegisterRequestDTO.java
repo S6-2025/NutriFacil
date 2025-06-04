@@ -1,6 +1,8 @@
 package com.nutrifacil.app.DTO;
 
 import com.nutrifacil.app.Enums.Gender;
+import com.nutrifacil.app.Models.Diet;
+
 
 public record RegisterRequestDTO(
         String username,
@@ -10,6 +12,7 @@ public record RegisterRequestDTO(
         Gender gender,
         int age,
         Double weight,
-        Double height
+        Double height,
+        DietDTO diet
         ) {
 }

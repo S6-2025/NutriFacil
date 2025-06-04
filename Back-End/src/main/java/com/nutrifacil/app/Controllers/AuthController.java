@@ -6,6 +6,8 @@ import com.nutrifacil.app.Infra.Security.TokenService;
 import com.nutrifacil.app.Models.Profile;
 import com.nutrifacil.app.Models.User;
 import com.nutrifacil.app.Repositories.UserRepository;
+import com.nutrifacil.app.Services.AuthService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,6 +22,7 @@ import java.util.HashMap;
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin(origins = "http://localhost:5173")
+@RequiredArgsConstructor
 public class AuthController {
     @Autowired
     private final UserRepository repository;
@@ -28,11 +31,8 @@ public class AuthController {
     @Autowired
     private final TokenService tokenService;
 
-    public AuthController(UserRepository repository, PasswordEncoder passwordEncoder, TokenService tokenService) {
-        this.repository = repository;
-        this.passwordEncoder = passwordEncoder;
-        this.tokenService = tokenService;
-    }
+    @Autowired
+    private final AuthService authService;
 
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody LoginRequestDTO body){
@@ -48,38 +48,10 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<Object> register(@RequestBody RegisterRequestDTO body){
-        if(this.repository.findByUsername(body.username()).isPresent()){
-            throw new RuntimeException("Usuário já cadastrado");
-
+        try{
+            return ResponseEntity.ok(authService.register(body));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-        User user = new User();
-        user.setUsername(body.username());
-        user.setPassword(passwordEncoder.encode(body.password()));
-
-        Profile profile = new Profile();
-        profile.setFullname(body.fullname());
-        profile.setEmail(body.email());
-        profile.setGender(body.gender());
-        profile.setAge(body.age());
-        profile.setWeight(body.weight());
-        profile.setHeight(body.height());
-        profile.setUser(user);
-        user.setUserProfile(profile);
-
-        this.repository.save(user);
-        String token = tokenService.generateToken(user);
-        HashMap<String, String> resp = new HashMap<>();
-        resp.put("token", token);
-        return ResponseEntity.ok(resp);//? Apos registrar, retorna o token do usuário
-//        Optional<User> user = this.repository.findByUsername(body.username());
-//        if(user.isEmpty()){
-//            User newUser = new User();
-//            newUser.setPassword(passwordEncoder.encode(body.password()));
-//            newUser.setUsername(body.username());
-//            this.repository.save(newUser);
-//            String token = tokenService.generateToken(newUser);
-//            return ResponseEntity.ok(token);
-//        }
-//        return ResponseEntity.badRequest().build();
     }
 }

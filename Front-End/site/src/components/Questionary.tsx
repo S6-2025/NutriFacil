@@ -11,9 +11,9 @@ import {
 import type { UserData, AnswersType } from "./QuestionaryLogic";
 import { useNavigate } from "react-router-dom";
 
-interface QuestionaryProps {
+/* interface QuestionaryProps {
   registerUser: (data: any) => Promise<void>; // função para registrar na API, você passa por props
-}
+} */
 
 function Questionary() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -25,15 +25,16 @@ function Questionary() {
     const step = steps[currentStep];
 
     if (step.type === "single") {
+      handleSingleSelect(currentStep, option, setAnswers, setUserData);
       // Para os passos do tipo dados pessoais, atualizamos userData
-      if (currentStep >= 1 && currentStep <= 4) {
+      /* if (currentStep >= 1 && currentStep <= 4) {
         handleSingleSelect(currentStep, option, setAnswers, setUserData);
       } else {
         handleSingleSelect(currentStep, option, setAnswers);
-      }
+      } */
       handleNextStep(currentStep, setCurrentStep, steps.length);
     } else if (step.type === "multiple") {
-      handleMultipleSelect(currentStep, option, setAnswers);
+      handleMultipleSelect(currentStep, option, setAnswers, setUserData);
     } else if (step.type === "description") {
       handleSingleSelect(currentStep, option, setAnswers);
       handleNextStep(currentStep, setCurrentStep, steps.length);
@@ -42,6 +43,7 @@ function Questionary() {
   }
 
   async function handleFinish() {
+    console.log(userData);
     navigate("/register", {
       state: userData
     });
