@@ -123,7 +123,19 @@ function Questionary() {
             ))}
           </ul>
 
-         
+       {/* Só mostra o botão "Continuar" se não for a última etapa */}
+    {currentStep < steps.length - 1 && (
+      <div className="button-wrapper">
+        <button
+          className="continues"
+          onClick={() =>
+            handleNextStep(currentStep, setCurrentStep, steps.length)
+          }
+        >
+          Continuar
+        </button>
+      </div>
+    )}
         </div>
       )}
 
