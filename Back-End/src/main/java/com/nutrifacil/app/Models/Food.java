@@ -1,8 +1,8 @@
 package com.nutrifacil.app.Models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -10,13 +10,14 @@ import java.util.UUID;
 @Table(name = "foods")
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false, length = 255)
-    private String name;
+    private final @NotNull String name;
 
     @Column
     private Double totalCalories;
@@ -35,4 +36,7 @@ public class Food {
     private Diet diet;
 
 
+    public Food() {
+        this.name = "";
+    }
 }

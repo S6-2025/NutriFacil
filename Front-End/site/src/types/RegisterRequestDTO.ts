@@ -7,4 +7,12 @@ export interface RegisterRequestDTO {
   age: number;
   weight: number;
   height: number;
+  diet: {
+    objective: string,
+    type: string,
+    physicalActivityStatus: string,
+    proteins: string[],
+    vegetables: string[],
+    fruits: string[],
+  }
 }

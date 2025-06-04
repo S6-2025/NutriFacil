@@ -31,7 +31,8 @@ public class Diet {
     @Column
     private Double caloriesPerDay;
 
-    @OneToMany(mappedBy = "diet", cascade = CascadeType.ALL)
-    private List<Food> foods;
+   @OneToMany(mappedBy = "diet", cascade = CascadeType.ALL)
+   private List<Food> foods;
+
 
 }

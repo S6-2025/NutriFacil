@@ -1,8 +1,10 @@
 package com.nutrifacil.app.Services;
 
+import com.nutrifacil.app.DTO.RegisterRequestDTO;
 import com.nutrifacil.app.DTO.UserDTO;
 import com.nutrifacil.app.Repositories.ProfileRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,6 +17,5 @@ public class UserService {
                 .map(UserDTO::new)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
     }
-
 
 }

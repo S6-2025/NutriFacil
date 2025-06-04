@@ -9,14 +9,14 @@ public enum DietType {
     MEDITERRANEA("Mediterrânea"),
     CETOGENICA("Cetogênica");
 
-    private String descricao;
+    private final String description;
 
-    DietType(String descricao) {
-        this.descricao = descricao;
+    DietType(String description) {
+        this.description = description;
     }
 
     @Override
     public String toString() {
-        return getDescricao();
+        return getDescription();
     }
 }

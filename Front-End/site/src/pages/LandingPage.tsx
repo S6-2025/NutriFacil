@@ -15,7 +15,7 @@ const LandingPage: React.FC = () => {
               Nosso objetivo é tornar a nutrição simples, acessível e adaptada à sua rotina.
             </p>
             <div className="button-wrapper">
-            <Link to="/register"><button type="button">Comece Agora!</button> </Link>
+            <Link to="/questionary"><button type="button">Comece Agora!</button> </Link>
           </div>
           </section>
           <img src="/frutas_semfundo.PNG" alt="Frutas" id="fruits1" />
@@ -42,7 +42,7 @@ const LandingPage: React.FC = () => {
             Utilizamos como base as rotinas de dietas cetogênica, vegetariana, mediterrânea e low carb.
           </p>
           <div className="button-wrapper">
-            <Link to="/register"><button type="button">Montar minha dieta</button> </Link>
+            <Link to="/questionary"><button type="button">Montar minha dieta</button> </Link>
           </div>
         </section>
         <img src="/healthy_options.png" alt="Opções Saudáveis" id="healthy_options" />

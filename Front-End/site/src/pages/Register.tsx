@@ -18,12 +18,6 @@ const Register: React.FC = () => {
   function handleNextStep(e: React.FormEvent) {
     e.preventDefault();
  
-    /* const data = {
-      username: form.username,
-      fullname: form.fullname,
-      email: form.email,
-      password: form.password,
-    }; */
     const data: RegisterRequestDTO = {
       username: form.username,
       fullname: form.fullname,
@@ -33,6 +27,14 @@ const Register: React.FC = () => {
       age: state.age,
       weight: state.weight,
       height: state.height,
+      diet: {
+        objective: state.diet.objective,
+        type: state.diet.type,
+        physicalActivityStatus: state.diet.physicalActivityStatus,
+        proteins: state.diet.proteins,
+        vegetables: state.diet.vegetables,
+        fruits: state.diet.fruits
+      }
     }
     try{
       handleSubmit(e, data);
