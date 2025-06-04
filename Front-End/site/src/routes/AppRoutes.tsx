@@ -8,6 +8,7 @@ import About from "../pages/About";
 import Profile from "../pages/Profile"
 import Result from "../pages/Result"
 import Questionary from "../components/Questionary";
+import Subscription from "../pages/Subscription";
 
 
 const AppRoutes: React.FC = () => {
@@ -18,7 +19,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/questionary" element={<Questionary />} />
-
+      <Route path="/subscription" element={<Subscription />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/result" element={<Result />} />
     </Routes>

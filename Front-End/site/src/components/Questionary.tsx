@@ -133,9 +133,13 @@ function Questionary() {
 
       {/* Botão final de envio aparece no último passo */}
       {currentStep === steps.length - 1 && (
-        <button className="submit" onClick={handleFinish}>
+
+        <div className="button-wrapper-final">
+    <button className="submit" onClick={handleFinish}>
           Finalizar Registro
         </button>
+        </div>
+    
       )}
     </main>
   );

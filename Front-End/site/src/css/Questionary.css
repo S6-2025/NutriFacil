@@ -55,7 +55,7 @@
 }
 
 
-button {
+button{
   width: 20rem;
   height: 3rem;
   border-radius: 10px;
@@ -66,6 +66,24 @@ button {
   border: none;
 }
 
+.button-wrapper-final{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+
+}
+.button-wrapper-final > .submit{
+  background-color: var(--color7);
+  color: var(--color8);
+  box-shadow: 0 4px 8px rgba(0, 37, 0, 0.404);
+
+}
+
+.button-wrapper-final > button:hover{
+   background-color: var(--color4);
+   box-shadow: 0 4px 8px rgba(0, 124, 0, 0.404);
+}
 
 .continues {
   background-color: var(--color3);
