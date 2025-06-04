@@ -67,14 +67,16 @@ function Questionary() {
           <h2>{step.title}</h2>
           <img src={step.imageUrl} alt={step.title} />
           <p>{step.description}</p>
-          <button
-            className="continues"
-            onClick={() =>
-              handleNextStep(currentStep, setCurrentStep, steps.length)
-            }
-          >
-            Continuar
-          </button>
+                   <div className="button-wrapper">
+            <button
+              className="continues"
+              onClick={() =>
+                handleNextStep(currentStep, setCurrentStep, steps.length)
+              }
+            >
+              Continuar
+            </button>
+          </div>
         </div>
       )}
 
@@ -120,26 +122,18 @@ function Questionary() {
               </li>
             ))}
           </ul>
-          <button
-            className="continues"
-            onClick={() =>
-              handleNextStep(currentStep, setCurrentStep, steps.length)
-            }
-          >
-            Next
-          </button>
+
+         
         </div>
       )}
 
       {/* Botão final de envio aparece no último passo */}
       {currentStep === steps.length - 1 && (
-
         <div className="button-wrapper-final">
-    <button className="submit" onClick={handleFinish}>
-          Finalizar Registro
-        </button>
+          <button className="submit" onClick={handleFinish}>
+            Finalizar Registro
+          </button>
         </div>
-    
       )}
     </main>
   );
