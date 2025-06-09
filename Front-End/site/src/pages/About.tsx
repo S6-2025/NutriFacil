@@ -27,7 +27,7 @@ const About: React.FC = () => {
       </section>
 
       <section className="image-block-about">
-        <img src="/healthy_options.png" alt="Frutas" />
+        <svg><use xlinkHref="/icons.svg#healthy-options-2"/></svg>
       </section>
 
       {/*  waves aqui */}

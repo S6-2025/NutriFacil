@@ -49,12 +49,12 @@
   overflow: hidden;
 }
 
-
-.image-block-about img {
-  width: 80%;
-  height: auto;
-
-}
+  .image-block-about svg{
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 1;
+    height: auto;
+  }
 
 .text-block-about-colored{
   display: flex;
@@ -72,9 +72,27 @@
 
   .text-block-about{
     max-width: 80%;
+    padding-bottom:0;
+  }
+
+  #colored{
+    padding-bottom: 2.5rem;
   }
 
   .image-block-about{
-    max-width: 50%;
+    width: 30%;
+    height: auto;
+  }
+
+
+  .image-block-about svg{
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 1;
+    height: auto;
+  }
+
+  .text-block-about > .button-wrapper{
+    display: none;
   }
 }

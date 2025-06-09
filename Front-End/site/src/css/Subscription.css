@@ -65,3 +65,9 @@ margin-bottom: 1rem;
   width: 90%;
   height: 70%;
  }
+
+@media(min-width: 1024px){
+  #super-container-plan > .container-wrapper{
+    width: 25%;
+  }
+}

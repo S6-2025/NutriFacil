@@ -300,6 +300,7 @@ th {
 
 }
 
+
 .meals-container>igc-expansion-panel[open]::part(header) {
   background-color: var(--color7);
   border-bottom-left-radius: 0px;
@@ -365,3 +366,25 @@ th {
 }
 
   */
+
+@media(min-width: 1024px){
+  .mini-container{
+    height: auto;
+  }
+
+  .mini-container > .section-divider{
+    display: none;
+  }
+
+.results-container{
+  margin-top: 0;
+}
+
+  .meals-container{
+    width: 50%;
+  }
+
+  .tmb, .imc{
+    width: 50%;
+  }
+}
