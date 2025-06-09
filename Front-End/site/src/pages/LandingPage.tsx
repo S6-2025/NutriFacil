@@ -45,7 +45,9 @@ const LandingPage: React.FC = () => {
             <Link to="/questionary"><button type="button">Montar minha dieta</button> </Link>
           </div>
         </section>
-        <img src="/healthy_options.png" alt="Opções Saudáveis" id="healthy_options" />
+        <div className="healthy-options-img-container">
+          <svg><use xlinkHref="/icons.svg#healthy-options"/></svg>
+        </div>
       </div>
     </main>
   )

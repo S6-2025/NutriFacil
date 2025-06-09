@@ -47,7 +47,7 @@ const Login: React.FC = () => {
       <div className="login-textImg">
 
       <h1>Faça login e começe a ter uma vida mais saudável</h1>
-      <img src="/healthy_options.png" alt="Opções saudáveis" />
+      <svg><use xlinkHref="/icons.svg#healthy-options"/></svg>
       </div>
       <div className="login-form">
         <section className="super-form">

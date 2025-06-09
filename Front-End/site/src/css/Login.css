@@ -160,5 +160,9 @@ form > button:focus {
     width: auto;
     padding: 0 2vw;
   }
+
+  .login-textImg > svg{
+    height: 50%;
+  }
   /** fim media 1024px */
 }
