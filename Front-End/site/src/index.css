@@ -58,8 +58,4 @@ main {
   display: contents;
   /* para que o conteúdo real (como .super-header) funcione no flex */
 }
-
-
-#test{
-  background-color: var(--color7);
-}
+ 
