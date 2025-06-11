@@ -1,41 +1,34 @@
 import type { Dispatch, SetStateAction } from "react";
 
-// Tipo dos passos do questionário
-export type StepType =
+export type StepType = 
   | { type: "image"; title: string; imageUrl: string; description: string }
   | { type: "single"; question: string; options: string[] }
   | { type: "multiple"; question: string; options: string[] }
-  | { type: "description"; text?: string; question: string; options: string[] };
+  | { type: "description"; text?: string; question: string; options: string[] }
+  | { type: "input"; question: string; placeholder?: string };
 
-// Passos do questionário (exemplo, adapte conforme sua necessidade)
-export const steps: StepType[] = [
-  { type: "image", title: "Bem-vindo(a)!", imageUrl: "/select-green.svg", description: "lorem asd asssss ssushdasuad sdasuhda" },
-  { type: "single", question: "Gender?", options: ["Male", "Female", "Other"] },
-  { type: "single", question: "Age?", options: ["18", "25", "30"] },
-  { type: "single", question: "Weight?", options: ["60", "70", "80"] },
-  { type: "single", question: "Height?", options: ["1.60", "1.70", "1.80"] },
-  { type: "single", question: "What's your goal?", options: ["Emagrecimento", "Hipertrofia"] },
-  { type: "single", question: "Which diet do you follow?", options: ["Mediterrânea", "Low Carb", "Cetogênica", "Vegetariana"] },
-  { type: "single", question: "How do you rate your physical activity?", options: ["Sedentary", "Lightly active", "Moderately active", "Very active"] },
-  { type: "multiple", question: "Choose your favorite protein sources", options: ["Chicken", "Fish", "Eggs", "Beans", "Tofu"] },
-  { type: "multiple", question: "Choose your favorite vegetables", options: ["Broccoli", "Carrot", "Spinach", "Pepper"] },
-  { type: "multiple", question: "Choose your favorite fruits", options: ["Apple", "Banana", "Orange", "Strawberry"] },
+  export const steps: StepType[] = [
+  { type: "image", title: "Bem-vindo(a)!", imageUrl: "/select-green.svg", description: "Vamos iniciar um breve questionário para calcular seu TMB e IMC. É rápido e simples." },
+  { type: "single", question: "Qual é o seu sexo biológico?", options: ["Masculino", "Feminino"] },
+  { type: "input", question: "Qual a sua data de nascimento?", placeholder: "DD/MM/AAAA" },
+  { type: "input", question: "Qual é a sua altura?", placeholder: "Insira sua altura"},
+  { type: "input", question: "Qual é o seu peso?", placeholder: "Insira seu peso"},
+  { type: "single", question: "Qual é o seu objetivo?",  options: ["Emagrecimento", "Hipertrofia", ]},
+  { type: "multiple", question: "Possuí alguma alergia?",  options: ["Lactose", "Glúten","Proteína do Leite","Ovo","Frutos do Mar","Nenhuma" ]},
+  { type: "single", question: "Qual tipo de Dieta deseja seguir?",  options: ["Mediterrânea", "Low Carb", "Cetogênica", "Vegetariana" ]},
+  { type: "single", question: "Qual o seu nível de atividade física?",  options: ["Sedentário", "Leve", "Médio", "Alto" ]}
+  ];
 
-  // outros passos...
-];
 
-// Tipo das respostas, indexado pelo número do passo
 export type AnswersType = Record<number, string | string[]>;
 
-// Estrutura combinada para os dados do usuário]
+
 type DietDTO = {
   objective?: string;
   type?: string;
   physicalActivityStatus?: string;
-  proteins?: string[];
-  vegetables?: string[];
-  fruits?: string[];
-}
+  alergy?: string;
+};
 
 export interface UserData {
   username?: string;
@@ -43,14 +36,12 @@ export interface UserData {
   email?: string;
   password?: string;
   gender?: string;
-  age?: number;
+  birth?: number | string;
   weight?: number;
   height?: number;
   diet?: DietDTO;
-  /* questionnaireAnswers?: AnswersType; */ //? Aqui não deveria ser uma lista?
 }
 
-// Inicializa userData com dados iniciais (exemplo vindo do registro)
 export function initUserData(initialData: Partial<UserData>): UserData {
   return {
     username: initialData.username || "",
@@ -60,63 +51,88 @@ export function initUserData(initialData: Partial<UserData>): UserData {
   };
 }
 
-// Mapeia o índice do passo para o campo do UserData a ser atualizado
-const mapStepToField: { [key: number]: string } = {
+
+export const mapStepToField: { [key: number]: string } = {
   1: "gender",
-  2: "age",
-  3: "weight",
-  4: "height",
+  2: "birth",
+  3: "height",
+  4: "weight",
   5: "diet.objective",
-  6: "diet.type",
-  7: "diet.physicalActivityStatus",
-  8: "diet.proteins",
-  9: "diet.vegetables",
-  10: "diet.fruits",
+  6: "diet.alergy",
+  7: "diet.type",
+  8: "diet.physicalActivityStatus"
 };
 
-// Atualiza resposta simples e userData se for dado pessoal
+
 export function handleSingleSelect(
   stepIndex: number,
   option: string,
   setAnswers: Dispatch<SetStateAction<AnswersType>>,
   setUserData?: Dispatch<SetStateAction<UserData>>
 ): void {
+  // Atualiza a resposta do questionário
   setAnswers(prev => ({
     ...prev,
     [stepIndex]: option,
   }));
 
+  // Se existir mapeamento do passo para userData, atualiza
   if (setUserData && mapStepToField[stepIndex]) {
-    const field = mapStepToField[stepIndex];
-    const fieldParts = field.split(".");
-    setUserData((prev: UserData) => {
+    const fieldPath = mapStepToField[stepIndex];
+    const fieldParts = fieldPath.split(".");
+
+    setUserData(prev => {
+      // Caso 1: campo simples (ex: gender, birth, weight, height)
       if (fieldParts.length === 1) {
-        return {
-          ...prev,
-          [field]: field === "age" || field === "weight" || field === "height" ? Number(option) : option,
+        const field = fieldParts[0];
+        let value: any = option;
+
+        if (field === "weight" || field === "height") {
+          value = Number(option);
         }
-      } else {
-        const parentKey = fieldParts[0] as keyof UserData;
-        const childKey = fieldParts[1];
-        const prevParentValue = prev[parentKey] || {};
 
-
-        return {
-          ...prev,
-          [parentKey]: {
-            ...(prevParentValue as object),
-            [childKey]: childKey === "objective" || childKey === "type" || childKey === "physicalActivityStatus" 
-              ? option.toUpperCase().replace(" ", "_").normalize("NFD").replace(/[\u0300-\u036f]/g, ""): option
+        if (field === "birth") {
+          const parsedDate = new Date(option);
+          if (!isNaN(parsedDate.getTime())) {
+            value = parsedDate.toISOString().split("T")[0];
+          } else {
+            alert("Data de nascimento inválida: " + option);
+            value = "";
           }
         }
 
+        return {
+          ...prev,
+          [field]: value,
+        };
       }
-    })
+
+      // Caso 2: campo aninhado (ex: diet.objective, diet.type)
+      const parentKey = fieldParts[0] as keyof UserData;
+      const childKey = fieldParts[1];
+      const parentValue = prev[parentKey] || {};
+
+      const formattedOption =
+        childKey === "objective" || childKey === "type" || childKey === "physicalActivityStatus"
+          ? option
+              .toUpperCase()
+              .replace(/ /g, "_")
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+          : option;
+
+      return {
+        ...prev,
+        [parentKey]: {
+          ...(parentValue as object),
+          [childKey]: formattedOption,
+        },
+      };
+    });
   }
 }
 
-// Atualiza respostas múltiplas
-export function handleMultipleSelect(
+ export function handleMultipleSelect(
   stepIndex: number,
   option: string,
   setAnswers: Dispatch<SetStateAction<AnswersType>>,
@@ -124,6 +140,31 @@ export function handleMultipleSelect(
 ): void {
   setAnswers(prev => {
     const current = Array.isArray(prev[stepIndex]) ? (prev[stepIndex] as string[]) : [];
+    
+    // Caso especial para a pergunta de alergias (stepIndex 6)
+    if (stepIndex === 6) {
+      if (option === "Nenhuma") {
+        // Se clicou em "Nenhuma", retorna apenas ela (desmarca outras)
+        return {
+          ...prev,
+          [stepIndex]: current.includes("Nenhuma") ? [] : ["Nenhuma"]
+        };
+      } else {
+        // Se clicou em outra opção, verifica se "Nenhuma" está marcada
+        if (current.includes("Nenhuma")) {
+          return prev; // Não faz nada se "Nenhuma" estiver marcada
+        }
+        // Lógica normal para múltipla seleção
+        return {
+          ...prev,
+          [stepIndex]: current.includes(option)
+            ? current.filter(o => o !== option)
+            : [...current, option],
+        };
+      }
+    }
+
+    // Lógica normal para outras perguntas múltiplas
     return {
       ...prev,
       [stepIndex]: current.includes(option)
@@ -142,25 +183,52 @@ export function handleMultipleSelect(
           ...prev,
           [field]: Array.isArray(prev[field]) ? [...prev[field], option] : [option],
         }
-      }else{
+      } else {
         const parentKey = fieldParts[0] as keyof UserData;
         const childKey = fieldParts[1];
         const prevParentValue = prev[parentKey] || {};
 
+        // Lógica especial para alergias
+        if (stepIndex === 6) {
+          let newValue;
+          if (option === "Nenhuma") {
+            newValue = prev[stepIndex]?.includes("Nenhuma") ? [] : ["Nenhuma"];
+          } else {
+            if (prevParentValue[childKey]?.includes("Nenhuma")) {
+              return prev; // Não atualiza se "Nenhuma" estiver marcada
+            }
+            newValue = Array.isArray(prevParentValue[childKey]) 
+              ? prevParentValue[childKey].includes(option)
+                ? prevParentValue[childKey].filter((o: string) => o !== option)
+                : [...prevParentValue[childKey], option]
+              : [option];
+          }
+
+          return {
+            ...prev,
+            [parentKey]: {
+              ...(prevParentValue as object),
+              [childKey]: newValue
+            }
+          };
+        }
+
+        // Lógica normal para outros campos
         return {
           ...prev,
           [parentKey]: {
             ...(prevParentValue as object),
-            [childKey]: Array.isArray(prevParentValue[childKey]) ? [...prevParentValue[childKey], option] : [option],
+            [childKey]: Array.isArray(prevParentValue[childKey]) 
+              ? [...prevParentValue[childKey], option] 
+              : [option],
           }
         }
       }
-    })
-
+    });
   }
 }
 
-// Avança para o próximo passo, se houver
+
 export function handleNextStep(
   currentStep: number,
   setCurrentStep: Dispatch<SetStateAction<number>>,
@@ -171,7 +239,6 @@ export function handleNextStep(
   }
 }
 
-// Finaliza o registro chamando a API, juntando dados e respostas
 export async function finishRegistration(
   userData: UserData,
   answers: AnswersType,

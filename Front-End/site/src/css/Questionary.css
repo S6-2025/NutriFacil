@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  
 }
 
 
@@ -12,10 +13,16 @@
   align-items: center;
 }
 
+.step-image > img {
+  width: 70%;
+  height:70%;
+}
+
 
 .step-description,
 .step-single,
-.step-multiple {
+.step-multiple,
+.step-input {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -37,7 +44,7 @@
 
 .questionary-container h3 {
   font-family: var(--font-logo);
-  margin-bottom: 2rem;
+   
   font-size: 1.5rem;
   text-align: center;
 }
@@ -45,11 +52,14 @@
 
 .questionary-container p {
   text-align: justify;
+ 
   width: 80%;
   padding: 1rem;
-  margin-bottom: 2rem;
-  font-family: var(--font-logo);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-read);
   font-size: 1.2rem;
+  font-weight: 400;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -95,12 +105,12 @@ button{
 }
 
 
-.options {
+.no-selected {
   border: 1px solid var(--color3);
   background-color: var(--color8);
   color: var(--color3);
 }
-.options:hover {
+.selected{
   background-color: var(--color5);
   color: var(--color7);
   border: 1px solid var(--color4);
@@ -127,6 +137,60 @@ ul {
   padding: 0;
   margin: 0;
 }
+
+
+.step-input > input{
+  height: 15%;
+  width: 80%;
+  text-align: center;
+  
+  color: var(--color3);
+
+  font-size: 1.5rem;
+  padding: 1rem;
+   border-top: 0;
+   border-right: 0;
+   border-left: none;
+  
+   border-bottom: 1px solid var(--color3);
+   transition: background-color 1s ease, border-radius 1s ease;
+}
+
+
+.step-input > input:focus{
+ background-color: var(--color5);
+ border-radius: .9rem;
+ 
+ 
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(37%) sepia(88%) saturate(615%) hue-rotate(118deg) brightness(70%) contrast(85%);
+  cursor: pointer;
+}
+
+
+
+.step-input {
+  position: relative;
+}
+
+#input-text {
+  padding-right: 40px; 
+  
+}
+
+.unit-label {
+  position: absolute;
+  right: 5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #008053; /* ou #00b475 se quiser o anterior */
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 2; 
+}
+
 
 
 @media(min-width: 1024px){
