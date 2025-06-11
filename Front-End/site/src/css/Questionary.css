@@ -181,8 +181,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .unit-label {
   position: absolute;
-  right: 5rem;
-  top: 50%;
+  right: 5.7rem;
+  top: 46%;
   transform: translateY(-50%);
   pointer-events: none;
   color: #008053; /* ou #00b475 se quiser o anterior */
