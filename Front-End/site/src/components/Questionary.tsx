@@ -148,7 +148,7 @@ function Questionary() {
     }}
   />
 
-  {currentStep === 3 && <span className="unit-label">cm</span>}
+  {currentStep === 3 && <span className="unit-label">m</span>}
   {currentStep === 4 && <span className="unit-label">kg</span>}
 </>
     )}
