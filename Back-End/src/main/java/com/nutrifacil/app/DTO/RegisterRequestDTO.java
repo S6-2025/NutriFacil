@@ -1,7 +1,8 @@
 package com.nutrifacil.app.DTO;
 
 import com.nutrifacil.app.Enums.Gender;
-import com.nutrifacil.app.Models.Diet;
+
+import java.time.LocalDate;
 
 
 public record RegisterRequestDTO(
@@ -10,7 +11,7 @@ public record RegisterRequestDTO(
         String fullname,
         String email,
         Gender gender,
-        int age,
+        String birthdate,
         Double weight,
         Double height,
         DietDTO diet

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 @RestController
@@ -35,22 +36,22 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody LoginRequestDTO body){
+    public ResponseEntity<Object> login(@RequestBody LoginRequestDTO body) {
         User user = this.repository.findByUsername(body.username()).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-        if(passwordEncoder.matches(body.password(),user.getPassword())){
+        if (passwordEncoder.matches(body.password(), user.getPassword())) {
             String token = tokenService.generateToken(user);
             HashMap<String, String> resp = new HashMap<>();
             resp.put("token", token);
             return ResponseEntity.ok(resp); //? Caso senha seja igual, retorna o token do usuário
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().body("Senha incorreta");
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Object> register(@RequestBody RegisterRequestDTO body){
-        try{
+    public ResponseEntity<Object> register(@RequestBody RegisterRequestDTO body) {
+        try {
             return ResponseEntity.ok(authService.register(body));
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

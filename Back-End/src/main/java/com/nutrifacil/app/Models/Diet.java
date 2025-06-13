@@ -1,13 +1,13 @@
 package com.nutrifacil.app.Models;
 
-import com.nutrifacil.app.Enums.DietObjective;
-import com.nutrifacil.app.Enums.DietType;
+import com.nutrifacil.app.Enums.*;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Formula;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Stream;
 
 @Entity
 @Table(name = "diet_information")
@@ -26,13 +26,35 @@ public class Diet {
     private DietObjective objective;
 
     @Enumerated(EnumType.STRING)
+    private PhysicalActivityStatus physicalActivityStatus;
+
+    @Enumerated(EnumType.STRING)
     private DietType type;
 
-    @Column
     private Double caloriesPerDay;
 
-   @OneToMany(mappedBy = "diet", cascade = CascadeType.ALL)
-   private List<Food> foods;
 
-
+//    public void setFoods(List<String> allergies) {
+//        if (!this.foods.isEmpty()) {
+//            this.foods.clear();
+//        }
+//
+//        final Set<String> allergiesSet = new HashSet<>(allergies);
+//        List<Food> temp = new ArrayList<>();
+//        if (allergiesSet.contains("Nenhuma")) {
+//            temp = Stream.of(CARBS, PROTEINS, FRUITS, VEGETABLES)
+//                    .flatMap(List::stream)
+//                    .filter(food -> food.getDietType().contains(this.getType()))
+//                    .toList();
+//        } else {
+//            temp = Stream.of(CARBS, PROTEINS, FRUITS, VEGETABLES)
+//                    .flatMap(List::stream)
+//                    .filter(food -> !allergiesSet.contains(food.getAllergyGroup().getDescription()))
+//                    .filter(food -> food.getDietType().contains(this.getType()))
+//                    .toList();
+//        }
+//
+//        this.foods = temp;
+//
+//    }
 }

@@ -73,123 +73,122 @@ function Questionary() {
           </div>
         </div>
       )}
- {step.type === "input" && (
-  <div className="step-input" style={{ position: "relative" }}>
-    <h3>{step.question}</h3>
+      {step.type === "input" && (
+        <div className="step-input" style={{ position: "relative" }}>
+          <h3>{step.question}</h3>
 
-    {currentStep === 2 ? (
-      <input
-        type="date"
-        placeholder={step.placeholder}
-        value={(answers[currentStep] as string) || ""}
-        onChange={(e) => {
-          const value = e.target.value;
-          setAnswers((prev) => ({
-            ...prev,
-            [currentStep]: value,
-          }));
-          const field = mapStepToField[currentStep];
-          setUserData((prev) => ({
-            ...prev,
-            [field]: value || undefined,
-          }));
-        }}
-      />
-    ) : (
-      <>
-        <input
-        id="input-text"
-    type="text"
-    placeholder={step.placeholder}
-    value={(answers[currentStep] as string) || ""}
-    onChange={(e) => {
-      let value = e.target.value;
+          {currentStep === 2 ? (
+            <input
+              type="date"
+              placeholder={step.placeholder}
+              value={(answers[currentStep] as string) || ""}
+              onChange={(e) => {
+                const value = e.target.value;
+                setAnswers((prev) => ({
+                  ...prev,
+                  [currentStep]: value,
+                }));
+                const field = mapStepToField[currentStep];
+                setUserData((prev) => ({
+                  ...prev,
+                  [field]: value || undefined,
+                }));
+              }}
+            />
+          ) : (
+            <>
+              <input
+                id="input-text"
+                type="text"
+                placeholder={step.placeholder}
+                value={(answers[currentStep] as string) || ""}
+                onChange={(e) => {
+                  let value = e.target.value;
 
-      if (currentStep === 3) {
-        // ALTURA
-        value = value.replace(/\D/g, "");
-        if (value.length === 0) {
-          setAnswers((prev) => ({ ...prev, [currentStep]: "" }));
-          setUserData((prev) => ({ ...prev, height: undefined }));
-          return;
-        }
-        if (value.length > 3) value = value.slice(0, 3);
-        if (value.length === 1) {
-          value = value;
-        } else {
-          value = value.slice(0, 1) + "." + value.slice(1);
-        }
-        const numericValue = parseFloat(value);
-        if (numericValue < 0.5 || numericValue > 2.99) return;
+                  if (currentStep === 3) {
+                    // ALTURA
+                    value = value.replace(/\D/g, "");
+                    if (value.length === 0) {
+                      setAnswers((prev) => ({ ...prev, [currentStep]: "" }));
+                      setUserData((prev) => ({ ...prev, height: undefined }));
+                      return;
+                    }
+                    if (value.length > 3) value = value.slice(0, 3);
+                    if (value.length === 1) {
+                      value = value;
+                    } else {
+                      value = value.slice(0, 1) + "." + value.slice(1);
+                    }
+                    const numericValue = parseFloat(value);
+                    if (numericValue < 0.5 || numericValue > 2.99) return;
 
-        setAnswers((prev) => ({ ...prev, [currentStep]: value }));
-        setUserData((prev) => ({ ...prev, height: numericValue }));
-        return;
-      }
+                    setAnswers((prev) => ({ ...prev, [currentStep]: value }));
+                    setUserData((prev) => ({ ...prev, height: numericValue }));
+                    return;
+                  }
 
-      if (currentStep === 4) {
-        // PESO
-        value = value.replace(/\D/g, "");
-        const numValue = Number(value);
-        if (numValue < 0 || numValue > 1000) return;
+                  if (currentStep === 4) {
+                    // PESO
+                    value = value.replace(/\D/g, "");
+                    const numValue = Number(value);
+                    if (numValue < 0 || numValue > 1000) return;
 
-        setAnswers((prev) => ({ ...prev, [currentStep]: value }));
-        setUserData((prev) => ({ ...prev, weight: numValue }));
-        return;
-      }
+                    setAnswers((prev) => ({ ...prev, [currentStep]: value }));
+                    setUserData((prev) => ({ ...prev, weight: numValue }));
+                    return;
+                  }
 
-      // Outros campos
-      setAnswers((prev) => ({ ...prev, [currentStep]: value }));
-      const field = mapStepToField[currentStep];
-      setUserData((prev) => ({
-        ...prev,
-        [field]: value || undefined,
-      }));
-    }}
-  />
+                  // Outros campos
+                  setAnswers((prev) => ({ ...prev, [currentStep]: value }));
+                  const field = mapStepToField[currentStep];
+                  setUserData((prev) => ({
+                    ...prev,
+                    [field]: value || undefined,
+                  }));
+                }}
+              />
 
-  {currentStep === 3 && <span className="unit-label">cm</span>}
-  {currentStep === 4 && <span className="unit-label">kg</span>}
-</>
-    )}
+              {currentStep === 3 && <span className="unit-label">cm</span>}
+              {currentStep === 4 && <span className="unit-label">kg</span>}
+            </>
+          )}
 
-    <div className="button-wrapper">
-      <button
-        className="continues"
-        onClick={() =>
-          handleNextStep(currentStep, setCurrentStep, steps.length)
-        }
-        disabled={
-          !answers[currentStep] ||
-          (currentStep === 2 && !isValidDate(answers[currentStep] as string))
-        }
-      >
-        Continuar
-      </button>
-    </div>
-  </div>
-)}
-
+          <div className="button-wrapper">
+            <button
+              className="continues"
+              onClick={() =>
+                handleNextStep(currentStep, setCurrentStep, steps.length)
+              }
+              disabled={
+                !answers[currentStep] ||
+                (currentStep === 2 &&
+                  !isValidDate(answers[currentStep] as string))
+              }
+            >
+              Continuar
+            </button>
+          </div>
+        </div>
+      )}
 
       {step.type === "single" && (
         <div className="step-single">
           <h3>{step.question}</h3>
-         <ul>
-      {step.options.map((option) => (
-        <li key={option}>
-          <button
-            onClick={() => handleOptionClick(option)}
-            className={
-              answers[currentStep] === option ? "selected" : "no-selected"
-            }
-          >
-            {option}
-            {answers[currentStep] === option && <span> ✓</span>}
-          </button>
-        </li>
-      ))}
-    </ul>
-
+          <ul>
+            {step.options.map((option) => (
+              <li key={option}>
+                <button
+                  onClick={() => handleOptionClick(option)}
+                  className={
+                    answers[currentStep] === option ? "selected" : "no-selected"
+                  }
+                >
+                  {option}
+                  {answers[currentStep] === option && <span> ✓</span>}
+                </button>
+              </li>
+            ))}
+          </ul>
 
           {currentStep < steps.length - 1 && (
             <div className="button-wrapper">
@@ -210,40 +209,41 @@ function Questionary() {
       {step.type === "multiple" && (
         <div className="step-multiple">
           <h3>{step.question}</h3>
-        <ul>
-      {step.options.map((option) => (
-        <li key={option}>
-          <button
-            onClick={() => handleOptionClick(option)}
-            className={`multiple-options ${
-              Array.isArray(answers[currentStep]) &&
-              (answers[currentStep] as string[]).includes(option)
-                ? "selected"
-                : ""
-            }`}
-          >
-            {option}
-            {Array.isArray(answers[currentStep]) &&
-              (answers[currentStep] as string[]).includes(option) && (
-                <span> ✓</span>
-              )}
-          </button>
-        </li>
-      ))}
-    </ul>
+          <ul>
+            {step.options.map((option) => (
+              <li key={option}>
+                <button
+                  onClick={() => handleOptionClick(option)}
+                  className={`multiple-options ${
+                    Array.isArray(answers[currentStep]) &&
+                    (answers[currentStep] as string[]).includes(option)
+                      ? "selected"
+                      : ""
+                  }`}
+                >
+                  {option}
+                  {Array.isArray(answers[currentStep]) &&
+                    (answers[currentStep] as string[]).includes(option) && (
+                      <span> ✓</span>
+                    )}
+                </button>
+              </li>
+            ))}
+          </ul>
 
-          {Array.isArray(answers[currentStep]) && answers[currentStep].length > 0 && (
-            <div className="button-wrapper">
-              <button
-                className="continues"
-                onClick={() =>
-                  handleNextStep(currentStep, setCurrentStep, steps.length)
-                }
-              >
-                Continuar
-              </button>
-            </div>
-          )}
+          {Array.isArray(answers[currentStep]) &&
+            answers[currentStep].length > 0 && (
+              <div className="button-wrapper">
+                <button
+                  className="continues"
+                  onClick={() =>
+                    handleNextStep(currentStep, setCurrentStep, steps.length)
+                  }
+                >
+                  Continuar
+                </button>
+              </div>
+            )}
         </div>
       )}
 

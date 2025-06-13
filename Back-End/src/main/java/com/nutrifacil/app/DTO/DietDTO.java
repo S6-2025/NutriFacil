@@ -11,9 +11,7 @@ public record DietDTO(
         DietObjective objective,
         DietType type,
         PhysicalActivityStatus physicalActivityStatus,
-        List<String> proteins,
-        List<String> vegetables,
-        List<String> fruits
+        List<String> allergies
 ) {
 
 }

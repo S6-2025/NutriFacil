@@ -1,18 +1,20 @@
 package com.nutrifacil.app.Enums;
 
+
 import lombok.Getter;
 
 @Getter
-public enum DietType {
-    VEGETARIANA("Vegetariana"),
-    LOW_CARB("Low Carb"),
-    MEDITERRANEA("Mediterrânea"),
-    CETOGENICA("Cetogênica"),
-    ALL("Todas");
+public enum AllergyGroup {
+    LACTOSE("Lactose"),
+    GLUTEN("Glúten"),
+    PROTEINA_DO_LEITE("Proteína do Leite"),
+    OVO("Ovo"),
+    FRUTOS_DO_MAR("Frutos do Mar"),
+    NONE("Nenhuma");
 
     private final String description;
 
-    DietType(String description) {
+    AllergyGroup(String description) {
         this.description = description;
     }
 
@@ -20,4 +22,5 @@ public enum DietType {
     public String toString() {
         return getDescription();
     }
+
 }

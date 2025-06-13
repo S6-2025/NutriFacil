@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 public enum PhysicalActivityStatus {
-    SEDENTARY("Sedentary"),
-    LIGHTLY_ACTIVE("Lightly active"),
-    MODERATELY_ACTIVE("Moderately active"),
-    VERY_ACTIVE("Very active");
+    SEDENTARIO("Sedentary"),
+    LEVE("Lightly active"),
+    MEDIO("Moderately active"),
+    ALTO("Very active");
 
     private final String description;
 

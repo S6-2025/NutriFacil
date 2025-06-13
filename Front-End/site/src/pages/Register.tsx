@@ -24,16 +24,14 @@ const Register: React.FC = () => {
       email: form.email,
       password: form.password,
       gender: state.gender.toUpperCase(),
-      age: state.age,
+      birthdate: state.birthdate,
       weight: state.weight,
       height: state.height,
       diet: {
         objective: state.diet.objective,
         type: state.diet.type,
         physicalActivityStatus: state.diet.physicalActivityStatus,
-        proteins: state.diet.proteins,
-        vegetables: state.diet.vegetables,
-        fruits: state.diet.fruits
+        allergies: state.diet.allergies || ['']
       }
     }
     try{

@@ -36,7 +36,7 @@ export interface UserData {
   email?: string;
   password?: string;
   gender?: string;
-  birth?: number | string;
+  birthdate?: number | string;
   weight?: number;
   height?: number;
   diet?: DietDTO;
@@ -54,11 +54,11 @@ export function initUserData(initialData: Partial<UserData>): UserData {
 
 export const mapStepToField: { [key: number]: string } = {
   1: "gender",
-  2: "birth",
+  2: "birthdate",
   3: "height",
   4: "weight",
   5: "diet.objective",
-  6: "diet.alergy",
+  6: "diet.allergies",
   7: "diet.type",
   8: "diet.physicalActivityStatus"
 };
@@ -91,7 +91,7 @@ export function handleSingleSelect(
           value = Number(option);
         }
 
-        if (field === "birth") {
+        if (field === "birthdate") {
           const parsedDate = new Date(option);
           if (!isNaN(parsedDate.getTime())) {
             value = parsedDate.toISOString().split("T")[0];

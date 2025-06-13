@@ -4,15 +4,13 @@ export interface RegisterRequestDTO {
   fullname: string;
   email: string;
   gender: string;
-  age: number;
+  birthdate: Date;
   weight: number;
   height: number;
   diet: {
     objective: string,
     type: string,
     physicalActivityStatus: string,
-    proteins: string[],
-    vegetables: string[],
-    fruits: string[],
+    allergies?: string[]
   }
 }

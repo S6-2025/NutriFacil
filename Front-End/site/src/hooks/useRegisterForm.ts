@@ -11,9 +11,15 @@ export function useRegisterForm() {
     fullname: '',
     email: '',
     gender: '',
-    age: 0,
+    birthdate: new Date(),
     weight: 0,
     height: 0,
+    diet: {
+      objective: '',
+      type: '',
+      physicalActivityStatus: '',
+      allergies: []
+    }
   });
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -28,12 +34,11 @@ export function useRegisterForm() {
 
   async function handleSubmit(e: React.FormEvent, data: RegisterRequestDTO) {
     const token = await registerUser(data);
-      sessionStorage.setItem('token', token);
-      alert('Usuário registrado com sucesso.');
-      navigate("/");
-
+    sessionStorage.setItem('token', token);
+    alert('Usuário registrado com sucesso.');
+    navigate("/");
   }
 
- 
+
   return { form, handleChange, handleSubmit };
 }
