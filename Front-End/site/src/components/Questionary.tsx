@@ -148,10 +148,27 @@ function Questionary() {
                 }}
               />
 
-              {currentStep === 3 && <span className="unit-label">cm</span>}
-              {currentStep === 4 && <span className="unit-label">kg</span>}
-            </>
-          )}
+  {currentStep === 3 && <span className="unit-label">m</span>}
+  {currentStep === 4 && <span className="unit-label">kg</span>}
+</>
+    )}
+
+    <div className="button-wrapper">
+      <button
+        className="continues"
+        onClick={() =>
+          handleNextStep(currentStep, setCurrentStep, steps.length)
+        }
+        disabled={
+          !answers[currentStep] ||
+          (currentStep === 2 && !isValidDate(answers[currentStep] as string))
+        }
+      >
+        Continuar
+      </button>
+    </div>
+  </div>
+)}
 
           <div className="button-wrapper">
             <button
