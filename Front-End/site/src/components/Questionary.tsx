@@ -170,23 +170,7 @@ function Questionary() {
   </div>
 )}
 
-          <div className="button-wrapper">
-            <button
-              className="continues"
-              onClick={() =>
-                handleNextStep(currentStep, setCurrentStep, steps.length)
-              }
-              disabled={
-                !answers[currentStep] ||
-                (currentStep === 2 &&
-                  !isValidDate(answers[currentStep] as string))
-              }
-            >
-              Continuar
-            </button>
-          </div>
-        </div>
-      )}
+          
 
       {step.type === "single" && (
         <div className="step-single">
