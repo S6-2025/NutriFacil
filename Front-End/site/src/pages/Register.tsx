@@ -27,11 +27,11 @@ const Register: React.FC = () => {
       birthdate: state.birthdate,
       weight: state.weight,
       height: state.height,
+      allergies: state.diet.allergies || [''],
       diet: {
         objective: state.diet.objective,
         type: state.diet.type,
         physicalActivityStatus: state.diet.physicalActivityStatus,
-        allergies: state.diet.allergies || ['']
       }
     }
     try{

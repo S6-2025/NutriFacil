@@ -14,11 +14,12 @@ export function useRegisterForm() {
     birthdate: new Date(),
     weight: 0,
     height: 0,
+    allergies: [],
     diet: {
       objective: '',
       type: '',
       physicalActivityStatus: '',
-      allergies: []
+      
     }
   });
 

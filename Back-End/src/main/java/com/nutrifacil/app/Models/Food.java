@@ -1,11 +1,11 @@
 package com.nutrifacil.app.Models;
 
-import com.nutrifacil.app.Enums.AllergyGroup;
-import com.nutrifacil.app.Enums.DietType;
-import com.nutrifacil.app.Enums.FoodCategory;
+import com.nutrifacil.app.ENUM.AllergyGroup;
+import com.nutrifacil.app.ENUM.DietType;
+import com.nutrifacil.app.ENUM.FoodCategory;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,53 +14,26 @@ import java.util.UUID;
 @Table(name = "foods")
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class Food {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-    @Column(nullable = false, length = 255)
-    @NotNull
-    private final @NotNull String name;
+    @Column(nullable = false)
+    private String name;
 
-    @Column
-    @NotNull
-    private Double totalCalories;
+    @Column(nullable = false)
+    private Double caloriesPer100grams;
 
-    @ElementCollection(targetClass = DietType.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "food_diet_types", joinColumns = @JoinColumn(name = "food_id"))
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    @Column(name = "diet_type", nullable = false)
-    @NotNull
-    private List<DietType> dietType;
+    private List<DietType> dietTypes;
 
-    @NotNull
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private FoodCategory category;
 
-    @NotNull
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private AllergyGroup allergyGroup;
-
-
-    public Food() {
-        this.name = "";
-    }
-
-    public Food(String name, Double totalCalories, List<DietType> dietType, FoodCategory foodCategory, AllergyGroup allergyGroup) {
-        this.name = name;
-        this.totalCalories = totalCalories;
-        this.dietType = dietType;
-        this.category = foodCategory;
-        this.allergyGroup = allergyGroup;
-    }
-
-
-    @Override
-    public String toString() {
-        StringBuilder strb = new StringBuilder();
-        strb.append("Food Name: ").append(getName());
-        return strb.toString();
-    }
 }

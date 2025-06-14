@@ -1,11 +1,10 @@
 package com.nutrifacil.app.DTO;
 
-import com.nutrifacil.app.Enums.Gender;
+import com.nutrifacil.app.ENUM.*;
 
-import java.time.LocalDate;
+import java.util.List;
 
-
-public record RegisterRequestDTO(
+public record UserRegisterDTO(
         String username,
         String password,
         String fullname,
@@ -14,6 +13,8 @@ public record RegisterRequestDTO(
         String birthdate,
         Double weight,
         Double height,
+        List<AllergyGroup> allergies,
         DietDTO diet
-        ) {
+) {
 }
+

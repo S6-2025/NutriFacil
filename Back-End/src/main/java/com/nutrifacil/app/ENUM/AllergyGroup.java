@@ -1,4 +1,4 @@
-package com.nutrifacil.app.Enums;
+package com.nutrifacil.app.ENUM;
 
 
 import lombok.Getter;

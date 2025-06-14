@@ -58,7 +58,7 @@ export const mapStepToField: { [key: number]: string } = {
   3: "height",
   4: "weight",
   5: "diet.objective",
-  6: "diet.allergies",
+  6: "allergies",
   7: "diet.type",
   8: "diet.physicalActivityStatus"
 };

@@ -7,10 +7,11 @@ export interface RegisterRequestDTO {
   birthdate: Date;
   weight: number;
   height: number;
+  allergies?: string[];
   diet: {
     objective: string,
     type: string,
     physicalActivityStatus: string,
-    allergies?: string[]
+    
   }
 }
