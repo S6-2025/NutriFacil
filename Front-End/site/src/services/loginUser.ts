@@ -1,16 +1,22 @@
-export async function loginUser(data: any): Promise<any>{
-  const response = await  fetch("http://localhost:3030/auth/login",
- {  method: "POST",
+export async function loginUser(data: any): Promise<any> {
+  const response = await fetch("http://localhost:3030/auth/login", {
+    method: "POST",
     headers: {
-       "Content-Type": "application/json",
-       
+      "Content-Type": "application/json",
     },
-     body: JSON.stringify(data),}
-  )
+    body: JSON.stringify(data),
+  });
 
-    if (!response.ok) {
+  if (!response.ok) {
     const errorData = await response.json();
-    throw new Error(errorData.message || "Failed to register");
+    throw new Error(errorData.message || "Failed to login");
   }
-  return response.json();
+
+  const responseData = await response.json();
+
+  if (responseData.token) {
+    sessionStorage.setItem("token", responseData.token);
+  }
+
+  return responseData;
 }
