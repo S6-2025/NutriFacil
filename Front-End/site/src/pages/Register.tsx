@@ -10,39 +10,66 @@ const Register: React.FC = () => {
   const { state } = location;
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    token ? navigate("/") : null;
-  }, [])
+useEffect(() => {
+  const token = sessionStorage.getItem("token");
+  const questionaryDone = localStorage.getItem("questionary_done");
 
-  function handleNextStep(e: React.FormEvent) {
-    e.preventDefault();
- 
-    const data: RegisterRequestDTO = {
-      username: form.username,
-      fullname: form.fullname,
-      email: form.email,
-      password: form.password,
-      gender: state.gender.toUpperCase(),
-      birthdate: state.birthdate,
-      weight: state.weight,
-      height: state.height,
-      allergies: state.diet.allergies || [''],
-      diet: {
-        objective: state.diet.objective,
-        type: state.diet.type,
-        physicalActivityStatus: state.diet.physicalActivityStatus,
-      }
-    }
-    try{
-      handleSubmit(e, data);
-    }catch (error) {
-      alert('Erro ao registrar usuário.');
-    }
-    
-    //localStorage.setItem("register_safe_data", JSON.stringify(safeData));
-
+  if (token) {
+    navigate("/");
+    return;
   }
+
+  // Se o questionário foi feito, deixa acessar /register mesmo sem state
+  if (!questionaryDone) {
+    if (!state || !state.diet || !state.gender || !state.birthdate) {
+      navigate("/questionary");
+    }
+  }
+}, [navigate, state]);
+
+async function handleNextStep(e: React.FormEvent) {
+  e.preventDefault();
+
+  const data: RegisterRequestDTO = {
+    username: form.username,
+    fullname: form.fullname,
+    email: form.email,
+    password: form.password,
+    gender: state.gender.toUpperCase(),
+    birthdate: state.birthdate,
+    weight: state.weight,
+    height: state.height,
+    allergies: state.diet.allergies || [''],
+    diet: {
+      objective: state.diet.objective,
+      type: state.diet.type,
+      physicalActivityStatus: state.diet.physicalActivityStatus,
+    }
+  };
+
+  try {
+    await handleSubmit(e, data); // Certifique-se que handleSubmit retorna uma Promise
+  const questionaryDone = localStorage.getItem("questionary_done");
+
+if (questionaryDone) {
+  navigate("/result", {
+    state: {
+      fullname: form.fullname,
+      gender: data.gender,
+      height: data.height,
+      weight: data.weight,
+      objective: data.diet.objective
+    }
+  });
+} else {
+  navigate("/questionary", { state: data });
+}
+
+  } catch (error) {
+    alert('Erro ao registrar usuário.');
+  }
+}
+
 
   return (
     <main className="super-container" id="super-container-form">

@@ -61,10 +61,7 @@ const About: React.FC = () => {
             estamos aqui para ajudar você a construir hábitos duradouros — uma
             refeição de cada vez.
           </p>
-            <div className="button-wrapper">
-              <Link to="/">  <button type="button">Voltar para a home</button></Link>
-        
-          </div>
+           
         </section>
       </section>
       

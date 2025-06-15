@@ -9,6 +9,7 @@ import Profile from "../pages/Profile"
 import Result from "../pages/Result"
 import Questionary from "../components/Questionary";
 import Subscription from "../pages/Subscription";
+import EditQuestionary from "../components/EditQuestionary";
 
 
 const AppRoutes: React.FC = () => {
@@ -22,6 +23,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/subscription" element={<Subscription />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/result" element={<Result />} />
+      <Route path="/edit" element={<EditQuestionary />} />
     </Routes>
   );
 };
