@@ -7,27 +7,25 @@ export type StepType =
   | { type: "description"; text?: string; question: string; options: string[] }
   | { type: "input"; question: string; placeholder?: string };
 
-  export const steps: StepType[] = [
+export const steps: StepType[] = [
   { type: "image", title: "Bem-vindo(a)!", imageUrl: "/select-green.svg", description: "Vamos iniciar um breve questionário para calcular seu TMB e IMC. É rápido e simples." },
   { type: "single", question: "Qual é o seu sexo biológico?", options: ["Masculino", "Feminino"] },
   { type: "input", question: "Qual a sua data de nascimento?", placeholder: "DD/MM/AAAA" },
-  { type: "input", question: "Qual é a sua altura?", placeholder: "Insira sua altura"},
-  { type: "input", question: "Qual é o seu peso?", placeholder: "Insira seu peso"},
-  { type: "single", question: "Qual é o seu objetivo?",  options: ["Emagrecimento", "Hipertrofia", ]},
-  { type: "multiple", question: "Possuí alguma alergia?",  options: ["Lactose", "Glúten","Proteína do Leite","Ovo","Frutos do Mar","Nenhuma" ]},
-  { type: "single", question: "Qual tipo de Dieta deseja seguir?",  options: ["Mediterrânea", "Low Carb", "Cetogênica", "Vegetariana" ]},
-  { type: "single", question: "Qual o seu nível de atividade física?",  options: ["Sedentário", "Leve", "Médio", "Alto" ]}
-  ];
-
+  { type: "input", question: "Qual é a sua altura?", placeholder: "Insira sua altura" },
+  { type: "input", question: "Qual é o seu peso?", placeholder: "Insira seu peso" },
+  { type: "single", question: "Qual é o seu objetivo?", options: ["Emagrecimento", "Hipertrofia"] },
+  { type: "multiple", question: "Possuí alguma alergia?", options: ["Lactose", "Glúten", "Proteína do Leite", "Ovo", "Frutos do Mar", "Nenhuma"] },
+  { type: "single", question: "Qual tipo de Dieta deseja seguir?", options: ["Mediterrânea", "Low Carb", "Cetogênica", "Vegetariana"] },
+  { type: "single", question: "Qual o seu nível de atividade física?", options: ["Sedentário", "Leve", "Médio", "Alto"] }
+];
 
 export type AnswersType = Record<number, string | string[]>;
-
 
 type DietDTO = {
   objective?: string;
   type?: string;
   physicalActivityStatus?: string;
-  alergy?: string;
+  allergies?: string[];
 };
 
 export interface UserData {
@@ -51,88 +49,27 @@ export function initUserData(initialData: Partial<UserData>): UserData {
   };
 }
 
-
 export const mapStepToField: { [key: number]: string } = {
   1: "gender",
   2: "birthdate",
   3: "height",
   4: "weight",
   5: "diet.objective",
-  6: "allergies",
+  6: "diet.allergies",
   7: "diet.type",
   8: "diet.physicalActivityStatus"
 };
 
+export const allergyLabelToEnum: Record<string, string> = {
+  "Lactose": "LACTOSE",
+  "Glúten": "GLUTEN",
+  "Proteína do Leite": "PROTEINA_DO_LEITE",
+  "Ovo": "OVO",
+  "Frutos do Mar": "FRUTOS_DO_MAR",
+  "Nenhuma": "NONE",
+};
 
-export function handleSingleSelect(
-  stepIndex: number,
-  option: string,
-  setAnswers: Dispatch<SetStateAction<AnswersType>>,
-  setUserData?: Dispatch<SetStateAction<UserData>>
-): void {
-  // Atualiza a resposta do questionário
-  setAnswers(prev => ({
-    ...prev,
-    [stepIndex]: option,
-  }));
-
-  // Se existir mapeamento do passo para userData, atualiza
-  if (setUserData && mapStepToField[stepIndex]) {
-    const fieldPath = mapStepToField[stepIndex];
-    const fieldParts = fieldPath.split(".");
-
-    setUserData(prev => {
-      // Caso 1: campo simples (ex: gender, birth, weight, height)
-      if (fieldParts.length === 1) {
-        const field = fieldParts[0];
-        let value: any = option;
-
-        if (field === "weight" || field === "height") {
-          value = Number(option);
-        }
-
-        if (field === "birthdate") {
-          const parsedDate = new Date(option);
-          if (!isNaN(parsedDate.getTime())) {
-            value = parsedDate.toISOString().split("T")[0];
-          } else {
-            alert("Data de nascimento inválida: " + option);
-            value = "";
-          }
-        }
-
-        return {
-          ...prev,
-          [field]: value,
-        };
-      }
-
-      // Caso 2: campo aninhado (ex: diet.objective, diet.type)
-      const parentKey = fieldParts[0] as keyof UserData;
-      const childKey = fieldParts[1];
-      const parentValue = prev[parentKey] || {};
-
-      const formattedOption =
-        childKey === "objective" || childKey === "type" || childKey === "physicalActivityStatus"
-          ? option
-              .toUpperCase()
-              .replace(/ /g, "_")
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-          : option;
-
-      return {
-        ...prev,
-        [parentKey]: {
-          ...(parentValue as object),
-          [childKey]: formattedOption,
-        },
-      };
-    });
-  }
-}
-
- export function handleMultipleSelect(
+export function handleMultipleSelect(
   stepIndex: number,
   option: string,
   setAnswers: Dispatch<SetStateAction<AnswersType>>,
@@ -140,31 +77,35 @@ export function handleSingleSelect(
 ): void {
   setAnswers(prev => {
     const current = Array.isArray(prev[stepIndex]) ? (prev[stepIndex] as string[]) : [];
-    
-    // Caso especial para a pergunta de alergias (stepIndex 6)
+
     if (stepIndex === 6) {
-      if (option === "Nenhuma") {
-        // Se clicou em "Nenhuma", retorna apenas ela (desmarca outras)
+      const enumValue = allergyLabelToEnum[option]; // converte para enum esperado pela API
+
+      if (enumValue === "NONE") {
+        // Se clicar em "Nenhuma", limpa as outras e deixa só ela
         return {
           ...prev,
-          [stepIndex]: current.includes("Nenhuma") ? [] : ["Nenhuma"]
-        };
-      } else {
-        // Se clicou em outra opção, verifica se "Nenhuma" está marcada
-        if (current.includes("Nenhuma")) {
-          return prev; // Não faz nada se "Nenhuma" estiver marcada
-        }
-        // Lógica normal para múltipla seleção
-        return {
-          ...prev,
-          [stepIndex]: current.includes(option)
-            ? current.filter(o => o !== option)
-            : [...current, option],
+          [stepIndex]: current.includes("NONE") ? [] : ["NONE"],
         };
       }
+
+      // Se "Nenhuma" já está selecionada, não permite selecionar outra
+      if (current.includes("NONE")) {
+        return prev;
+      }
+
+      // Alterna a seleção do item
+      const updated = current.includes(enumValue)
+        ? current.filter(o => o !== enumValue)
+        : [...current, enumValue];
+
+      return {
+        ...prev,
+        [stepIndex]: updated,
+      };
     }
 
-    // Lógica normal para outras perguntas múltiplas
+    // Caso normal para múltiplas seleções (não alergias)
     return {
       ...prev,
       [stepIndex]: current.includes(option)
@@ -177,57 +118,131 @@ export function handleSingleSelect(
     const field = mapStepToField[stepIndex];
     const fieldParts = field.split(".");
 
-    setUserData((prev: any) => {
-      if (fieldParts.length === 1) {
-        return {
-          ...prev,
-          [field]: Array.isArray(prev[field]) ? [...prev[field], option] : [option],
-        }
-      } else {
-        const parentKey = fieldParts[0] as keyof UserData;
-        const childKey = fieldParts[1];
-        const prevParentValue = prev[parentKey] || {};
+    setUserData(prev => {
+    if (fieldParts.length === 1) {
+  const fieldName = fieldParts[0] as keyof UserData;
+  const prevValue = prev[fieldName] as string[] | undefined;
 
-        // Lógica especial para alergias
-        if (stepIndex === 6) {
-          let newValue;
-          if (option === "Nenhuma") {
-            newValue = prev[stepIndex]?.includes("Nenhuma") ? [] : ["Nenhuma"];
-          } else {
-            if (prevParentValue[childKey]?.includes("Nenhuma")) {
-              return prev; // Não atualiza se "Nenhuma" estiver marcada
-            }
-            newValue = Array.isArray(prevParentValue[childKey]) 
-              ? prevParentValue[childKey].includes(option)
-                ? prevParentValue[childKey].filter((o: string) => o !== option)
-                : [...prevParentValue[childKey], option]
-              : [option];
-          }
+  if (Array.isArray(prevValue)) {
+    const newValue = prevValue.includes(option)
+      ? prevValue.filter(o => o !== option)
+      : [...prevValue, option];
 
+    return { ...prev, [fieldName]: newValue };
+  } else {
+    return { ...prev, [fieldName]: [option] };
+  }
+}
+
+
+      // Campo aninhado, ex: diet.allergies
+      const parentKey = fieldParts[0] as keyof UserData;
+      const childKey = fieldParts[1];
+      const prevParentValue = (prev[parentKey] as any) || {};
+
+      if (stepIndex === 6) {
+        // Para alergias usa enumValue
+        const enumValue = allergyLabelToEnum[option];
+
+        if (enumValue === "NONE") {
+          const newValue = (prevParentValue[childKey] as string[])?.includes("NONE") ? [] : ["NONE"];
           return {
             ...prev,
             [parentKey]: {
-              ...(prevParentValue as object),
-              [childKey]: newValue
-            }
+              ...prevParentValue,
+              [childKey]: newValue,
+            },
           };
         }
 
-        // Lógica normal para outros campos
+        if ((prevParentValue[childKey] as string[])?.includes("NONE")) {
+          return prev; // Não permite conflito com "NONE"
+        }
+
+        const current = (prevParentValue[childKey] as string[]) || [];
+        const newValue = current.includes(enumValue)
+          ? current.filter((o: string) => o !== enumValue)
+          : [...current, enumValue];
+
         return {
           ...prev,
           [parentKey]: {
-            ...(prevParentValue as object),
-            [childKey]: Array.isArray(prevParentValue[childKey]) 
-              ? [...prevParentValue[childKey], option] 
-              : [option],
-          }
-        }
+            ...prevParentValue,
+            [childKey]: newValue,
+          },
+        };
       }
+
+      // Para outros campos aninhados, lógica normal
+      const current = (prevParentValue[childKey] as string[]) || [];
+      const newValue = current.includes(option)
+        ? current.filter(o => o !== option)
+        : [...current, option];
+
+      return {
+        ...prev,
+        [parentKey]: {
+          ...prevParentValue,
+          [childKey]: newValue,
+        },
+      };
     });
   }
 }
 
+export function handleSingleSelect(
+  stepIndex: number,
+  option: string,
+  setAnswers: Dispatch<SetStateAction<AnswersType>>,
+  setUserData?: Dispatch<SetStateAction<UserData>>
+): void {
+  setAnswers(prev => ({
+    ...prev,
+    [stepIndex]: option,
+  }));
+
+  if (setUserData && mapStepToField[stepIndex]) {
+    const fieldPath = mapStepToField[stepIndex];
+    const fieldParts = fieldPath.split(".");
+
+    setUserData(prev => {
+      if (fieldParts.length === 1) {
+        const field = fieldParts[0];
+        let value: any = option;
+
+        if (field === "weight" || field === "height") {
+          value = Number(option);
+        } else if (field === "birthdate") {
+          const parsed = new Date(option);
+          value = !isNaN(parsed.getTime()) ? parsed.toISOString().split("T")[0] : "";
+        }
+
+        return {
+          ...prev,
+          [field]: value,
+        };
+      }
+
+      const parentKey = fieldParts[0] as keyof UserData;
+      const childKey = fieldParts[1];
+      const parentValue = prev[parentKey] || {};
+
+      const formatted = option
+        .toUpperCase()
+        .replace(/ /g, "_")
+        .normalize("NFD")
+        .replace(/[̀-ͯ]/g, "");
+
+      return {
+        ...prev,
+        [parentKey]: {
+          ...(parentValue as object),
+          [childKey]: formatted,
+        },
+      };
+    });
+  }
+}
 
 export function handleNextStep(
   currentStep: number,
