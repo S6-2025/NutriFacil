@@ -5,7 +5,6 @@ import {
   mapStepToField,
   handleSingleSelect,
   handleMultipleSelect,
-  handleNextStep,
   initUserData,
   allergyLabelToEnum,
 } from "./QuestionaryLogic";
@@ -20,9 +19,31 @@ function QuestionaryEdit() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Aqui você pode buscar os dados anteriores e preencher o estado inicial
-    // Exemplo: fetchProfile().then(data => setUserData(data));
+    // Buscar dados do usuário e preencher o estado inicial
+    // Exemplo:
+    // fetchProfile().then(data => {
+    //   setUserData(data);
+    //   // Também preencher answers para mostrar selecionados
+    //   // Faça a lógica para mapear data para answers aqui
+    // });
   }, []);
+
+  function handleNextStepSkip(
+    currentStep: number,
+    setCurrentStep: React.Dispatch<React.SetStateAction<number>>,
+    totalSteps: number
+  ) {
+    let nextStep = currentStep + 1;
+
+    // Pula o step 2 (data de nascimento)
+    if (nextStep === 2) {
+      nextStep = 3;
+    }
+
+    if (nextStep < totalSteps) {
+      setCurrentStep(nextStep);
+    }
+  }
 
   async function handleOptionClick(option: string) {
     const step = steps[currentStep];
@@ -33,7 +54,7 @@ function QuestionaryEdit() {
       handleMultipleSelect(currentStep, option, setAnswers, setUserData);
     } else if (step.type === "description") {
       handleSingleSelect(currentStep, option, setAnswers);
-      handleNextStep(currentStep, setCurrentStep, steps.length);
+      handleNextStepSkip(currentStep, setCurrentStep, steps.length);
     }
   }
 
@@ -71,17 +92,22 @@ function QuestionaryEdit() {
         totalSteps={steps.length}
       />
 
-      {/* Ignora os steps tipo imagem */}
+      {/* Step tipo image */}
       {step.type === "image" && (
-        <div className="button-wrapper">
-          <button
-            className="continues"
-            onClick={() =>
-              handleNextStep(currentStep, setCurrentStep, steps.length)
-            }
-          >
-            Continuar
-          </button>
+        <div className="step-image">
+          <h2>Edição de informações</h2>
+          <img src={step.imageUrl} alt={step.title} />
+          <p>Clique no botão abaixo para continuar</p>
+          <div className="button-wrapper">
+            <button
+              className="continues"
+              onClick={() =>
+                handleNextStepSkip(currentStep, setCurrentStep, steps.length)
+              }
+            >
+              Continuar
+            </button>
+          </div>
         </div>
       )}
 
@@ -97,6 +123,7 @@ function QuestionaryEdit() {
               let value = e.target.value;
 
               if (currentStep === 3) {
+                // Altura: formata e valida
                 value = value.replace(/\D/g, "");
                 if (value.length === 0) {
                   setAnswers((prev) => ({ ...prev, [currentStep]: "" }));
@@ -118,6 +145,7 @@ function QuestionaryEdit() {
               }
 
               if (currentStep === 4) {
+                // Peso: só números e valida range
                 value = value.replace(/\D/g, "");
                 const numValue = Number(value);
                 if (numValue < 0 || numValue > 1000) return;
@@ -139,7 +167,7 @@ function QuestionaryEdit() {
             <button
               className="continues"
               onClick={() =>
-                handleNextStep(currentStep, setCurrentStep, steps.length)
+                handleNextStepSkip(currentStep, setCurrentStep, steps.length)
               }
               disabled={!answers[currentStep]}
             >
@@ -175,7 +203,7 @@ function QuestionaryEdit() {
               <button
                 className="continues"
                 onClick={() =>
-                  handleNextStep(currentStep, setCurrentStep, steps.length)
+                  handleNextStepSkip(currentStep, setCurrentStep, steps.length)
                 }
                 disabled={!answers[currentStep]}
               >
@@ -216,7 +244,7 @@ function QuestionaryEdit() {
             <button
               className="continues"
               onClick={() =>
-                handleNextStep(currentStep, setCurrentStep, steps.length)
+                handleNextStepSkip(currentStep, setCurrentStep, steps.length)
               }
             >
               Continuar
