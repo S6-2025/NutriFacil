@@ -7,6 +7,7 @@ import {
   handleMultipleSelect,
   handleNextStep,
   initUserData,
+  allergyLabelToEnum
 } from "./QuestionaryLogic";
 
 import type { UserData, AnswersType } from "./QuestionaryLogic";
@@ -20,6 +21,9 @@ function Questionary() {
 
   async function handleOptionClick(option: string) {
     const step = steps[currentStep];
+     console.log("Current answers for step:", answers[currentStep]);
+  console.log("Option:", option);
+
 
     if (step.type === "single") {
       handleSingleSelect(currentStep, option, setAnswers, setUserData);
@@ -47,6 +51,9 @@ function Questionary() {
   }
 
   const step = steps[currentStep];
+
+ 
+
 
   return (
     <main className="questionary-container">
@@ -207,46 +214,47 @@ function Questionary() {
         </div>
       )}
 
-      {step.type === "multiple" && (
-        <div className="step-multiple">
-          <h3>{step.question}</h3>
-          <ul>
-            {step.options.map((option) => (
-              <li key={option}>
-                <button
-                  onClick={() => handleOptionClick(option)}
-                  className={`multiple-options ${
-                    Array.isArray(answers[currentStep]) &&
-                    (answers[currentStep] as string[]).includes(option)
-                      ? "selected"
-                      : ""
-                  }`}
-                >
-                  {option}
-                  {Array.isArray(answers[currentStep]) &&
-                    (answers[currentStep] as string[]).includes(option) && (
-                      <span> ✓</span>
-                    )}
-                </button>
-              </li>
-            ))}
-          </ul>
+    {step.type === "multiple" && (
+  <div className="step-multiple">
+    <h3>{step.question}</h3>
+    <ul>
+     {step.options.map((option) => {
+  const enumValue = allergyLabelToEnum[option] || option;
 
-          {Array.isArray(answers[currentStep]) &&
-            answers[currentStep].length > 0 && (
-              <div className="button-wrapper">
-                <button
-                  className="continues"
-                  onClick={() =>
-                    handleNextStep(currentStep, setCurrentStep, steps.length)
-                  }
-                >
-                  Continuar
-                </button>
-              </div>
-            )}
-        </div>
-      )}
+  const isSelected =
+    Array.isArray(answers[currentStep]) &&
+    (answers[currentStep] as string[]).includes(enumValue);
+
+  return (
+    <li key={option}>
+      <button
+        onClick={() => handleOptionClick(option)}
+        className={`multiple-options ${isSelected ? "selected" : "no-selected"}`}
+      >
+        {option}
+        {isSelected && <span> ✓</span>}
+      </button>
+    </li>
+  );
+})}
+
+    </ul>
+
+    <div className="button-wrapper">
+      <button
+        className="continues"
+        onClick={() =>
+          handleNextStep(currentStep, setCurrentStep, steps.length)
+        }
+        // opcional: pode desabilitar botão se nenhuma opção selecionada
+        // disabled={!Array.isArray(answers[currentStep]) || answers[currentStep].length === 0}
+      >
+        Continuar
+      </button>
+    </div>
+  </div>
+)}
+
 
       {currentStep === steps.length - 1 && (
         <div className="button-wrapper-final">
