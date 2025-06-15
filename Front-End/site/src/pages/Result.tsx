@@ -1,10 +1,17 @@
 import React from "react";
+import {useEffect } from "react";
 import { IgrExpansionPanel, IgrExpansionPanelModule } from "igniteui-react";
 import "igniteui-webcomponents/themes/light/bootstrap.css";
 
 IgrExpansionPanelModule.register();
 
+ 
+
 const Result: React.FC = () => {
+  useEffect(() => {
+  localStorage.removeItem("questionary_done");
+}, []);
+
   return (
     <div className="mini-container">
       <div className="user-container">
