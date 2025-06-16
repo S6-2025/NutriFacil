@@ -52,7 +52,7 @@ const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
 
         {isLogged && (
           <li>
-            <Link to="/edit" onClick={onClose} className="links-li">
+            <Link to="/nutritional-edit" onClick={onClose} className="links-li">
               Refazer Questionário
             </Link>
           </li>

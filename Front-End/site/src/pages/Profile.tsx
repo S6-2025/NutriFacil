@@ -11,6 +11,8 @@ const Profile: React.FC = () => {
     telephone: "(11) 99999-9999",
     email: "joao@email.com",
     password: "********",
+    weight: "70",
+    height: "1.70",
   });
 
   const handleChange = (field: keyof typeof userData, value: string) => {

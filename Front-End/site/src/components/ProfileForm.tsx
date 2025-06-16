@@ -1,12 +1,14 @@
 import React from "react";
 
-interface UserData {
+export interface UserData {
   name: string;
   genre: string;
   birthDate: string;
   telephone: string;
   email: string;
   password: string;
+  weight: string; // antes era number
+  height: string; 
 }
 
 interface ProfileFormProps {
@@ -14,6 +16,36 @@ interface ProfileFormProps {
   isEditing: boolean;
   onChange: (field: keyof UserData, value: string) => void;
 }
+
+// Função utilitária para tratar campos numéricos com limites
+const handleNumberFieldChange = (
+  e: React.ChangeEvent<HTMLInputElement>,
+  field: keyof UserData,
+  min: number,
+  max: number,
+  onChange: (field: keyof UserData, value: string) => void
+) => {
+  const rawValue = e.target.value;
+
+  // Permitir valor vazio (durante edição)
+  if (rawValue === "") {
+    onChange(field, rawValue);
+    return;
+  }
+
+  // Permitir que o usuário digite número com ponto (ex: "1.", "1.7")
+  const isValidFloatFormat = /^(\d+)?(\.\d*)?$/.test(rawValue);
+  if (!isValidFloatFormat) return;
+
+  const parsed = parseFloat(rawValue);
+  if (!isNaN(parsed) && parsed >= min && parsed <= max) {
+    onChange(field, rawValue);
+  } else if (!isNaN(parsed)) {
+    // Permitir digitação intermediária mesmo fora do limite
+    onChange(field, rawValue);
+  }
+};
+
 
 const ProfileForm: React.FC<ProfileFormProps> = ({
   userData,
@@ -73,6 +105,91 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
           onChange={(e) => onChange("telephone", e.target.value)}
         />
       </div>
+
+  <div className="personal-camps">
+  <label htmlFor="weight-info">Peso (kg):</label>
+  <input
+    type="text"  // text para controlar melhor
+    id="weight-info"
+    name="weight-info"
+    required
+    disabled={!isEditing}
+    value={userData.weight}
+    onChange={(e) => {
+      let raw = e.target.value;
+
+      // Remove tudo que não for dígito
+      let digits = raw.replace(/\D/g, "");
+
+      // Limita até 3 dígitos (max 999)
+      if (digits.length > 3) digits = digits.slice(0, 3);
+
+      // Se vazio permite apagar
+      if (digits === "") {
+        onChange("weight", "");
+        return;
+      }
+
+      // Parse int e valida max 999
+      const numericValue = parseInt(digits, 10);
+      if (!isNaN(numericValue) && numericValue <= 999) {
+        onChange("weight", numericValue.toString());
+      }
+    }}
+
+  />
+</div>
+
+
+<div className="personal-camps">
+  <label htmlFor="height-info">Altura (m):</label>
+  <input
+    type="text"
+    id="height-info"
+    name="height-info"
+    required
+    disabled={!isEditing}
+    maxLength={4} // máximo 3 dígitos + ponto
+    value={userData.height}
+    onChange={(e) => {
+      let raw = e.target.value;
+
+      // Remove tudo que não for dígito
+      let digits = raw.replace(/\D/g, "");
+
+      // Limitar a 3 dígitos (ex: '310' para 3.10)
+      if (digits.length > 3) digits = digits.slice(0, 3);
+
+      // Se não tem dígito, valor vazio (permitir apagar tudo)
+      if (digits.length === 0) {
+        onChange("height", "");
+        return;
+      }
+
+      // Montar string com ponto só se tiver 2 ou mais dígitos
+      let formatted;
+      if (digits.length === 1) {
+        // Apenas um dígito, sem ponto
+        formatted = digits;
+      } else if (digits.length === 2) {
+        // Um dígito + ponto + 1 dígito: x.x
+        formatted = digits[0] + "." + digits[1];
+      } else {
+        // 3 dígitos: x.xx
+        formatted = digits[0] + "." + digits[1] + digits[2];
+      }
+
+      // Validar se valor <= 3.10
+      const numericValue = parseFloat(formatted);
+      if (!isNaN(numericValue) && numericValue <= 3.10) {
+        onChange("height", formatted);
+      }
+    }}
+   
+  />
+</div>
+
+
 
       <div className="info-camps">
         <label htmlFor="email-info">Email:</label>
