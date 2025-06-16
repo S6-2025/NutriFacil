@@ -55,7 +55,7 @@ public class Diet {
     }
 
     public void setWaterConsume() {
-        this.waterConsume = 0.35 * profile.getWeight();
+        this.waterConsume = 0.035 * profile.getWeight();
     }
 
     public void setTmb() {

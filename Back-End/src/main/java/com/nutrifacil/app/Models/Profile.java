@@ -24,6 +24,7 @@ public class Profile {
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonBackReference
     private User user;
 
     @OneToOne(mappedBy = "profile", cascade = CascadeType.ALL)
