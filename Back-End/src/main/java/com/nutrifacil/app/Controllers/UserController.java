@@ -34,6 +34,7 @@ public class UserController {
             User currUser = service.updateUser(username, updateData);
             return ResponseEntity.ok(currUser);
         } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
             return ResponseEntity.status(404).body(e.getMessage());
         }
     }

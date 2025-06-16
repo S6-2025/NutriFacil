@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color8);
+  background-color: var(--color6);
 }
 
 
@@ -15,7 +15,9 @@
   height: 70vh;
   padding: 0 5vw;
   border-radius: 25px;
-  background-color: var(--color3);
+  background-color: var(--color7);  
+  box-shadow: 7px 7px 9px 0px rgba(0, 0, 0, 0.25);
+
 }
 
 
@@ -36,8 +38,8 @@
 .logo p {
   font-size: 2.5rem;
   font-family: var(--font-logo);
-  stroke: var(--color4);
-  color: var(--color4);
+  stroke: var(--color6);
+  color: var(--color6);
 }
 
 
@@ -45,7 +47,7 @@
   display: inline-block;
   width: 2.2rem;
   height: 2.2rem;
-  stroke: var(--color4);
+  stroke: var(--color6);
 }
 
 
@@ -86,12 +88,12 @@ form {
 
 .camps input {
   flex: 1;
-  padding: 5px;
-  border: .01rem solid var(--color7);
+  padding-left: 15px;
+  border: .01rem solid var(--color3);
   border-radius: 10px;
   font-family: var(--font-read);
   font-size: 1rem;
-  background-color: var(--color7);
+  background-color: var(--color3);
   color: white;
 }
 input:focus {
@@ -99,6 +101,7 @@ input:focus {
 }
 input::placeholder{
   padding-left: 5px;
+  
   font-family: var(--font-logo);
   font-weight: 400;
   font-size: 1rem;
@@ -115,8 +118,8 @@ form > button {
   font-family: var(--font-logo);
   font-size: 1.3rem ;
   cursor: pointer;
-  background-color: var(--color4);
-  color: var(--color8);
+  background-color: var(--color6);
+  color: var(--color4);
 }
 form > button:hover {
   font-weight: 700;
@@ -127,8 +130,8 @@ form > button:hover {
   transition: 0.2s ease-in-out;
 }
 form > button:focus {
-  border: 1px solid var(--color2) ;
-  color: var(--color2);
+  border-inline: 1px solid var(--color4) ;
+  color: var(--color7);
 }
 
 
@@ -145,6 +148,57 @@ form > button:focus {
   cursor: pointer;
   color: var(--color5);
 }
+
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  
+  flex-direction: column;
+}
+
+.input-error {
+  
+  border: 1px solid red;
+}
+
+ 
+.tooltip-error {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color8); 
+  color: var(--error-bg);
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-top: 6px;
+  white-space: nowrap;
+  z-index: 10;
+  animation: fadeIn 0.3s ease-in-out;
+  max-width: 90%;
+  text-align: center;
+}
+
+
+.tooltip-error::before {
+  display: none;
+  
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -8px); /* vem de cima e já centralizado */
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0); /* centralizado no final */
+  }
+}
+
 
 
 @media (min-width:1024px){
