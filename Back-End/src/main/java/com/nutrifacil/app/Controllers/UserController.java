@@ -19,6 +19,15 @@ public class UserController {
     @Autowired
     private final UserService service;
 
+    @GetMapping("/{username}")
+    public ResponseEntity<Object> getUserInfo(@PathVariable String username) {
+        try {
+            return ResponseEntity.ok(service.getUserInfo(username));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+    }
+
     @PatchMapping("/{username}")
     public ResponseEntity<Object> updateUser(@PathVariable String username, @RequestBody UpdateUserDTO updateData) {
         try {
@@ -28,4 +37,15 @@ public class UserController {
             return ResponseEntity.status(404).body(e.getMessage());
         }
     }
+
+    @DeleteMapping("/{username}")
+    public ResponseEntity<Object> deleteUser(@PathVariable String username) {
+        try {
+            service.deleteUser(username);
+            return ResponseEntity.ok("Usuário deletado com sucesso!");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+    }
+
 }

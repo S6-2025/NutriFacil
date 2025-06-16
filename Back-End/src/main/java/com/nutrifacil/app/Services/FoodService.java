@@ -15,7 +15,6 @@ public class FoodService {
         if (repository.findFoodByName(food.getName()).isEmpty()) {
             repository.save(food);
         }
-
     }
 
 }

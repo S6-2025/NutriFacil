@@ -12,6 +12,8 @@ import java.util.UUID;
 public interface FoodRepository extends JpaRepository<Food, UUID> {
     Optional<Food> findFoodByName(String name);
 
+    Optional<Food> findFoodById(UUID id);
+
     Optional<List<Food>> findFoodByAllergyGroup(AllergyGroup allergyGroup);
 
     Optional<List<Food>> findFoodByCategory(FoodCategory category);

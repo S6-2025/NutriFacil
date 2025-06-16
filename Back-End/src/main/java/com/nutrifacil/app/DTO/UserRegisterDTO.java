@@ -9,6 +9,7 @@ public record UserRegisterDTO(
         String password,
         String fullname,
         String email,
+        String phone,
         Gender gender,
         String birthdate,
         Double weight,

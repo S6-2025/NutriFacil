@@ -1,6 +1,8 @@
 package com.nutrifacil.app.Services;
 
+import com.nutrifacil.app.DTO.DietDTO;
 import com.nutrifacil.app.DTO.UpdateUserDTO;
+import com.nutrifacil.app.DTO.UserDTO;
 import com.nutrifacil.app.Models.User;
 import com.nutrifacil.app.Repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,12 @@ public class UserService {
 
     @Autowired
     private final UserRepository repository;
+
+    public UserDTO getUserInfo(String username) {
+        User user = repository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
+        return UserMapper.mapUser(user);
+    }
 
     public User updateUser(String username, UpdateUserDTO updateInfo) {
         User user = repository.findByUsername(username).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
@@ -40,7 +48,30 @@ public class UserService {
     }
 
     public void deleteUser(String username) {
-        var user = repository.findByUsername(username).orElseThrow(() -> new RuntimeException("Não foi possivel encontrar o usuário!"));
+        var user = repository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Não foi possivel encontrar o usuário!"));
         repository.delete(user);
+    }
+}
+
+
+class UserMapper {
+    public static UserDTO mapUser(User user) {
+        return new UserDTO(
+                user.getUsername(),
+                user.getProfile().getFullname(),
+                user.getProfile().getEmail(),
+                user.getProfile().getBirthdate(),
+                user.getProfile().getGender(),
+                user.getProfile().getHeight(),
+                user.getProfile().getWeight(),
+                new DietDTO(
+                        user.getProfile().getDiet().getObjective(),
+                        user.getProfile().getDiet().getType(),
+                        user.getProfile().getDiet().getPhysicalActivityStatus()
+                ),
+                user.getProfile().getAllergies()
+        );
+
     }
 }

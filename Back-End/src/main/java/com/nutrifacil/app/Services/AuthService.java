@@ -1,5 +1,6 @@
 package com.nutrifacil.app.Services;
 
+import com.nutrifacil.app.DTO.UserDTO;
 import com.nutrifacil.app.DTO.UserLoginDTO;
 import com.nutrifacil.app.DTO.UserRegisterDTO;
 import com.nutrifacil.app.Infra.Security.TokenService;
@@ -16,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static java.util.Map.entry;
@@ -60,6 +63,7 @@ public class AuthService {
         //INFO: CONFIGURANDO PROFILE
         profile.setFullname(userData.fullname());
         profile.setEmail(userData.email());
+        profile.setPhone(userData.phone());
         profile.setBirthdate(LocalDate.parse(userData.birthdate()));
         profile.setGender(userData.gender());
         profile.setWeight(userData.weight());
@@ -80,6 +84,7 @@ public class AuthService {
         diet.setImc();
         diet.setTmb();
         diet.setWaterConsume();
+        diet.setCaloriesConsume();
         this.repository.save(user);
         String token = tokenService.generateToken(user);
         return ResponseEntity.ok(Map.ofEntries(

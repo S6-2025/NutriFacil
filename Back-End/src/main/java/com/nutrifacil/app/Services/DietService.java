@@ -63,6 +63,7 @@ public class DietService {
         diet.setWaterConsume();
         diet.setTmb();
         diet.setImc();
+        diet.setCaloriesConsume();
 
 
         return diet;
