@@ -12,11 +12,10 @@ public class FoodService {
     private FoodRepository repository;
 
     public void register(Food food) {
-        if (repository.findFoodByName(food.getName()).isPresent()) {
-            throw new RuntimeException("Comida ja existe");
+        if (repository.findFoodByName(food.getName()).isEmpty()) {
+            repository.save(food);
         }
-        ;
-        repository.save(food);
+
     }
 
 }

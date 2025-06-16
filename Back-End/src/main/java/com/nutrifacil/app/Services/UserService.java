@@ -38,4 +38,9 @@ public class UserService {
 
         return user;
     }
+
+    public void deleteUser(String username) {
+        var user = repository.findByUsername(username).orElseThrow(() -> new RuntimeException("Não foi possivel encontrar o usuário!"));
+        repository.delete(user);
+    }
 }
