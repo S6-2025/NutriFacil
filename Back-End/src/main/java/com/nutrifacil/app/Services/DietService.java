@@ -1,6 +1,7 @@
 package com.nutrifacil.app.Services;
 
 
+import com.nutrifacil.app.DTO.DietDTO;
 import com.nutrifacil.app.ENUM.AllergyGroup;
 import com.nutrifacil.app.Models.Diet;
 import com.nutrifacil.app.Models.Food;
@@ -43,6 +44,28 @@ public class DietService {
         return dietRepository.findDietByProfile_User_Username(username).orElseThrow(
                 () -> new RuntimeException("Nenhuma dieta encontrada")
         );
+    }
+
+    public Diet updateDiet(String username, DietDTO updateData) {
+        Diet diet = dietRepository.findDietByProfile_User_Username(username)
+                .orElseThrow(() -> new RuntimeException("Nenhuma informação encontrada!!"));
+
+        if (updateData.objective() != null) {
+            diet.setObjective(updateData.objective());
+        }
+        if (updateData.type() != null) {
+            diet.setType(updateData.type());
+        }
+        if (updateData.physicalActivityStatus() != null) {
+            diet.setPhysicalActivityStatus(updateData.physicalActivityStatus());
+        }
+
+        diet.setWaterConsume();
+        diet.setTmb();
+        diet.setImc();
+
+
+        return diet;
     }
 
 }

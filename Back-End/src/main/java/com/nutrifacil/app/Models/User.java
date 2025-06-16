@@ -1,5 +1,6 @@
 package com.nutrifacil.app.Models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,7 @@ public class User {
     private UUID id;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-
+    @JsonManagedReference
     private Profile profile;
 
     @Column(nullable = false, unique = true)
