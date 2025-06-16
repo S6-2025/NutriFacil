@@ -53,7 +53,7 @@ const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
         {isLogged && (
           <li>
             <Link to="/nutritional-edit" onClick={onClose} className="links-li">
-              Refazer Questionário
+              Preferências Nutricionais
             </Link>
           </li>
         )}
