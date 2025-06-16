@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserLoginForm } from "../hooks/userLoginForm";
+import { useState } from "react";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showTooltip, setShowTooltip] = useState(false);
 
   // Redireciona se já estiver logado (token na sessionStorage)
   useEffect(() => {
@@ -34,7 +37,8 @@ const Login: React.FC = () => {
       navigate("/result");
     } catch (error) {
       console.error("Error during form submission:", error);
-      alert("Erro ao fazer login. Por favor, tente novamente.");
+      setErrorMessage(errorMessage || "Erro ao fazer login.");
+      setShowTooltip(true);
     }
   };
 
@@ -68,10 +72,12 @@ const Login: React.FC = () => {
                 autoComplete="username"
                 name="username-login"
                 placeholder="Digite seu username"
+                
               />
+              
             </div>
 
-            <div className="camps">
+            <div className="camps  input-wrapper">
               <label htmlFor="password-login">Senha:</label>
               <input
                 type="password"
@@ -81,7 +87,11 @@ const Login: React.FC = () => {
                 autoComplete="current-password"
                 name="password-login"
                 placeholder="Digite sua senha"
+                className={showTooltip ? "input-error" : ""}
               />
+              {showTooltip && (
+                <span className="tooltip-error">{errorMessage}</span>
+              )}
             </div>
 
             <button type="submit">LogIn</button>

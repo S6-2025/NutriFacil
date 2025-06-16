@@ -1,30 +1,44 @@
-import { useState } from 'react';
-import { loginUser } from '../services/loginUser';
+import { useState } from "react";
+import axios from "axios";
 
-export function useUserLoginForm() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    
+export const useUserLoginForm = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-    function handleUsernameChange(event: React.ChangeEvent<HTMLInputElement>) {
-        setUsername(event.target.value);
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = async (event: React.FormEvent, data: { username: string; password: string }) => {
+    try {
+      const response = await axios.post("http://localhost:3030/auth/login", data);
+
+      if (response.status === 200 && response.data.token) {
+        sessionStorage.setItem("token", response.data.token);
+        // Tudo certo
+      } else {
+        // Algo deu errado (login inválido, token ausente etc.)
+        throw new Error("Login inválido");
+      }
+    } catch (error: any) {
+      // Trata erros da API (ex: 401 Unauthorized)
+      if (error.response && error.response.status === 401) {
+        throw new Error("Usuário ou senha incorretos");
+      } else {
+        throw new Error("Erro ao conectar ao servidor");
+      }
     }
-    function handlePasswordChange(event: React.ChangeEvent<HTMLInputElement>) {
-        setPassword(event.target.value);
-    }
+  };
 
-
-    async function handleSubmit(e: React.FormEvent, data: Object) {
-       e.preventDefault(); 
-
-       try{
-          const token = await loginUser(data); 
-          sessionStorage.setItem("token",token.token)
-          
-       }catch (error) {
-         console.error('Login failed:', error);
-       }
-    }
-
-    return {username, password, handleUsernameChange, handlePasswordChange, handleSubmit};
-}
+  return {
+    username,
+    password,
+    handleUsernameChange,
+    handlePasswordChange,
+    handleSubmit,
+  };
+};
