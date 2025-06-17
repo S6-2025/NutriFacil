@@ -146,6 +146,10 @@
   }
 
 
+ #up{
+  z-index: 1000;
+ 
+ }
   #fruits1 {
     width: 50%;
     height: auto;
@@ -184,3 +188,6 @@
 
 
 }
+
+
+ 

@@ -26,6 +26,12 @@ const Profile: React.FC = () => {
     height: "",
   });
 
+  function formatDate(dateStr: string | null): string {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  return d.toISOString().split("T")[0]; // sempre garante YYYY-MM-DD
+}
+
   function getUsernameFromToken(token: string): string | null {
     try {
       const payload = JSON.parse(atob(token.split(".")[1]));
@@ -54,14 +60,14 @@ useEffect(() => {
       });
 
       const data = response.data;
-      console.log("Dados do perfil:", data);
+
       setUserData({
         fullname: data.fullname || "",
         gender: data.gender || "",
-        birthDate: data.birthDate || "",
+        birthDate: formatDate(data.birthDate),
         phone: data.phone || "",
         email: data.email || "",
-        password: "***",
+        password: "*******",
         weight: String(data.weight || ""),
         height: String(data.height || ""),
       });

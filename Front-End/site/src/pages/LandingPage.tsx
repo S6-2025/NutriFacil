@@ -14,7 +14,7 @@ const LandingPage: React.FC = () => {
               <br /><br />
               Nosso objetivo é tornar a nutrição simples, acessível e adaptada à sua rotina.
             </p>
-            <div className="button-wrapper">
+            <div className="button-wrapper" id="up">
             <Link to="/questionary"><button type="button">Comece Agora!</button> </Link>
           </div>
           </section>

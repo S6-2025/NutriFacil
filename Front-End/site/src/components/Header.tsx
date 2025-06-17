@@ -15,7 +15,7 @@ const Header = () => {
         <div className="menu-links">
           <a href="/">Home</a>
           <a href="/profile">Perfil</a>
-          <a href="#">Meu plano</a>
+          <a href="/plan">Meu plano</a>
           <a href="/about">Sobre</a>
           <a href="/login">Login</a>
         </div>
