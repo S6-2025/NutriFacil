@@ -1,6 +1,7 @@
 package com.nutrifacil.app.Controllers;
 
 import com.nutrifacil.app.DTO.DietDTO;
+import com.nutrifacil.app.DTO.DietResponseDTO;
 import com.nutrifacil.app.Models.Diet;
 import com.nutrifacil.app.Services.DietService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/diet")
+@CrossOrigin(origins = "http://localhost:5173")
 @RequiredArgsConstructor
 public class DietController {
     @Autowired
@@ -19,8 +21,8 @@ public class DietController {
     @GetMapping("/{username}")
     public ResponseEntity<Object> getDietByUsername(@PathVariable String username) {
         try {
-            Diet diet = service.getDietByUsename(username);
-            return ResponseEntity.ok(diet);
+            Diet diet = service.getDietByUsername(username);
+            return ResponseEntity.ok(DietResponseDTO.from(diet));
         } catch (RuntimeException e) {
             return ResponseEntity.status(404).body("Nenhuma Dieta encontrada");
         }
@@ -39,7 +41,7 @@ public class DietController {
     @GetMapping("/{username}/foods/available")
     public ResponseEntity<Object> getAvailableFoods(@PathVariable String username) {
         try {
-            Diet diet = service.getDietByUsename(username);
+            Diet diet = service.getDietByUsername(username);
             return ResponseEntity.ok(service.getAvaiablesFoods(diet));
         } catch (RuntimeException e) {
             return ResponseEntity.status(404).body("Nenhuma comida encontrada");

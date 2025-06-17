@@ -1,47 +1,154 @@
 import React from "react";
-import {useEffect } from "react";
+import axios from "axios";
+
+import { useEffect, useState } from "react";
 import { IgrExpansionPanel, IgrExpansionPanelModule } from "igniteui-react";
 import "igniteui-webcomponents/themes/light/bootstrap.css";
 
 IgrExpansionPanelModule.register();
 
- 
+type UserInfo = {
+  fullname: string;
+};
+
+type DietInfo = {
+  tmb: number;
+  imc: number;
+
+  objective: string;
+  type: string;
+
+  waterConsume: number;
+  calorieDistribution: {
+    breakfast: number;
+    lunch: number;
+    dinner: number;
+    total: number;
+  };
+};
+const dietTypeLabels: Record<string, string> = {
+  VEGETARIANA: "Vegetariana",
+  LOW_CARB: "Low Carb",
+  MEDITERRANEA: "Mediterrânea",
+  CETOGENICA: "Cetogênica",
+};
+
+const dietObjectiveLabels: Record<string, string> = {
+  EMAGRECIMENTO: "Emagrecimento",
+  HIPERTROFIA: "Hipertrofia",
+};
+
+type Food = {
+  name: string;
+  category: string; // e.g. "protein", "vegetable"
+  caloriesPer100g: number;
+  caloriesPer80g: number;
+  caloriesPer50g: number;
+};
 
 const Result: React.FC = () => {
   useEffect(() => {
-  localStorage.removeItem("questionary_done");
-}, []);
+    localStorage.removeItem("questionary_done");
+  }, []);
+
+  const [user, setUser] = useState<UserInfo | null>(null);
+  const [diet, setDiet] = useState<DietInfo | null>(null);
+  const [foods, setFoods] = useState<Food[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  function getUsernameFromToken(token: string): string | null {
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      return payload.sub || null;
+    } catch {
+      return null;
+    }
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = sessionStorage.getItem("token");
+
+      if (!token) {
+        console.error("Token não encontrado.");
+        setLoading(false);
+        return;
+      }
+
+      const username = getUsernameFromToken(token);
+
+      if (!username) {
+        console.error("Token inválido. Não foi possível extrair o username.");
+        setLoading(false);
+        return;
+      }
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      try {
+        const [userRes, dietRes, foodsRes] = await Promise.all([
+          axios.get(`http://localhost:3030/user/${username}`, { headers }),
+          axios.get(`http://localhost:3030/diet/${username}`, { headers }),
+          axios.get(`http://localhost:3030/diet/${username}/foods/available`, {
+            headers,
+          }),
+        ]);
+
+        console.log("✅ Dados recebidos:");
+        console.log("User:", userRes.data);
+        console.log("Diet:", dietRes.data);
+        console.log("Foods:", foodsRes.data);
+
+        setUser(userRes.data);
+        setDiet(dietRes.data);
+        setFoods(foodsRes.data);
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+    localStorage.removeItem("questionary_done");
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className="mini-container">
       <div className="user-container">
-
         <div className="square-profile">
           <svg className="header__SVG">
             <use xlinkHref="/icons.svg#orange" />
           </svg>
 
           <div className="user-infos">
-            <h2>Gabrielle Soares Teixeira</h2>
+            <h2 className="name-h2">{user?.fullname ?? "No name"}</h2>
 
             <div className="objectives">
-
               <div>
                 <svg className="header__SVG">
                   <use xlinkHref="/icons.svg#target" />
                 </svg>
-                <span> Perder Peso</span>
+               <span className="span-label"> {diet?.objective
+                  ? dietObjectiveLabels[diet.objective] || diet.objective
+                  : "Objetivo"}</span>
               </div>
 
               <div>
                 <svg className="header__SVG">
                   <use xlinkHref="/icons.svg#diet" />
                 </svg>
-                <span> Mediterranea</span>
+                <span className="span-label">
+                  {diet?.type
+                    ? dietTypeLabels[diet.type] || diet.type
+                    : "Dieta"}
+                </span>
               </div>
-
             </div>
-
           </div>
         </div>
       </div>
@@ -55,16 +162,18 @@ const Result: React.FC = () => {
           <path
             fill="#008053"
             fillOpacity="1"
-            d="M0,0L60,5.3C120,11,240,21,360,26.7C480,32,600,32,720,42.7C840,53,960,75,1080,80C1200,85,1320,75,1380,69.3L1440,64L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+            d="M0,96L80,101.3C160,107,320,117,480,112C640,107,800,85,960,80C1120,75,1280,85,1360,90.7L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
           ></path>
         </svg>
       </section>
 
       <div className="results-container">
-
         <div className="tmb">
-          <h2>Taxa Metábolica Basal</h2>
-          <h3 className="h3-with-blob">43.9</h3>
+          <h2>Taxa Metabólica Basal</h2>
+          <h3 className="h3-with-blob">
+            {" "}
+            {typeof diet?.tmb === "number" ? diet.tmb.toFixed(0) : "-"}
+          </h3>
           <IgrExpansionPanel>
             <h1 slot="title">O que é TMB?</h1>
             <h3 slot="subtitle"></h3>
@@ -80,8 +189,11 @@ const Result: React.FC = () => {
         </div>
 
         <div className="imc">
-          <h2> Seu IMC</h2>
-          <h3 className="h3-with-blob">43.9</h3>
+          <h2>Seu IMC</h2>
+          <h3 className="h3-with-blob">
+            {" "}
+            {typeof diet?.imc === "number" ? diet.imc.toFixed(1) : "-"}
+          </h3>
 
           <IgrExpansionPanel>
             <h1 slot="title">O que é IMC?</h1>
@@ -97,13 +209,14 @@ const Result: React.FC = () => {
           </IgrExpansionPanel>
         </div>
 
-
-          <div className="tmb">
+        <div className="tmb">
           <h2>Consumo diário de água</h2>
-          <h3 className="h3-with-blob" id="water">2.5L</h3>
-         
+          <h3 className="h3-with-blob" id="water">
+            {typeof diet?.waterConsume === "number"
+              ? `${diet.waterConsume.toFixed(1)} L`
+              : "-"}
+          </h3>
         </div>
-
       </div>
 
       <div className="kcal-container">
@@ -115,17 +228,17 @@ const Result: React.FC = () => {
               <th> </th>
               <th>Café da Manhã</th>
               <th>Almoço</th>
-              <th>janta</th>
+              <th>Janta</th>
               <th>Total</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th>Todos os Dias</th>
-              <td>300 kcal</td>
-              <td>300 kcal</td>
-              <td>300 kcal</td>
-              <th>1000 kcal</th>
+              <td>{diet?.calorieDistribution?.breakfast ?? "-"}</td>
+              <td>{diet?.calorieDistribution?.lunch ?? "-"}</td>
+              <td>{diet?.calorieDistribution?.dinner ?? "-"}</td>
+              <th>{diet?.calorieDistribution?.total ?? "-"}</th>
             </tr>
           </tbody>
         </table>
@@ -134,6 +247,7 @@ const Result: React.FC = () => {
 
       <div className="meals-container">
         <h2> Sugestão para alimentos</h2>
+
         <IgrExpansionPanel>
           <h1 slot="title">Proteínas</h1>
           <h3 slot="subtitle"></h3>
@@ -149,39 +263,23 @@ const Result: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>Calorias</th>
-                  <td>Banana</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
-                 <tr>
-                  <th>Calorias</th>
-                  <td>Aveia</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
-                 <tr>
-                  <th>Calorias</th>
-                  <td>Iorgute</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
-                 <tr>
-                  <th>Calorias</th>
-                  <td>Maçã</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
+                {foods
+                  .filter((f) => f.category === "protein")
+                  .map((food, idx) => (
+                    <tr key={idx}>
+                      <th>Calorias</th>
+                      <td>{food.name}</td>
+                      <td>{food.caloriesPer100g} kcal</td>
+                      <td>{food.caloriesPer80g} kcal</td>
+                      <td>{food.caloriesPer50g} kcal</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </span>
         </IgrExpansionPanel>
-          <br />
+        <br />
+
         <IgrExpansionPanel>
           <h1 slot="title">Legumes</h1>
           <h3 slot="subtitle"></h3>
@@ -197,39 +295,23 @@ const Result: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>Calorias</th>
-                  <td>Banana</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
-                <tr>
-                  <th>Calorias</th>
-                  <td>Aveia</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
-                 <tr>
-                  <th>Calorias</th>
-                  <td>Iorgute</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
-                 <tr>
-                  <th>Calorias</th>
-                  <td>Maçã</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
+                {foods
+                  .filter((f) => f.category === "vegetable")
+                  .map((food, idx) => (
+                    <tr key={idx}>
+                      <th>Calorias</th>
+                      <td>{food.name}</td>
+                      <td>{food.caloriesPer100g} kcal</td>
+                      <td>{food.caloriesPer80g} kcal</td>
+                      <td>{food.caloriesPer50g} kcal</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </span>
         </IgrExpansionPanel>
-          <br />
+        <br />
+
         <IgrExpansionPanel>
           <h1 slot="title">Verduras</h1>
           <h3 slot="subtitle"></h3>
@@ -245,39 +327,23 @@ const Result: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>Calorias</th>
-                  <td>Banana</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
-                 <tr>
-                  <th>Calorias</th>
-                  <td>Aveia</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
-                 <tr>
-                  <th>Calorias</th>
-                  <td>Iorgute</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
-                 <tr>
-                  <th>Calorias</th>
-                  <td>Maçã</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
+                {foods
+                  .filter((f) => f.category === "green")
+                  .map((food, idx) => (
+                    <tr key={idx}>
+                      <th>Calorias</th>
+                      <td>{food.name}</td>
+                      <td>{food.caloriesPer100g} kcal</td>
+                      <td>{food.caloriesPer80g} kcal</td>
+                      <td>{food.caloriesPer50g} kcal</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </span>
         </IgrExpansionPanel>
         <br />
+
         <IgrExpansionPanel>
           <h1 slot="title">Carboidratos</h1>
           <h3 slot="subtitle"></h3>
@@ -293,47 +359,24 @@ const Result: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>Calorias</th>
-                  <td>Banana</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
-                 <tr>
-                  <th>Calorias</th>
-                  <td>Aveia</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
-                 <tr>
-                  <th>Calorias</th>
-                  <td>Iorgute</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
-                 <tr>
-                  <th>Calorias</th>
-                  <td>Maçã</td>
-                  <td>300 kcal</td>
-                  <td>300 kcal</td>
-                  <td>1000 kcal</td>
-                </tr>
+                {foods
+                  .filter((f) => f.category === "carbohydrate")
+                  .map((food, idx) => (
+                    <tr key={idx}>
+                      <th>Calorias</th>
+                      <td>{food.name}</td>
+                      <td>{food.caloriesPer100g} kcal</td>
+                      <td>{food.caloriesPer80g} kcal</td>
+                      <td>{food.caloriesPer50g} kcal</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </span>
         </IgrExpansionPanel>
         <br />
       </div>
-
-      {/* <div className="data-container">
-        <canvas id="myChart"></canvas>
-      </div> */}
     </div>
-
-    
   );
 };
 

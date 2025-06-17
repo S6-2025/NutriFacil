@@ -5,28 +5,87 @@ import LandingPage from "../pages/LandingPage";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import About from "../pages/About";
-import Profile from "../pages/Profile"
-import Result from "../pages/Result"
+import Profile from "../pages/Profile";
+import Result from "../pages/Result";
 import Questionary from "../components/Questionary";
 import Subscription from "../pages/Subscription";
 import NutricionPreferences from "../pages/NutritionPreferences";
- 
- 
 
+import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route
+        path="/"
+        element={
+          <PublicRoute>
+            <LandingPage />
+          </PublicRoute>
+        }
+      />
       <Route path="/about" element={<About />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/questionary" element={<Questionary />} />
-      <Route path="/subscription" element={<Subscription />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/result" element={<Result />} />
-      <Route path="/nutritional-edit" element={<NutricionPreferences />} />
- 
+      <Route
+        path="/login"
+        element={
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <PublicRoute>
+            <Register />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/questionary"
+        element={
+          <PublicRoute>
+            <Questionary />
+          </PublicRoute>
+        }
+      />
+
+      <Route
+        path="/subscription"
+        element={
+          <PrivateRoute>
+            <Subscription />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/profile"
+        element={
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/result"
+        element={
+          <PrivateRoute>
+            <Result />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/nutritional-edit"
+        element={
+          <PrivateRoute>
+            <NutricionPreferences />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   );
 };

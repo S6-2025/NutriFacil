@@ -56,45 +56,42 @@ const NutritionPreferences: React.FC = () => {
   }
 
    
-  useEffect(() => {
-    const fetchPreferences = async () => {
-      try {
-        const token = sessionStorage.getItem("token");
-        if (!token) {
-          console.error("Usuário não autenticado.");
-          return;
+ useEffect(() => {
+  const fetchPreferences = async () => {
+    const token = sessionStorage.getItem("token");
+    const username = getUsernameFromToken(token || "");
+
+    if (!username) {
+      console.error("Token inválido. Não foi possível extrair o username.");
+      return;
+    }
+
+    try {
+      const response = await axios.get(
+        `http://localhost:3030/user/${username}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
+      );
 
-        const username = getUsernameFromToken(token);
-        if (!username) {
-          console.error("Não foi possível extrair o username do token.");
-          return;
-        }
+      const data = response.data;
 
-        const response = await axios.get(
-          `http://localhost:3030/user/${username}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log(response.data);
-        const data = response.data;
+      setNutritionData({
+        dietType: data.diet?.type || "",
+        goal: data.diet?.objective || "",
+        activityLevel: data.diet?.physicalActivityStatus || "",
+        allergies: data.allergies || [],
+      });
+    } catch (error) {
+      console.error("Erro ao carregar dados nutricionais:", error);
+    }
+  };
 
-        setNutritionData({
-          dietType: data.diet?.type || "",
-          goal: data.diet?.objective || "",
-          activityLevel: data.diet?.physicalActivityStatus || "",
-          allergies: data.allergies || [],
-        });
-      } catch (error) {
-        console.error("Erro ao carregar dados nutricionais:", error);
-      }
-    };
+  fetchPreferences();
+}, []);
 
-    fetchPreferences();
-  }, []);
 
   const handleChange = (field: keyof NutritionData, value: any) => {
     setNutritionData((prev) => ({
@@ -129,19 +126,15 @@ const NutritionPreferences: React.FC = () => {
 
 const handleEditClick = async () => {
   if (isEditing) {
+    const token = sessionStorage.getItem("token");
+    const username = getUsernameFromToken(token || "");
+
+    if (!username) {
+      console.error("Token inválido. Não foi possível extrair o username.");
+      return;
+    }
+
     try {
-      const token = sessionStorage.getItem("token");
-      if (!token) {
-        console.error("Usuário não autenticado.");
-        return;
-      }
-
-      const username = getUsernameFromToken(token);
-      if (!username) {
-        console.error("Não foi possível extrair o username do token.");
-        return;
-      }
-
       const payload = {
         diet: {
           type: nutritionData.dietType,
@@ -165,6 +158,7 @@ const handleEditClick = async () => {
 
   setIsEditing((prev) => !prev);
 };
+
 
 
   const renderSelectedLabel = (

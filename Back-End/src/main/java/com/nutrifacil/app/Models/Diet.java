@@ -8,8 +8,6 @@ import com.nutrifacil.app.ENUM.PhysicalActivityStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Formula;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -54,25 +52,42 @@ public class Diet {
     private Double waterConsume;
 
     public void setImc() {
-        this.imc = (double) Math.round(profile.getWeight() / Math.pow(profile.getHeight(), 2));
+        double height = profile.getHeight();
+        // Se altura > 10 assume que está em cm, converte para metros
+        if (height > 10) {
+            height = height / 100.0;
+        }
+        // Calcula IMC = peso / altura², arredondando para 2 casas decimais
+        this.imc = Math.round((profile.getWeight() / (height * height)) * 100.0) / 100.0;
     }
 
     public void setWaterConsume() {
-        this.waterConsume = (double) Math.round(0.035 * profile.getWeight());
+        // Consumo recomendado: 35 ml por kg = 0.035 litros/kg, arredondado 2 casas decimais
+        this.waterConsume = Math.round(profile.getWeight() * 0.035 * 100.0) / 100.0;
     }
 
     public void setTmb() {
         int age = Period.between(profile.getBirthdate(), LocalDate.now()).getYears();
-        if (profile.getGender().equals(Gender.MASCULINO)) {
-            this.tmb = (10 * profile.getWeight()) + (6.25 * profile.getHeight() * 100) - (5 * age) + 5;
-        } else {
-            this.tmb = (double) Math.round((10 * profile.getWeight()) + (6.25 * profile.getHeight() * 100) - (5 * age) - 161);
+        double height = profile.getHeight();
+        double weight = profile.getWeight();
+
+        // Se altura <= 10 assume que está em metros e converte para cm
+        if (height <= 10) {
+            height = height * 100.0;
         }
+
+        if (profile.getGender().equals(Gender.MASCULINO)) {
+            this.tmb = (double) Math.round((10 * weight) + (6.25 * height) - (5 * age) + 5);
+        } else {
+            this.tmb = (double) Math.round((10 * weight) + (6.25 * height) - (5 * age) - 161);
+        }
+
     }
 
     public void setCaloriesConsume() {
-        Double multiplyFactor = 1d;
+        double multiplyFactor = 1d;
         int plusFactor = 0;
+
         switch (getPhysicalActivityStatus()) {
             case SEDENTARIO -> multiplyFactor = 1.2;
             case LEVE -> multiplyFactor = 1.375;
