@@ -75,10 +75,10 @@
   border-radius: 100%;
 }
 
-.square-profile>.user-infos>h2 {
-  font-weight: 300;
+.name-h2 {
+  font-weight: 500;
   width: 100%;
-  font-family: var(--font-title);
+  font-family: var(--font-logo);
 }
 
 
@@ -109,11 +109,11 @@
   color: var(--color7);
  
 }
-.objectives>div > span{
-  color: var(--color1);
-  margin-top: .3rem;
-  font-weight: 500;
-  font-family: var(--font-title);
+ .span-label{
+  color: var(--color2);
+  margin-top: .4rem;
+  font-weight: 600;
+  font-family: var(--font-logo);
 }
 
 .objectives>div {

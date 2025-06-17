@@ -9,20 +9,33 @@ IgrExpansionPanelModule.register();
 
 type UserInfo = {
   fullname: string;
-  objectives: string[];
 };
 
 type DietInfo = {
   tmb: number;
   imc: number;
-  dailyWater: number;
+
+  objective: string;
+  type: string;
+
+  waterConsume: number;
   calorieDistribution: {
     breakfast: number;
     lunch: number;
     dinner: number;
     total: number;
   };
-  dietName: string;
+};
+const dietTypeLabels: Record<string, string> = {
+  VEGETARIANA: "Vegetariana",
+  LOW_CARB: "Low Carb",
+  MEDITERRANEA: "Mediterrânea",
+  CETOGENICA: "Cetogênica",
+};
+
+const dietObjectiveLabels: Record<string, string> = {
+  EMAGRECIMENTO: "Emagrecimento",
+  HIPERTROFIA: "Hipertrofia",
 };
 
 type Food = {
@@ -83,11 +96,10 @@ const Result: React.FC = () => {
           }),
         ]);
 
-
-          console.log("✅ Dados recebidos:");
-  console.log("User:", userRes.data);
-  console.log("Diet:", dietRes.data);
-  console.log("Foods:", foodsRes.data);
+        console.log("✅ Dados recebidos:");
+        console.log("User:", userRes.data);
+        console.log("Diet:", dietRes.data);
+        console.log("Foods:", foodsRes.data);
 
         setUser(userRes.data);
         setDiet(dietRes.data);
@@ -114,21 +126,27 @@ const Result: React.FC = () => {
           </svg>
 
           <div className="user-infos">
-            <h2>{user?.fullname ?? "No name"}</h2>
+            <h2 className="name-h2">{user?.fullname ?? "No name"}</h2>
 
             <div className="objectives">
               <div>
                 <svg className="header__SVG">
                   <use xlinkHref="/icons.svg#target" />
                 </svg>
-                <span>{user?.objectives?.[0] || "Objetivo"}</span>
+               <span className="span-label"> {diet?.objective
+                  ? dietObjectiveLabels[diet.objective] || diet.objective
+                  : "Objetivo"}</span>
               </div>
 
               <div>
                 <svg className="header__SVG">
                   <use xlinkHref="/icons.svg#diet" />
                 </svg>
-                <span>{diet?.dietName || "Dieta"}</span>
+                <span className="span-label">
+                  {diet?.type
+                    ? dietTypeLabels[diet.type] || diet.type
+                    : "Dieta"}
+                </span>
               </div>
             </div>
           </div>
@@ -154,7 +172,7 @@ const Result: React.FC = () => {
           <h2>Taxa Metabólica Basal</h2>
           <h3 className="h3-with-blob">
             {" "}
-            {typeof diet?.tmb === "number" ? diet.tmb.toFixed(1) : "-"}
+            {typeof diet?.tmb === "number" ? diet.tmb.toFixed(0) : "-"}
           </h3>
           <IgrExpansionPanel>
             <h1 slot="title">O que é TMB?</h1>
@@ -194,8 +212,8 @@ const Result: React.FC = () => {
         <div className="tmb">
           <h2>Consumo diário de água</h2>
           <h3 className="h3-with-blob" id="water">
-            {typeof diet?.dailyWater === "number"
-              ? `${diet.dailyWater.toFixed(1)} L`
+            {typeof diet?.waterConsume === "number"
+              ? `${diet.waterConsume.toFixed(1)} L`
               : "-"}
           </h3>
         </div>

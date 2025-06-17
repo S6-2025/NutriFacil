@@ -1,6 +1,7 @@
 package com.nutrifacil.app.Controllers;
 
 import com.nutrifacil.app.DTO.DietDTO;
+import com.nutrifacil.app.DTO.DietResponseDTO;
 import com.nutrifacil.app.Models.Diet;
 import com.nutrifacil.app.Services.DietService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class DietController {
     public ResponseEntity<Object> getDietByUsername(@PathVariable String username) {
         try {
             Diet diet = service.getDietByUsername(username);
-            return ResponseEntity.ok(diet);
+            return ResponseEntity.ok(DietResponseDTO.from(diet));
         } catch (RuntimeException e) {
             return ResponseEntity.status(404).body("Nenhuma Dieta encontrada");
         }
