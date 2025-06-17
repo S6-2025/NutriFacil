@@ -2,28 +2,28 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 type UserData = {
-  fullname: string;
-  gender: string;
-  birthDate: string;
-  phone: string;
-  email: string;
-  password: string;
-  weight: string;
-  height: string;
+  fullname: string | null;
+  gender: string | null;
+  birthDate: string | null;
+  phone: string | null;
+  email: string | null;
+  password: string | null;
+  weight: string | null;
+  height: string | null;
 };
 
 const Profile: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   const [userData, setUserData] = useState<UserData>({
-    fullname: "",
-    gender: "",
-    birthDate: "",
-    phone: "",
-    email: "",
-    password: "",
-    weight: "",
-    height: "",
+    fullname: null,
+    gender: null,
+    birthDate: null,
+    phone: null,
+    email: null,
+    password: null,
+    weight: null,
+    height: null,
   });
 
   function formatDate(dateStr: string | null): string {
@@ -53,7 +53,7 @@ useEffect(() => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:3030/user/${username}`, {
+      const response = await axios.get(`http://localhost:8080/user/${username}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -62,14 +62,14 @@ useEffect(() => {
       const data = response.data;
 
       setUserData({
-        fullname: data.fullname || "",
-        gender: data.gender || "",
+        fullname: data.fullname || null,
+        gender: data.gender || null,
         birthDate: formatDate(data.birthDate),
-        phone: data.phone || "",
-        email: data.email || "",
-        password: "*******",
-        weight: String(data.weight || ""),
-        height: String(data.height || ""),
+        phone: data.phone || null,
+        email: data.email || null,
+        password: null,
+        weight: String(data.weight || null),
+        height: String(data.height || null),
       });
 
     } catch (error) {
@@ -82,22 +82,23 @@ useEffect(() => {
 
 
   const handleChange = (field: keyof UserData, value: string) => {
-    setUserData((prev) => ({
-      ...prev,
+    setUserData({
+      ...userData,
       [field]: value,
-    }));
+    });
   };
 
   const handleButtonClick = async () => {
     if (isEditing) {
       const token = sessionStorage.getItem("token");
       const username = getUsernameFromToken(token || "");
-
+      console.log("USERDATA:", userData);
       try {
         await axios.patch(
-          `http://localhost:3030/user/${username}`,
+          `http://localhost:8080/user/${username}`,
           {
             fullname: userData.fullname,
+            password: userData.password,
             gender: userData.gender,
             birthdate: userData.birthDate,
             phone: userData.phone,
@@ -107,7 +108,7 @@ useEffect(() => {
           },
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${token}`
             },
           }
         );
@@ -132,7 +133,7 @@ useEffect(() => {
               type="text"
               id="fullname-info"
               disabled={!isEditing}
-              value={userData.fullname}
+              value={userData.fullname ?? ""}
               onChange={(e) => handleChange("fullname", e.target.value)}
             />
           </div>
@@ -143,7 +144,7 @@ useEffect(() => {
               type="text"
               id="genre-info"
               disabled={!isEditing}
-              value={userData.gender}
+              value={userData.gender ?? ""}
               onChange={(e) => handleChange("gender", e.target.value)}
             />
           </div>
@@ -154,7 +155,7 @@ useEffect(() => {
               type="date"
               id="birth-info"
               disabled={!isEditing}
-              value={userData.birthDate}
+              value={userData.birthDate ?? ""}
               onChange={(e) => handleChange("birthDate", e.target.value)}
             />
           </div>
@@ -165,7 +166,7 @@ useEffect(() => {
               type="text"
               id="phone-info"
               disabled={!isEditing}
-              value={userData.phone}
+              value={userData.phone ?? ""}
               onChange={(e) => handleChange("phone", e.target.value)}
             />
           </div>
@@ -176,7 +177,7 @@ useEffect(() => {
               type="text"
               id="weight-info"
               disabled={!isEditing}
-              value={userData.weight}
+              value={userData.weight ?? ""}
               onChange={(e) => handleChange("weight", e.target.value)}
             />
           </div>
@@ -187,7 +188,7 @@ useEffect(() => {
               type="text"
               id="height-info"
               disabled={!isEditing}
-              value={userData.height}
+              value={userData.height ?? ""}
               onChange={(e) => handleChange("height", e.target.value)}
             />
           </div>
@@ -198,7 +199,7 @@ useEffect(() => {
               type="email"
               id="email-info"
               disabled={!isEditing}
-              value={userData.email}
+              value={userData.email ?? ""}
               onChange={(e) => handleChange("email", e.target.value)}
             />
           </div>
@@ -209,7 +210,7 @@ useEffect(() => {
               type="password"
               id="password-info"
               disabled={!isEditing}
-              value={userData.password}
+              value={userData.password ?? ""}
               onChange={(e) => handleChange("password", e.target.value)}
             />
           </div>
