@@ -14,10 +14,10 @@ type UserInfo = {
 type DietInfo = {
   tmb: number;
   imc: number;
-
+  
   objective: string;
   type: string;
-
+  caloriesConsume: number;
   waterConsume: number;
   calorieDistribution: {
     breakfast: number;
@@ -41,9 +41,9 @@ const dietObjectiveLabels: Record<string, string> = {
 type Food = {
   name: string;
   category: string; // e.g. "protein", "vegetable"
-  caloriesPer100g: number;
-  caloriesPer80g: number;
-  caloriesPer50g: number;
+  caloriesPer100grams: number;
+  caloriesPer80grams: number;
+  caloriesPer50grams: number;
 };
 
 const Result: React.FC = () => {
@@ -89,9 +89,9 @@ const Result: React.FC = () => {
 
       try {
         const [userRes, dietRes, foodsRes] = await Promise.all([
-          axios.get(`http://localhost:3030/user/${username}`, { headers }),
-          axios.get(`http://localhost:3030/diet/${username}`, { headers }),
-          axios.get(`http://localhost:3030/diet/${username}/foods/available`, {
+          axios.get(`http://localhost:8080/user/${username}`, { headers }),
+          axios.get(`http://localhost:8080/diet/${username}`, { headers }),
+          axios.get(`http://localhost:8080/diet/${username}/foods/available`, {
             headers,
           }),
         ]);
@@ -235,10 +235,13 @@ const Result: React.FC = () => {
           <tbody>
             <tr>
               <th>Todos os Dias</th>
-              <td>{diet?.calorieDistribution?.breakfast ?? "-"}</td>
+{/*               <td>{diet?.calorieDistribution?.breakfast ?? "-"}</td>
               <td>{diet?.calorieDistribution?.lunch ?? "-"}</td>
-              <td>{diet?.calorieDistribution?.dinner ?? "-"}</td>
-              <th>{diet?.calorieDistribution?.total ?? "-"}</th>
+              <td>{diet?.calorieDistribution?.dinner ?? "-"}</td> */}
+              <td>{typeof diet?.caloriesConsume === "number" ? (diet.caloriesConsume * 0.20).toFixed(0) : "-"}</td>
+              <td>{typeof diet?.caloriesConsume === "number" ? (diet.caloriesConsume * 0.4).toFixed(0) : "-"}</td>
+              <td>{typeof diet?.caloriesConsume === "number" ? (diet.caloriesConsume * 0.4).toFixed(0) : "-"}</td>
+              <th>{diet?.caloriesConsume ?? "-"}</th>
             </tr>
           </tbody>
         </table>
@@ -264,14 +267,16 @@ const Result: React.FC = () => {
               </thead>
               <tbody>
                 {foods
-                  .filter((f) => f.category === "protein")
+                  .filter((f) => f.category === "PROTEIN")
                   .map((food, idx) => (
                     <tr key={idx}>
                       <th>Calorias</th>
                       <td>{food.name}</td>
-                      <td>{food.caloriesPer100g} kcal</td>
-                      <td>{food.caloriesPer80g} kcal</td>
-                      <td>{food.caloriesPer50g} kcal</td>
+                      <td>{Math.round(food.caloriesPer100grams)} kcal</td>
+                      <td>{Math.round(food.caloriesPer100grams * 0.8)} kcal</td>
+                      <td>{Math.round(food.caloriesPer100grams * 0.5)} kcal</td>
+{/*                       <td>{food.caloriesPer80grams} kcal</td>
+                      <td>{food.caloriesPer50g} kcal</td> */}
                     </tr>
                   ))}
               </tbody>
@@ -296,14 +301,14 @@ const Result: React.FC = () => {
               </thead>
               <tbody>
                 {foods
-                  .filter((f) => f.category === "vegetable")
+                  .filter((f) => f.category === "VEGETABLES")
                   .map((food, idx) => (
                     <tr key={idx}>
                       <th>Calorias</th>
                       <td>{food.name}</td>
-                      <td>{food.caloriesPer100g} kcal</td>
-                      <td>{food.caloriesPer80g} kcal</td>
-                      <td>{food.caloriesPer50g} kcal</td>
+                      <td>{Math.round(food.caloriesPer100grams)} kcal</td>
+                      <td>{Math.round(food.caloriesPer100grams * 0.8)} kcal</td>
+                      <td>{Math.round(food.caloriesPer100grams * 0.5)} kcal</td>
                     </tr>
                   ))}
               </tbody>
@@ -333,9 +338,9 @@ const Result: React.FC = () => {
                     <tr key={idx}>
                       <th>Calorias</th>
                       <td>{food.name}</td>
-                      <td>{food.caloriesPer100g} kcal</td>
-                      <td>{food.caloriesPer80g} kcal</td>
-                      <td>{food.caloriesPer50g} kcal</td>
+                      <td>{Math.round(food.caloriesPer100grams)} kcal</td>
+                      <td>{Math.round(food.caloriesPer100grams * 0.8)} kcal</td>
+                      <td>{Math.round(food.caloriesPer100grams * 0.5)} kcal</td>
                     </tr>
                   ))}
               </tbody>
@@ -360,14 +365,14 @@ const Result: React.FC = () => {
               </thead>
               <tbody>
                 {foods
-                  .filter((f) => f.category === "carbohydrate")
+                  .filter((f) => f.category === "CARBHYDRATES")
                   .map((food, idx) => (
                     <tr key={idx}>
                       <th>Calorias</th>
                       <td>{food.name}</td>
-                      <td>{food.caloriesPer100g} kcal</td>
-                      <td>{food.caloriesPer80g} kcal</td>
-                      <td>{food.caloriesPer50g} kcal</td>
+                      <td>{Math.round(food.caloriesPer100grams)} kcal</td>
+                      <td>{Math.round(food.caloriesPer100grams * 0.8)} kcal</td>
+                      <td>{Math.round(food.caloriesPer100grams * 0.5)} kcal</td>
                     </tr>
                   ))}
               </tbody>
