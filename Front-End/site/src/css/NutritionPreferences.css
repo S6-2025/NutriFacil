@@ -15,6 +15,12 @@ h1{
   padding: 10px;
 }
 
+p{
+font-family: var(--font-logo);
+color: var(--color7);
+font-weight: 700;
+}
+
 .form-section {
   font-size: 1.2em;
   /* background-color: brown; */
