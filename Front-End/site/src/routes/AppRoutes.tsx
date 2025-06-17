@@ -10,6 +10,7 @@ import Result from "../pages/Result";
 import Questionary from "../components/Questionary";
 import Subscription from "../pages/Subscription";
 import NutricionPreferences from "../pages/NutritionPreferences";
+import Graph from "../pages/Graphic";
 
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
@@ -56,6 +57,15 @@ const AppRoutes: React.FC = () => {
         element={
           <PrivateRoute>
             <Subscription />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/graph"
+        element={
+          <PrivateRoute>
+            <Graph/>
           </PrivateRoute>
         }
       />

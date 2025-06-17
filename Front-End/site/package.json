@@ -15,6 +15,7 @@
     "igniteui-react": "^19.0.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-google-charts": "^5.2.1",
     "react-router-dom": "^7.6.0",
     "site": "file:"
   },

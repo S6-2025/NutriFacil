@@ -68,7 +68,7 @@ const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
 
         {isLogged && (
           <li>
-            <Link to="/subscription" onClick={onClose} className="links-li">
+            <Link to="/plan" onClick={onClose} className="links-li">
               Meu plano
             </Link>
           </li>

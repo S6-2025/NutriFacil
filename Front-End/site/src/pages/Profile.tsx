@@ -53,7 +53,7 @@ useEffect(() => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:8080/user/${username}`, {
+      const response = await axios.get(`http://localhost:3030/user/${username}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -95,7 +95,7 @@ useEffect(() => {
       console.log("USERDATA:", userData);
       try {
         await axios.patch(
-          `http://localhost:8080/user/${username}`,
+          `http://localhost:3030/user/${username}`,
           {
             fullname: userData.fullname,
             password: userData.password,
