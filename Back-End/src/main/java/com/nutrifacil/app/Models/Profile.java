@@ -37,7 +37,7 @@ public class Profile {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column()
     private String phone;
 
     @Column(nullable = false)
