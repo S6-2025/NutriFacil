@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function useRegisterForm() {
   const navigate = useNavigate();
+
   const [form, setForm] = useState<RegisterRequestDTO>({
     username: '',
     password: '',
@@ -19,7 +20,6 @@ export function useRegisterForm() {
       objective: '',
       type: '',
       physicalActivityStatus: '',
-      
     }
   });
 
@@ -34,12 +34,25 @@ export function useRegisterForm() {
   }
 
   async function handleSubmit(e: React.FormEvent, data: RegisterRequestDTO) {
-    const response = await registerUser(data);
-    sessionStorage.setItem('token', response.token);
-    alert('Usuário registrado com sucesso.');
-    navigate("/");
-  }
+    e.preventDefault();
 
+    try {
+      const response = await registerUser(data); // pode lançar erro
+      const token = response.token;
+
+      if (!token || typeof token !== 'string') {
+        throw new Error('Token inválido ou ausente');
+      }
+
+      sessionStorage.setItem('token', token);
+      alert('Usuário registrado com sucesso.');
+      navigate("/");
+    } catch (error) {
+      console.error("Erro ao registrar:", error);
+      alert('Erro ao registrar usuário. Verifique os dados e tente novamente.');
+      return; // impede navegação e execução
+    }
+  }
 
   return { form, handleChange, handleSubmit };
 }
