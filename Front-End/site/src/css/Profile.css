@@ -8,7 +8,8 @@
 
 .container-profile{
   height: 100vh;
-  padding-top: 3vh;
+  width: 100%;
+  
 }
 
 
@@ -27,13 +28,12 @@ label{
 }
 
  
-.personal-info{
-  height: 60%;
-}
-
+ 
 
 .form-personal{
-  height: 100%;
+  height: 60%;
+  width: 80%;
+
 }
 
 
@@ -42,13 +42,13 @@ label{
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  height: 20%;
+  height: 30%;
 }
 
 
 .personal-camps > input,
 .info-camps > input{
-  height: 40%;  
+  height: 50%;  
   padding:10px ;
   border: 1px solid var(--color3);
   border-radius: 10px;
