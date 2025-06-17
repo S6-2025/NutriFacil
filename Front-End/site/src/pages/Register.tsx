@@ -11,21 +11,15 @@ const Register: React.FC = () => {
   const navigate = useNavigate();
 
 useEffect(() => {
-  const token = sessionStorage.getItem("token");
   const questionaryDone = localStorage.getItem("questionary_done");
 
-  if (token) {
-    navigate("/");
-    return;
-  }
-
-  // Se o questionário foi feito, deixa acessar /register mesmo sem state
   if (!questionaryDone) {
     if (!state || !state.diet || !state.gender || !state.birthdate) {
       navigate("/questionary");
     }
   }
 }, [navigate, state]);
+
 
 async function handleNextStep(e: React.FormEvent) {
   e.preventDefault();

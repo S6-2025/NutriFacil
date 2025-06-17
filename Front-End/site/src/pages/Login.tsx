@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useUserLoginForm } from "../hooks/userLoginForm";
 import { useState } from "react";
@@ -8,13 +8,7 @@ const Login: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [showTooltip, setShowTooltip] = useState(false);
 
-  // Redireciona se já estiver logado (token na sessionStorage)
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    if (token) {
-      navigate("/");
-    }
-  }, [navigate]);
+ 
 
   const {
     username,

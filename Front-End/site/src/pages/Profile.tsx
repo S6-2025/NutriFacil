@@ -35,49 +35,44 @@ const Profile: React.FC = () => {
     }
   }
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const token = sessionStorage.getItem("token");
-          if (!token) {
-          console.error("Usuário não autenticado.");
-          return;
-        }
-      const username = getUsernameFromToken(token);
-     if (!username) {
-          console.error("Não foi possível extrair o username do token.");
-          return;
-        }
+useEffect(() => {
+  const fetchProfile = async () => {
+    const token = sessionStorage.getItem("token");
+    const username = getUsernameFromToken(token || "");
 
+    if (!username) {
+      console.error("Token inválido. Não foi possível extrair o username.");
+      return;
+    }
 
-      try {
-        const response = await axios.get(`http://localhost:3030/user/${username}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+    try {
+      const response = await axios.get(`http://localhost:3030/user/${username}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-        const data = response.data;
+      const data = response.data;
 
-        setUserData({
-          fullname: data.fullname || "",
-          gender: data.gender || "",
-          birthDate: data.birthdate || "",
-          phone: data.phone || "",
-          email: data.email || "",
-          password: "***",
-          weight: String(data.weight || ""),
-          height: String(data.height || ""),
-        });
+      setUserData({
+        fullname: data.fullname || "",
+        gender: data.gender || "",
+        birthDate: data.birthdate || "",
+        phone: data.phone || "",
+        email: data.email || "",
+        password: "***",
+        weight: String(data.weight || ""),
+        height: String(data.height || ""),
+      });
 
-        console.log(data);
-      } catch (error) {
-        
-        console.error("Erro ao buscar perfil:", error);
-      }
-    };
+    } catch (error) {
+      console.error("Erro ao buscar perfil:", error);
+    }
+  };
 
-    fetchProfile();
-  }, []);
+  fetchProfile();
+}, []);
+
 
   const handleChange = (field: keyof UserData, value: string) => {
     setUserData((prev) => ({
