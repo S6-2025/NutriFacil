@@ -45,23 +45,49 @@ const NutritionPreferences: React.FC = () => {
     activityLevel: "",
   });
 
-  // 🧠 Buscar dados do usuário logado ao montar o componente
+  function getUsernameFromToken(token: string): string | null {
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      return payload.sub || null;
+    } catch (e) {
+      console.error("Erro ao decodificar token:", e);
+      return null;
+    }
+  }
+
+   
   useEffect(() => {
     const fetchPreferences = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
         if (!token) {
           console.error("Usuário não autenticado.");
           return;
         }
 
-        const response = await axios.get("http://localhost:3030/user/preferences", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const username = getUsernameFromToken(token);
+        if (!username) {
+          console.error("Não foi possível extrair o username do token.");
+          return;
+        }
 
-        setNutritionData(response.data);
+        const response = await axios.get(
+          `http://localhost:3030/user/${username}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(response.data);
+        const data = response.data;
+
+        setNutritionData({
+          dietType: data.diet?.type || "",
+          goal: data.diet?.objective || "",
+          activityLevel: data.diet?.physicalActivityStatus || "",
+          allergies: data.allergies || [],
+        });
       } catch (error) {
         console.error("Erro ao carregar dados nutricionais:", error);
       }
@@ -101,29 +127,45 @@ const NutritionPreferences: React.FC = () => {
     });
   };
 
-  const handleEditClick = async () => {
-    if (isEditing) {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          console.error("Usuário não autenticado.");
-          return;
-        }
-
-        await axios.put("http://localhost:3030/user/preferences", nutritionData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        console.log("Dados salvos:", nutritionData);
-      } catch (error) {
-        console.error("Erro ao salvar dados:", error);
+const handleEditClick = async () => {
+  if (isEditing) {
+    try {
+      const token = sessionStorage.getItem("token");
+      if (!token) {
+        console.error("Usuário não autenticado.");
+        return;
       }
-    }
 
-    setIsEditing((prev) => !prev);
-  };
+      const username = getUsernameFromToken(token);
+      if (!username) {
+        console.error("Não foi possível extrair o username do token.");
+        return;
+      }
+
+      const payload = {
+        diet: {
+          type: nutritionData.dietType,
+          objective: nutritionData.goal,
+          physicalActivityStatus: nutritionData.activityLevel,
+        },
+        allergies: nutritionData.allergies,
+      };
+
+      await axios.patch(`http://localhost:8080/user/${username}`, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log("Dados atualizados com sucesso.");
+    } catch (error) {
+      console.error("Erro ao atualizar dados:", error);
+    }
+  }
+
+  setIsEditing((prev) => !prev);
+};
+
 
   const renderSelectedLabel = (
     list: { label: string; value: string }[],
@@ -177,8 +219,6 @@ const NutritionPreferences: React.FC = () => {
           )}
         </div>
 
-
-        
         {/* Atividade Física */}
         <div className="form-section">
           <label>Nível de Atividade Física:</label>
@@ -196,45 +236,42 @@ const NutritionPreferences: React.FC = () => {
             </select>
           ) : (
             <p>
-              {renderSelectedLabel(
-                activityLevels,
-                nutritionData.activityLevel
-              )}
+              {renderSelectedLabel(activityLevels, nutritionData.activityLevel)}
             </p>
           )}
         </div>
 
-
-   <div className="form-section" id="form-alergies">
-  <label>Alergias:</label>
-  {isEditing ? (
-    <div className="allergy-buttons">
-      {allergiesOptions.map((allergy) => {
-        const isSelected = nutritionData.allergies.includes(allergy.value);
-        return (
-          <button
-            key={allergy.value}
-            type="button"
-            className={`allergy-button ${isSelected ? "selected" : ""}`}
-            onClick={() => handleAllergyToggle(allergy.value)}
-          >
-            {allergy.label}
-          </button>
-        );
-      })}
-    </div>
-  ) : (
-    <p>
-      {nutritionData.allergies.length > 0
-        ? allergiesOptions
-            .filter((a) => nutritionData.allergies.includes(a.value))
-            .map((a) => a.label)
-            .join(", ")
-        : "Nenhuma"}
-    </p>
-  )}
-</div>
-
+        <div className="form-section" id="form-alergies">
+          <label>Alergias:</label>
+          {isEditing ? (
+            <div className="allergy-buttons">
+              {allergiesOptions.map((allergy) => {
+                const isSelected = nutritionData.allergies.includes(
+                  allergy.value
+                );
+                return (
+                  <button
+                    key={allergy.value}
+                    type="button"
+                    className={`allergy-button ${isSelected ? "selected" : ""}`}
+                    onClick={() => handleAllergyToggle(allergy.value)}
+                  >
+                    {allergy.label}
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            <p>
+              {nutritionData.allergies.length > 0
+                ? allergiesOptions
+                    .filter((a) => nutritionData.allergies.includes(a.value))
+                    .map((a) => a.label)
+                    .join(", ")
+                : "Nenhuma"}
+            </p>
+          )}
+        </div>
 
         {/* Botão */}
         <div className="button-wrapper">

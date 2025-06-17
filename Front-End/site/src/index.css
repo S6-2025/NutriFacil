@@ -15,7 +15,17 @@
   --color7: #00b475;
   --color8:  #f9f9f9;
   --color9:  #8DD8FF;
-  --color10:  #FFD63A;
+
+
+
+   /* Estados */
+  --success-bg: #4CC844;        /* fundo de sucesso (usar color4) */
+  --success-border: #00b475;    /* borda ou destaque de sucesso (usar color7) */
+  --success-text: #1A1A1A;      /* texto escuro sobre fundo claro */
+
+  --error-bg: #cc3e3e;          /* fundo de erro */
+  --error-border: #cc3e3e;      /* borda do input com erro */
+  --error-text: #ffffff;    
 }
 
 * {
