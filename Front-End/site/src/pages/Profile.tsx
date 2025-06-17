@@ -60,7 +60,7 @@ useEffect(() => {
       });
 
       const data = response.data;
-
+      console.log("Dados do perfil:", data);
       setUserData({
         fullname: data.fullname || null,
         gender: data.gender || null,
@@ -93,10 +93,7 @@ useEffect(() => {
       const token = sessionStorage.getItem("token");
       const username = getUsernameFromToken(token || "");
       console.log("USERDATA:", userData);
-      try {
-        await axios.patch(
-          `http://localhost:3030/user/${username}`,
-          {
+      const body = {
             fullname: userData.fullname,
             password: userData.password,
             gender: userData.gender,
@@ -105,7 +102,12 @@ useEffect(() => {
             email: userData.email,
             weight: Number(userData.weight),
             height: Number(userData.height),
-          },
+          }
+      console.log("body", body);
+      try {
+        await axios.patch(
+          `http://localhost:3030/user/${username}`,
+          body,
           {
             headers: {
               Authorization: `Bearer ${token}`
