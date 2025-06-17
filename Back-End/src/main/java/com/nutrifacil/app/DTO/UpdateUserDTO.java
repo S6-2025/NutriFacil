@@ -1,9 +1,11 @@
 package com.nutrifacil.app.DTO;
 
 
+import com.nutrifacil.app.ENUM.AllergyGroup;
 import com.nutrifacil.app.ENUM.Gender;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public record UpdateUserDTO(
         String fullname,
@@ -13,6 +15,8 @@ public record UpdateUserDTO(
         String email,
         String phone,
         Double weight,
-        Double height
+        Double height,
+        DietDTO diet,
+        List<AllergyGroup> allergies
 ) {
 }
