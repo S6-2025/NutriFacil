@@ -8,8 +8,10 @@ import com.nutrifacil.app.Repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
 import java.util.UUID;
 
 
@@ -20,6 +22,7 @@ public class UserService {
 
     @Autowired
     private final UserRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
     public UserDTO getUserInfo(String username) {
         User user = repository.findByUsername(username)
@@ -29,22 +32,7 @@ public class UserService {
 
     public User updateUser(String username, UpdateUserDTO updateInfo) {
         User user = repository.findByUsername(username).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
-
-        if (updateInfo.fullname() != null) {
-            user.getProfile().setFullname(updateInfo.fullname());
-        }
-        if (updateInfo.email() != null) {
-            user.getProfile().setEmail(updateInfo.email());
-        }
-
-        if (updateInfo.height() != null) {
-            user.getProfile().setHeight(updateInfo.height());
-        }
-        if (updateInfo.weight() != null) {
-            user.getProfile().setWeight(updateInfo.weight());
-        }
-
-        return user;
+        return UserMapper.checkAndUpdateFields(user, updateInfo, passwordEncoder);
     }
 
     public void deleteUser(String username) {
@@ -54,8 +42,9 @@ public class UserService {
     }
 }
 
-
+@RequiredArgsConstructor
 class UserMapper {
+
     public static UserDTO mapUser(User user) {
         return new UserDTO(
                 user.getUsername(),
@@ -74,4 +63,51 @@ class UserMapper {
         );
 
     }
+
+    public static User checkAndUpdateFields(User user, UpdateUserDTO updateData, PasswordEncoder passwordEncoder) {
+        Field[] fields = updateData.getClass().getDeclaredFields();
+
+        for (Field field : fields) {
+
+            try {
+                field.setAccessible(true);
+                Object value = field.get(updateData);
+
+                if (value != null) {
+                    String fieldName = field.getName();
+
+
+                    try {
+
+                        Field userField = user.getClass().getDeclaredField(fieldName);
+                        userField.setAccessible(true);
+                        if (fieldName.equals("password")) {
+                            userField.set(user, passwordEncoder.encode((CharSequence) value));
+                        } else {
+                            userField.set(user, value);
+                        }
+
+                        userField.setAccessible(false);
+                    } catch (NoSuchFieldException e) {
+                        System.out.println("Aviso: O campo '" + fieldName + "' existe no DTO, mas não na entidade User.");
+                        try {
+                            Field userField = user.getProfile().getClass().getDeclaredField(fieldName);
+                            userField.setAccessible(true);
+
+                            userField.set(user.getProfile(), value);
+                            userField.setAccessible(false);
+                        } catch (NoSuchFieldException ex) {
+                            System.out.println("Aviso: O campo '" + fieldName + "' existe no DTO, mas não na entidade Profile.");
+                        }
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return user;
+    }
 }
+
+
