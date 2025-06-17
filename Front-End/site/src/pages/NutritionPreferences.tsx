@@ -144,7 +144,7 @@ const handleEditClick = async () => {
         allergies: nutritionData.allergies,
       };
 
-      await axios.patch(`http://localhost:8080/user/${username}`, payload, {
+      await axios.patch(`http://localhost:3030/user/${username}`, payload, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
