@@ -55,7 +55,7 @@ const NutritionPreferences: React.FC = () => {
     }
   }
 
-  // 🧠 Buscar dados do usuário logado ao montar o componente
+   
   useEffect(() => {
     const fetchPreferences = async () => {
       try {
