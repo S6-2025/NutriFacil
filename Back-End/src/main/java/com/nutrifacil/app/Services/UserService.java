@@ -51,6 +51,7 @@ class UserMapper {
                 user.getUsername(),
                 user.getProfile().getFullname(),
                 user.getProfile().getEmail(),
+                user.getProfile().getPhone(),
                 user.getProfile().getBirthdate(),
                 user.getProfile().getGender(),
                 user.getProfile().getHeight(),

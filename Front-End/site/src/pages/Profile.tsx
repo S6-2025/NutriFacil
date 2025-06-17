@@ -29,6 +29,7 @@ const Profile: React.FC = () => {
   function getUsernameFromToken(token: string): string | null {
     try {
       const payload = JSON.parse(atob(token.split(".")[1]));
+      console.log("Payload:", payload);
       return payload.sub || null;
     } catch {
       return null;
@@ -53,11 +54,11 @@ useEffect(() => {
       });
 
       const data = response.data;
-
+      console.log("Dados do perfil:", data);
       setUserData({
         fullname: data.fullname || "",
         gender: data.gender || "",
-        birthDate: data.birthdate || "",
+        birthDate: data.birthDate || "",
         phone: data.phone || "",
         email: data.email || "",
         password: "***",

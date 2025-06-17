@@ -11,6 +11,7 @@ public record UserDTO(
         String username,
         String fullname,
         String email,
+        String phone,
         LocalDate birthDate,
         Gender gender,
         Double height,
