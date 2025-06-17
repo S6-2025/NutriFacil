@@ -43,34 +43,65 @@ const Result: React.FC = () => {
   const [foods, setFoods] = useState<Food[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const username = "gabrielle"; // ou pegue do token/session
+  function getUsernameFromToken(token: string): string | null {
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      return payload.sub || null;
+    } catch {
+      return null;
+    }
+  }
 
   useEffect(() => {
-    const token = sessionStorage.getItem("token");
+    const fetchData = async () => {
+      const token = sessionStorage.getItem("token");
 
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
+      if (!token) {
+        console.error("Token não encontrado.");
+        setLoading(false);
+        return;
+      }
 
-    Promise.all([
-      axios.get(`http://localhost:3030/user/${username}`, { headers }),
-      axios.get(`http://localhost:3030/diet/${username}`, { headers }),
-      axios.get(`http://localhost:3030/diet/${username}/foods/available`, {
-        headers,
-      }),
-    ])
-      .then(([userRes, dietRes, foodsRes]) => {
+      const username = getUsernameFromToken(token);
+
+      if (!username) {
+        console.error("Token inválido. Não foi possível extrair o username.");
+        setLoading(false);
+        return;
+      }
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      try {
+        const [userRes, dietRes, foodsRes] = await Promise.all([
+          axios.get(`http://localhost:3030/user/${username}`, { headers }),
+          axios.get(`http://localhost:3030/diet/${username}`, { headers }),
+          axios.get(`http://localhost:3030/diet/${username}/foods/available`, {
+            headers,
+          }),
+        ]);
+
+
+          console.log("✅ Dados recebidos:");
+  console.log("User:", userRes.data);
+  console.log("Diet:", dietRes.data);
+  console.log("Foods:", foodsRes.data);
+
         setUser(userRes.data);
         setDiet(dietRes.data);
         setFoods(foodsRes.data);
-      })
-      .catch((err) => {
-        console.error("Error fetching data:", err);
-      })
-      .finally(() => {
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      } finally {
         setLoading(false);
-      });
-  }, [username]);
+      }
+    };
+
+    fetchData();
+    localStorage.removeItem("questionary_done");
+  }, []);
 
   if (loading) return <div>Loading...</div>;
 
@@ -110,16 +141,21 @@ const Result: React.FC = () => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 320"
         >
-               <path fill="#008053" fill-opacity="1" d="M0,96L80,101.3C160,107,320,117,480,112C640,107,800,85,960,80C1120,75,1280,85,1360,90.7L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
-
-
+          <path
+            fill="#008053"
+            fillOpacity="1"
+            d="M0,96L80,101.3C160,107,320,117,480,112C640,107,800,85,960,80C1120,75,1280,85,1360,90.7L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
+          ></path>
         </svg>
       </section>
 
       <div className="results-container">
         <div className="tmb">
           <h2>Taxa Metabólica Basal</h2>
-          <h3 className="h3-with-blob">{diet ? diet.tmb.toFixed(1) : "-"}</h3>
+          <h3 className="h3-with-blob">
+            {" "}
+            {typeof diet?.tmb === "number" ? diet.tmb.toFixed(1) : "-"}
+          </h3>
           <IgrExpansionPanel>
             <h1 slot="title">O que é TMB?</h1>
             <h3 slot="subtitle"></h3>
@@ -136,7 +172,10 @@ const Result: React.FC = () => {
 
         <div className="imc">
           <h2>Seu IMC</h2>
-          <h3 className="h3-with-blob">{diet ? diet.imc.toFixed(1) : "-"}</h3>
+          <h3 className="h3-with-blob">
+            {" "}
+            {typeof diet?.imc === "number" ? diet.imc.toFixed(1) : "-"}
+          </h3>
 
           <IgrExpansionPanel>
             <h1 slot="title">O que é IMC?</h1>
@@ -154,8 +193,10 @@ const Result: React.FC = () => {
 
         <div className="tmb">
           <h2>Consumo diário de água</h2>
-          <h3 className="h3-with-blob"  id="water">
-            {diet ? diet.dailyWater.toFixed(1) + " L" : "-"}
+          <h3 className="h3-with-blob" id="water">
+            {typeof diet?.dailyWater === "number"
+              ? `${diet.dailyWater.toFixed(1)} L`
+              : "-"}
           </h3>
         </div>
       </div>
@@ -176,10 +217,10 @@ const Result: React.FC = () => {
           <tbody>
             <tr>
               <th>Todos os Dias</th>
-              <td>{diet?.calorieDistribution.breakfast ?? "-"}</td>
-              <td>{diet?.calorieDistribution.lunch ?? "-"}</td>
-              <td>{diet?.calorieDistribution.dinner ?? "-"}</td>
-              <th>{diet?.calorieDistribution.total ?? "-"}</th>
+              <td>{diet?.calorieDistribution?.breakfast ?? "-"}</td>
+              <td>{diet?.calorieDistribution?.lunch ?? "-"}</td>
+              <td>{diet?.calorieDistribution?.dinner ?? "-"}</td>
+              <th>{diet?.calorieDistribution?.total ?? "-"}</th>
             </tr>
           </tbody>
         </table>
@@ -187,143 +228,138 @@ const Result: React.FC = () => {
       </div>
 
       <div className="meals-container">
-  <h2> Sugestão para alimentos</h2>
+        <h2> Sugestão para alimentos</h2>
 
-  <IgrExpansionPanel>
-    <h1 slot="title">Proteínas</h1>
-    <h3 slot="subtitle"></h3>
-    <span>
-      <table className="table-kcals">
-        <thead>
-          <tr>
-            <th> </th>
-            <th>Alimento </th>
-            <th>100g</th>
-            <th>80g</th>
-            <th>50g</th>
-          </tr>
-        </thead>
-        <tbody>
-          {foods
-            .filter((f) => f.category === "protein")
-            .map((food, idx) => (
-              <tr key={idx}>
-                <th>Calorias</th>
-                <td>{food.name}</td>
-                <td>{food.caloriesPer100g} kcal</td>
-                <td>{food.caloriesPer80g} kcal</td>
-                <td>{food.caloriesPer50g} kcal</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </span>
-  </IgrExpansionPanel>
-  <br />
+        <IgrExpansionPanel>
+          <h1 slot="title">Proteínas</h1>
+          <h3 slot="subtitle"></h3>
+          <span>
+            <table className="table-kcals">
+              <thead>
+                <tr>
+                  <th> </th>
+                  <th>Alimento </th>
+                  <th>100g</th>
+                  <th>80g</th>
+                  <th>50g</th>
+                </tr>
+              </thead>
+              <tbody>
+                {foods
+                  .filter((f) => f.category === "protein")
+                  .map((food, idx) => (
+                    <tr key={idx}>
+                      <th>Calorias</th>
+                      <td>{food.name}</td>
+                      <td>{food.caloriesPer100g} kcal</td>
+                      <td>{food.caloriesPer80g} kcal</td>
+                      <td>{food.caloriesPer50g} kcal</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </span>
+        </IgrExpansionPanel>
+        <br />
 
-  <IgrExpansionPanel>
-    <h1 slot="title">Legumes</h1>
-    <h3 slot="subtitle"></h3>
-    <span>
-      <table className="table-kcals">
-        <thead>
-          <tr>
-            <th> </th>
-            <th>Alimento </th>
-            <th>100g</th>
-            <th>80g</th>
-            <th>50g</th>
-          </tr>
-        </thead>
-        <tbody>
-          {foods
-            .filter((f) => f.category === "vegetable")
-            .map((food, idx) => (
-              <tr key={idx}>
-                <th>Calorias</th>
-                <td>{food.name}</td>
-                <td>{food.caloriesPer100g} kcal</td>
-                <td>{food.caloriesPer80g} kcal</td>
-                <td>{food.caloriesPer50g} kcal</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </span>
-  </IgrExpansionPanel>
-  <br />
+        <IgrExpansionPanel>
+          <h1 slot="title">Legumes</h1>
+          <h3 slot="subtitle"></h3>
+          <span>
+            <table className="table-kcals">
+              <thead>
+                <tr>
+                  <th> </th>
+                  <th>Alimento </th>
+                  <th>100g</th>
+                  <th>80g</th>
+                  <th>50g</th>
+                </tr>
+              </thead>
+              <tbody>
+                {foods
+                  .filter((f) => f.category === "vegetable")
+                  .map((food, idx) => (
+                    <tr key={idx}>
+                      <th>Calorias</th>
+                      <td>{food.name}</td>
+                      <td>{food.caloriesPer100g} kcal</td>
+                      <td>{food.caloriesPer80g} kcal</td>
+                      <td>{food.caloriesPer50g} kcal</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </span>
+        </IgrExpansionPanel>
+        <br />
 
-  <IgrExpansionPanel>
-    <h1 slot="title">Verduras</h1>
-    <h3 slot="subtitle"></h3>
-    <span>
-      <table className="table-kcals">
-        <thead>
-          <tr>
-            <th> </th>
-            <th>Alimento </th>
-            <th>100g</th>
-            <th>80g</th>
-            <th>50g</th>
-          </tr>
-        </thead>
-        <tbody>
-          {foods
-            .filter((f) => f.category === "green")
-            .map((food, idx) => (
-              <tr key={idx}>
-                <th>Calorias</th>
-                <td>{food.name}</td>
-                <td>{food.caloriesPer100g} kcal</td>
-                <td>{food.caloriesPer80g} kcal</td>
-                <td>{food.caloriesPer50g} kcal</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </span>
-  </IgrExpansionPanel>
-  <br />
+        <IgrExpansionPanel>
+          <h1 slot="title">Verduras</h1>
+          <h3 slot="subtitle"></h3>
+          <span>
+            <table className="table-kcals">
+              <thead>
+                <tr>
+                  <th> </th>
+                  <th>Alimento </th>
+                  <th>100g</th>
+                  <th>80g</th>
+                  <th>50g</th>
+                </tr>
+              </thead>
+              <tbody>
+                {foods
+                  .filter((f) => f.category === "green")
+                  .map((food, idx) => (
+                    <tr key={idx}>
+                      <th>Calorias</th>
+                      <td>{food.name}</td>
+                      <td>{food.caloriesPer100g} kcal</td>
+                      <td>{food.caloriesPer80g} kcal</td>
+                      <td>{food.caloriesPer50g} kcal</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </span>
+        </IgrExpansionPanel>
+        <br />
 
-  <IgrExpansionPanel>
-    <h1 slot="title">Carboidratos</h1>
-    <h3 slot="subtitle"></h3>
-    <span>
-      <table className="table-kcals">
-        <thead>
-          <tr>
-            <th> </th>
-            <th>Alimento </th>
-            <th>100g</th>
-            <th>80g</th>
-            <th>50g</th>
-          </tr>
-        </thead>
-        <tbody>
-          {foods
-            .filter((f) => f.category === "carbohydrate")
-            .map((food, idx) => (
-              <tr key={idx}>
-                <th>Calorias</th>
-                <td>{food.name}</td>
-                <td>{food.caloriesPer100g} kcal</td>
-                <td>{food.caloriesPer80g} kcal</td>
-                <td>{food.caloriesPer50g} kcal</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </span>
-  </IgrExpansionPanel>
-  <br />
-</div>
-
- 
+        <IgrExpansionPanel>
+          <h1 slot="title">Carboidratos</h1>
+          <h3 slot="subtitle"></h3>
+          <span>
+            <table className="table-kcals">
+              <thead>
+                <tr>
+                  <th> </th>
+                  <th>Alimento </th>
+                  <th>100g</th>
+                  <th>80g</th>
+                  <th>50g</th>
+                </tr>
+              </thead>
+              <tbody>
+                {foods
+                  .filter((f) => f.category === "carbohydrate")
+                  .map((food, idx) => (
+                    <tr key={idx}>
+                      <th>Calorias</th>
+                      <td>{food.name}</td>
+                      <td>{food.caloriesPer100g} kcal</td>
+                      <td>{food.caloriesPer80g} kcal</td>
+                      <td>{food.caloriesPer50g} kcal</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </span>
+        </IgrExpansionPanel>
+        <br />
+      </div>
     </div>
-    
   );
-
-  
 };
 
 export default Result;

@@ -40,7 +40,7 @@ public class DietService {
 
     }
 
-    public Diet getDietByUsename(String username) {
+    public Diet getDietByUsername(String username) {
         return dietRepository.findDietByProfile_User_Username(username).orElseThrow(
                 () -> new RuntimeException("Nenhuma dieta encontrada")
         );
@@ -65,8 +65,10 @@ public class DietService {
         diet.setImc();
         diet.setCaloriesConsume();
 
+        dietRepository.save(diet);
 
         return diet;
     }
+
 
 }

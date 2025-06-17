@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/diet")
+@CrossOrigin(origins = "http://localhost:5173")
 @RequiredArgsConstructor
 public class DietController {
     @Autowired
@@ -19,7 +20,7 @@ public class DietController {
     @GetMapping("/{username}")
     public ResponseEntity<Object> getDietByUsername(@PathVariable String username) {
         try {
-            Diet diet = service.getDietByUsename(username);
+            Diet diet = service.getDietByUsername(username);
             return ResponseEntity.ok(diet);
         } catch (RuntimeException e) {
             return ResponseEntity.status(404).body("Nenhuma Dieta encontrada");
@@ -39,7 +40,7 @@ public class DietController {
     @GetMapping("/{username}/foods/available")
     public ResponseEntity<Object> getAvailableFoods(@PathVariable String username) {
         try {
-            Diet diet = service.getDietByUsename(username);
+            Diet diet = service.getDietByUsername(username);
             return ResponseEntity.ok(service.getAvaiablesFoods(diet));
         } catch (RuntimeException e) {
             return ResponseEntity.status(404).body("Nenhuma comida encontrada");
