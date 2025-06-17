@@ -52,7 +52,7 @@ const AppRoutes: React.FC = () => {
       />
 
       <Route
-        path="/subscription"
+        path="/plan"
         element={
           <PrivateRoute>
             <Subscription />
