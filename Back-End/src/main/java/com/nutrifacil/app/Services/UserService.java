@@ -32,7 +32,8 @@ public class UserService {
 
     public User updateUser(String username, UpdateUserDTO updateInfo) {
         User user = repository.findByUsername(username).orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
-        return UserMapper.checkAndUpdateFields(user, updateInfo, passwordEncoder);
+        repository.save(UserMapper.checkAndUpdateFields(user, updateInfo, passwordEncoder));
+        return user;
     }
 
     public void deleteUser(String username) {
@@ -75,10 +76,7 @@ class UserMapper {
 
                 if (value != null) {
                     String fieldName = field.getName();
-
-
                     try {
-
                         Field userField = user.getClass().getDeclaredField(fieldName);
                         userField.setAccessible(true);
                         if (fieldName.equals("password")) {

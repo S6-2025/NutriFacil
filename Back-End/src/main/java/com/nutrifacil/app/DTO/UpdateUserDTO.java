@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public record UpdateUserDTO(
         String fullname,
-        String passwor,
+        String password,
         Gender gender,
         LocalDate birthDate,
         String email,
