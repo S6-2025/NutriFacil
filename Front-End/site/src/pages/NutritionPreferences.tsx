@@ -55,7 +55,7 @@ const NutritionPreferences: React.FC = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:3030/user/preferences", {
+        const response = await axios.get("http://localhost:3030/{username}}", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
