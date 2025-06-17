@@ -4,5 +4,6 @@ public enum FoodCategory {
     PROTEIN,
     CARBHYDRATES,
     FRUITS,
-    VEGETABLES
+    VEGETABLES,
+    GREEN
 }
