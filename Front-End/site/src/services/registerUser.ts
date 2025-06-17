@@ -11,4 +11,8 @@ export async function registerUser(data: any): Promise<void> {
     const errorData = await response.json();
     throw new Error(errorData.message || "Failed to register");
   }
+
+
+   const responseData = await response.json();
+    return responseData;
 }
