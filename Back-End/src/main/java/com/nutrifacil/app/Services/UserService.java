@@ -97,6 +97,15 @@ class UserMapper {
                             userField.setAccessible(false);
                         } catch (NoSuchFieldException ex) {
                             System.out.println("Aviso: O campo '" + fieldName + "' existe no DTO, mas não na entidade Profile.");
+                            try {
+                                Field userField = user.getProfile().getDiet().getClass().getDeclaredField(fieldName);
+                                userField.setAccessible(true);
+
+                                userField.set(user.getProfile().getDiet(), value);
+                                userField.setAccessible(false);
+                            } catch (NoSuchFieldException exception) {
+                                System.out.println("Aviso: O campo '" + fieldName + "' existe no DTO, mas não na entidade DIET.");
+                            }
                         }
                     }
                 }

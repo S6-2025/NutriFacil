@@ -77,6 +77,7 @@ const NutritionPreferences: React.FC = () => {
       );
 
       const data = response.data;
+      console.info("Dados recebidos:", data);
 
       setNutritionData({
         dietType: data.diet?.type || "",
@@ -136,14 +137,13 @@ const handleEditClick = async () => {
 
     try {
       const payload = {
-        diet: {
-          type: nutritionData.dietType,
-          objective: nutritionData.goal,
-          physicalActivityStatus: nutritionData.activityLevel,
-        },
+        type: nutritionData.dietType,
+        objective: nutritionData.goal,
+        physicalActivityStatus: nutritionData.activityLevel,
         allergies: nutritionData.allergies,
       };
 
+      console.log("Payload a ser enviado:", payload);
       await axios.patch(`http://localhost:3030/user/${username}`, payload, {
         headers: {
           Authorization: `Bearer ${token}`,
