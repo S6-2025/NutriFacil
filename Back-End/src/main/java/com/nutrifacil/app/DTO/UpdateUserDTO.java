@@ -9,7 +9,7 @@ public record UpdateUserDTO(
         String fullname,
         String password,
         Gender gender,
-        LocalDate birthDate,
+        LocalDate birthdate,
         String email,
         String phone,
         Double weight,
