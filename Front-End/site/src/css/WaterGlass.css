@@ -1,6 +1,14 @@
+.graph-super-container{
+ 
+
+  margin-top: 1rem;
+  width: 100%;
+}
+
+
 .graph-water-container {
   max-width:  30rem;
-  margin: 1rem auto;
+  margin: 5rem auto;
   background: rgba(79, 195, 247, 0.15);
   border-radius: 20px;
   padding: 1rem 1.5rem;
@@ -56,4 +64,153 @@
 
 .buttons > button:hover {
   background-color: #005dc1;
+}
+
+
+
+
+.graph-kcal-container  h1{
+  color: var(--color3);
+}
+
+/* Graphic.css */
+
+.super-container {
+  padding: 2rem;
+}
+
+.water-section {
+  margin: 2rem auto;
+  max-width: 200px;
+  text-align: center;
+}
+
+.title {
+  color: #0077ff;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.water-level {
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.water-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 10px 14px;
+  font-weight: bold;
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #005dc1;
+}
+
+.graph-kcal-container {
+  max-width: 300px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #f5faff;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 119, 255, 0.2);
+}
+
+.calories-info {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #4fc3f7;
+  transition: width 0.5s ease;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+
+.graph-kcal-container {
+  max-width: 300px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #f5faff;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 119, 255, 0.2);
+}
+
+.graph-kcal-container h1 {
+  text-align: center;
+  color: #0077ff;
+  margin: 0 0 1rem 0;
+}
+
+.graph-kcal-container p {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.progress-bar-wrapper {
+  width: 100%;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #4fc3f7;
+  transition: width 0.5s ease;
+  width: 0; /* Essa largura será controlada dinamicamente pelo React */
+}
+
+.input-food {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  font-weight: bold;
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }

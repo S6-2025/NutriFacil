@@ -51,105 +51,58 @@ const Graphic: React.FC = () => {
 
   return (
     <main className="super-container">
-      <div className="graph-water-container">
-        <div style={{ margin: "2rem auto", maxWidth: 200, textAlign: "center" }}>
-          <h1 style={{ color: "#0077ff" }}>Consumo de água</h1>
+
+      <div className="graph-super-container">
+
+<div className="graph-water-container">
+        <div className="water-section">
+          <h1 className="title">Consumo de água</h1>
           <DropWater fillPercent={percentage} />
-          <p style={{ fontWeight: "bold", marginTop: 8 }}>
+          <p className="water-level">
             {(waterAmount / 1000).toFixed(2)} L / {(MAX_CAPACITY / 1000).toFixed(1)} L
           </p>
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
-            <button onClick={() => handleAdd(250)} style={buttonStyle}>+250ml</button>
-            <button onClick={() => handleAdd(500)} style={buttonStyle}>+500ml</button>
-            <button onClick={() => handleAdd(1000)} style={buttonStyle}>+1L</button>
-            <button onClick={() => handleRemove(250)} style={buttonStyle}>-250ml</button>
+          <div className="water-buttons">
+            <button onClick={() => handleAdd(250)} className="btn">+250ml</button>
+            <button onClick={() => handleAdd(500)} className="btn">+500ml</button>
+            <button onClick={() => handleAdd(1000)} className="btn">+1L</button>
+            <button onClick={() => handleRemove(250)} className="btn">-250ml</button>
           </div>
         </div>
       </div>
 
-      <div className="graph-kcal-container" style={kcalContainerStyle}>
-        <h1 style={titleStyle}>Calorias</h1>
+      <div className="graph-kcal-container">
+        <h1 className="title">Calorias</h1>
 
-        <p style={textStyle}>
+        <p className="calories-info">
           {caloriesConsumed} / {caloriesTotal} kcal
         </p>
 
-        <div style={progressBarWrapper}>
+        <div className="progress-bar">
           <div
-            style={{
-              ...progressBarFill,
-              width: `${(caloriesConsumed / caloriesTotal) * 100}%`,
-            }}
+            className="progress-fill"
+            style={{ width: `${(caloriesConsumed / caloriesTotal) * 100}%` }}
           />
-        </div>
 
-        <input
+          <input
           type="text"
           value={foodInput}
           onChange={(e) => setFoodInput(e.target.value)}
           placeholder="Registrar comida..."
-          style={inputStyle}
+          className="input"
         />
-        <button onClick={handleFoodSubmit} style={buttonStyle}>
+
+        
+        </div>
+
+        <button onClick={handleFoodSubmit} className="btn">
           Registrar
         </button>
       </div>
+      </div>
+
+      
     </main>
   );
-};
-
-const kcalContainerStyle: React.CSSProperties = {
-  maxWidth: 300,
-  margin: "2rem auto",
-  padding: "1rem",
-  backgroundColor: "#f5faff",
-  borderRadius: 10,
-  boxShadow: "0 0 8px rgba(0, 119, 255, 0.2)",
-};
-
-const titleStyle: React.CSSProperties = {
-  textAlign: "center",
-  color: "#0077ff",
-};
-
-const textStyle: React.CSSProperties = {
-  textAlign: "center",
-  fontWeight: "bold",
-  marginBottom: 10,
-};
-
-const progressBarWrapper: React.CSSProperties = {
-  width: "100%",
-  height: 20,
-  backgroundColor: "#ddd",
-  borderRadius: 10,
-  overflow: "hidden",
-  marginBottom: 12,
-};
-
-const progressBarFill: React.CSSProperties = {
-  height: "100%",
-  backgroundColor: "#4fc3f7",
-  transition: "width 0.5s ease",
-};
-
-const inputStyle: React.CSSProperties = {
-  width: "100%",
-  padding: 8,
-  marginBottom: 8,
-  borderRadius: 6,
-  border: "1px solid #ccc",
-};
-
-const buttonStyle: React.CSSProperties = {
-  width: "100%",
-  padding: 10,
-  fontWeight: "bold",
-  backgroundColor: "#0077ff",
-  color: "white",
-  border: "none",
-  borderRadius: 6,
-  cursor: "pointer",
 };
 
 export default Graphic;
