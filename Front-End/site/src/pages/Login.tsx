@@ -44,7 +44,8 @@ const Login: React.FC = () => {
           <use xlinkHref="/icons.svg#healthy-options" />
         </svg>
       </div>
-      <div className="login-form">
+
+      <div className="login-register-form">
         <section className="super-form">
           <div className="logo-block">
             <div className="logo">
