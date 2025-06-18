@@ -1,7 +1,7 @@
 package com.nutrifacil.app.Services;
 
 import com.nutrifacil.app.DTO.CreateMealEntryRequestDTO;
-import com.nutrifacil.app.DTO.DailyTrackerResponseDTO;
+import com.nutrifacil.app.DTO.DailyMealTrackerResponseDTO;
 import com.nutrifacil.app.DTO.MealEntryDTO;
 import com.nutrifacil.app.Models.Food;
 import com.nutrifacil.app.Models.MealEntry;
@@ -16,7 +16,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -48,7 +47,7 @@ public class MealEntryService {
         return mealRepository.save(newEntry);
     }
 
-    public DailyTrackerResponseDTO getDailySummary(String username, LocalDate date) {
+    public DailyMealTrackerResponseDTO getDailySummary(String username, LocalDate date) {
 
         Profile profile = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"))
@@ -74,7 +73,7 @@ public class MealEntryService {
         }
 
 
-        return new DailyTrackerResponseDTO(
+        return new DailyMealTrackerResponseDTO(
                 date, caloriesGoal, totalCalories, (caloriesGoal - totalCalories), entryDTOS
         );
     }
