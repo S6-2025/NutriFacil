@@ -233,7 +233,7 @@ useEffect(() => {
         </form>
 
         <section className="button-wrapper">
-          <button type="button" onClick={handleButtonClick}>
+          <button  type="button" onClick={handleButtonClick}>
             {isEditing ? "Salvar" : "Editar"}
           </button>
         </section>

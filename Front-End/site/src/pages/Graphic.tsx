@@ -276,7 +276,7 @@ const Graphic: React.FC = () => {
             {caloriesConsumed} / {caloriesTotal} kcal
           </p>
 
-          <div className="progress-bar">
+          <div className="progress-bar-water">
             <div
               className="progress-water-fill"
               style={{ width: `${(caloriesConsumed / caloriesTotal) * 100}%` }}
