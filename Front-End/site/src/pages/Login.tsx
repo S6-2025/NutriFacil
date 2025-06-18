@@ -39,12 +39,13 @@ const Login: React.FC = () => {
   return (
     <main className="super-container" id="super-container-form">
       <div className="login-textImg">
-        <h1>Faça login e começe a ter uma vida mais saudável</h1>
-        <svg>
+        <h1 className="h1-login-register">Faça login e começe a ter uma vida mais saudável</h1>
+        <svg className="svg-login-register">
           <use xlinkHref="/icons.svg#healthy-options" />
         </svg>
       </div>
-      <div className="login-form">
+
+      <div className="login-register-form">
         <section className="super-form">
           <div className="logo-block">
             <div className="logo">
@@ -55,7 +56,7 @@ const Login: React.FC = () => {
             </div>
           </div>
 
-          <form onSubmit={handleFormSubmit}>
+          <form onSubmit={handleFormSubmit} id="form">
             <div className="camps">
               <label htmlFor="username-login">Username:</label>
               <input
@@ -71,7 +72,7 @@ const Login: React.FC = () => {
               
             </div>
 
-            <div className="camps  input-wrapper">
+            <div className="camps  input-wrapper" id="camp-pass">
               <label htmlFor="password-login">Senha:</label>
               <input
                 type="password"
@@ -88,7 +89,7 @@ const Login: React.FC = () => {
               )}
             </div>
 
-            <button type="submit">LogIn</button>
+            <button type="submit" className="login-register-button">LogIn</button>
           </form>
 
           <p className="message-login-register">

@@ -5,7 +5,6 @@ import { jwtDecode } from "jwt-decode";
 
 import { LineChart } from "@mui/x-charts/LineChart";
 import type {} from "@mui/x-charts/themeAugmentation";
-import ModalForms from "../components/ModalForms";
 
 const MAX_CAPACITY = 2500;
 
@@ -104,24 +103,13 @@ const Graphic: React.FC = () => {
   return (
     <main className="super-container">
       <div className="graph-super-container">
-        <div className="graph-days-container">
-          <LineChart
-            xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
-            series={[
-              {
-                data: [2, 5.5, 2, 8.5, 1.5, 5],
-              },
-            ]}
-            height={300}
-          />
-        </div>
         <div className="graph-water-container">
           <div className="water-section">
             <h1 className="title">Consumo de água</h1>
             <DropWater fillPercent={percentage} />
             <p className="water-level">
               {(waterAmount / 1000).toFixed(2)} L /{" "}
-              {(waterGoal / 1000).toFixed(2)} L
+              {(MAX_CAPACITY / 1000).toFixed(1)} L
             </p>
             <div className="water-buttons">
               <button onClick={() => handleAdd(250)} className="btn">
@@ -149,22 +137,23 @@ const Graphic: React.FC = () => {
 
           <div className="progress-bar">
             <div
-              className="progress-fill"
+              className="progress-water-fill"
               style={{ width: `${(caloriesConsumed / caloriesTotal) * 100}%` }}
             />
 
-            <input
+           
+          </div>
+           <input
               type="text"
               value={foodInput}
               onChange={(e) => setFoodInput(e.target.value)}
               placeholder="Registrar comida..."
               className="input"
             />
-          </div>
+
           <button onClick={handleFoodSubmit} className="btn">
             Registrar
           </button>
-          
         </div>
 
         <div className="graph-days-container">

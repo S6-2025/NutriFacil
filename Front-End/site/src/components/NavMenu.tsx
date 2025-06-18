@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-interface NavMenuProps {
+ interface NavMenuProps {
   isOpen: boolean;
   onClose: () => void;
 }
@@ -89,21 +89,11 @@ const NavMenu = ({ isOpen, onClose }: NavMenuProps) => {
         ) : (
           <li>
             <button
+              id="button-logout"
               onClick={handleLogout}
               className="links-li"
-              style={{
-                background: "none",
-                border: "none",
-                padding: 0,
-                margin: 0,
-                cursor: "pointer",
-                font: "inherit",
-                color: "inherit",
-                textAlign: "left",
-                width: "100%",
-              }}
             >
-              Logout
+              Sair 
             </button>
           </li>
         )}

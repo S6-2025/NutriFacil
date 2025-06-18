@@ -6,38 +6,40 @@
 }
 
 
-.container-profile{
+.container-profile {
   height: 100vh;
   width: 100%;
-  
+
 }
 
 
-h1,label{
+h1,
+label {
   font-family: var(--font-logo);
 }
 
 
-h1{
+h1 {
   text-align: center;
 }
 
 
-label{
+label {
   font-weight: 700;
 }
 
- 
- 
 
-.form-personal{
+
+
+.form-personal {
   height: 60%;
   width: 80%;
 
 }
 
 
-.personal-camps, .info-camps{
+.personal-camps,
+.info-camps {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,23 +48,216 @@ label{
 }
 
 
-.personal-camps > input,
-.info-camps > input{
-  height: 50%;  
-  padding:10px ;
+.personal-camps>input,
+.info-camps>input {
+  height: 50%;
+  padding: 10px;
   border: 1px solid var(--color3);
   border-radius: 10px;
   background-color: var(--color6);
   color: black;
-} 
+}
 
 
-.personal-camps > input::placeholder,
-.info-camps > input::placeholder{
+.personal-camps>input::placeholder,
+.info-camps>input::placeholder {
   font-size: 1rem;
   color: black;
 }
 
 
-@media(min-width: 1024px){
+@media(min-width: 1920px) {
+    .container-profile {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 colunas */
+    grid-template-rows: repeat(1, 1fr);
+
+    height: fit-content;
+
+    font-family: var(--font-logo);
+    justify-items: center;
+  }
+
+  .container-profile>h1 {
+    grid-column: 1 / -1;
+    /* ocupa as 2 colunas */
+    text-align: center;
+    font-size: 1.8rem;
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* Formulário ocupa as 2 colunas e organiza os campos internos */
+  .form-personal {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    justify-content: center;
+
+    align-content: center;
+    width: 100%;
+    justify-content: center;
+    height: 50vh;
+    padding: 1rem;
+
+  }
+
+  /* Campos individuais */
+  .personal-camps,
+  .info-camps {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0 1rem;
+
+    justify-self: center;
+
+    align-self: center;
+  }
+
+  /* Inputs */
+  .personal-camps input,
+  .info-camps input {
+    width: 50%;
+    height: 2.5rem;
+    padding: 1rem;
+    border: 1px solid var(--color7);
+    border-radius: 0.4rem;
+    background-color: var(--color6);
+    font-size: 1rem;
+    justify-self: center;
+
+    align-self: center;
+
+  }
+
+  .personal-camps label,
+  .info-camps label {
+    justify-self: center;
+
+    align-self: center;
+  }
+
+  /* Botão */
+  .button-wrapper {
+    grid-column: 1 / -1;
+    /* ocupa as 2 colunas */
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .button-wrapper button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--color5);
+    color: var(--color8);
+    cursor: pointer;
+  }
+
+}
+
+
+@media(min-width: 1366px) and (max-width: 1919px) {
+
+  .container-profile {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 colunas */
+    grid-template-rows: repeat(1, 1fr);
+
+    height: fit-content;
+
+    font-family: var(--font-logo);
+    justify-items: center;
+  }
+
+  .container-profile>h1 {
+    grid-column: 1 / -1;
+    /* ocupa as 2 colunas */
+    text-align: center;
+    font-size: 1.8rem;
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* Formulário ocupa as 2 colunas e organiza os campos internos */
+  .form-personal {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    justify-content: center;
+
+    align-content: center;
+    width: 100%;
+    justify-content: center;
+    height: 50vh;
+    padding: 1rem;
+
+  }
+
+  /* Campos individuais */
+  .personal-camps,
+  .info-camps {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0 1rem;
+
+    justify-self: center;
+
+    align-self: center;
+  }
+
+  /* Inputs */
+  .personal-camps input,
+  .info-camps input {
+    width: 50%;
+    height: 2.5rem;
+    padding: 1rem;
+    border: 1px solid var(--color7);
+    border-radius: 0.4rem;
+    background-color: var(--color6);
+    font-size: 1rem;
+    justify-self: center;
+
+    align-self: center;
+
+  }
+
+  .personal-camps label,
+  .info-camps label {
+    justify-self: center;
+
+    align-self: center;
+  }
+
+  /* Botão */
+  .button-wrapper {
+    grid-column: 1 / -1;
+    /* ocupa as 2 colunas */
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .button-wrapper button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--color5);
+    color: var(--color8);
+    cursor: pointer;
+  }
+
+
+
 }

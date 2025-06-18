@@ -10,6 +10,8 @@ import Result from "../pages/Result";
 import Questionary from "../components/Questionary";
 import Subscription from "../pages/Subscription";
 import NutricionPreferences from "../pages/NutritionPreferences";
+import LegalPrivacy from "../pages/LegalPrivacy";
+import Term from "../pages/Term";
 import Graph from "../pages/Graphic";
 
 import PrivateRoute from "./PrivateRoute";
@@ -27,6 +29,8 @@ const AppRoutes: React.FC = () => {
         }
       />
       <Route path="/about" element={<About />} />
+      <Route path="/term" element={<Term />} />
+      <Route path="/privacy" element={<LegalPrivacy />} />
       <Route
         path="/login"
         element={
