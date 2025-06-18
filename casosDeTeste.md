@@ -59,6 +59,8 @@ Cenário: Usuário deseja alteraro perfil pessoal.
     Então o sistema deve salvar as informações editadas.
 ~~~
 
+---
+
 ## Testes de funcionalidade
 
 > ***Critérios de Aceitação***
@@ -80,3 +82,321 @@ Cenário: Usuário deseja alteraro perfil pessoal.
 | BUG-01    | FT-02                      | É possível pular a questão de alergia sem marcar nada.                                | Média      | Em aberto  | Gabrielle           | N/A                        |
 | BUG-02    | FT-03                      | Nomes com acentuação não salvam os dados do questionário nem de registro.             | Alta       | Finalizado | Gabriel Evaristo    | N/A                        |
 | BUG-03    | FT-04                      | Data de nascimento não estava aparecendo mesmo preenchendo no questionário.           | Média      | Finalizado | Gabrielle           | N/A                        |
+
+---
+
+## Testes de Usabilidade
+
+> **Metas de usabilidade**
+>
+> - O usuário deve conseguir configurar seu plano alimentar completo em até 3 minutos.
+> - O usuário deve conseguir se registrar e fazer login em menos de 2 minutos.
+> - O usuário deve conseguir localizar e editar suas informações pessoais em até 6 cliques.
+> - O sistema deve apresentar os dados corretos (ex: dieta, alergia, dados salvos) com no máximo 1 tentativa de atualização.
+> - Ao menos 80% dos usuários testados devem entender, sem ajuda externa, como iniciar o processo de montagem da dieta.
+
+
+# Relatório de Testes de Usabilidade
+
+### Objetivos do Teste
+
+1. Avaliar a facilidade de seleção de dieta
+2. Medir o tempo para preencher dados pessoais
+3. Verificar a clareza do plano alimentar gerado
+4. Identificar dificuldades em localizar campos importantes
+
+## Participante 01
+
+- **Nome / Código:** Participante 01
+- **Perfil (ex.: iniciante / avançado):** Avançado
+- **Data:** 18/06/2025
+- **Moderador:** Gabrielle
+- **Dispositivo / Navegador:** Notebook / Google Chrome
+
+### Tarefas
+
+| Nº | Descrição da Tarefa | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades | Observações do Usuário |
+|----|----------------------|------------|----------------|---------------|------------------------|--------------------------|
+| 1 | Selecionar a dieta “Low Carb” | 30 s | 48 s | S | - | Tranquilo. |
+| 2 | Informar peso, altura, idade e sexo | 60 s | 29 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 3 | Escolher 3 alimentos preferidos em cada categoria | 30 s | 49 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 4 | Gerar o plano alimentar e visualizar as recomendações | 30 s | 66 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 5 | Identificar onde registrar alergias/intolerâncias | 30 s | 20 s | S | - | Tranquilo. |
+
+### Métricas de Satisfação
+
+| Critério | Nota (1–5) | Comentários |
+|----------|------------|-------------|
+| Facilidade de navegação | 4 | - |
+| Clareza das instruções | 4 | - |
+| Velocidade de resposta | 4 | - |
+| Layout e design | 5 | - |
+| Confiança ao usar a ferramenta | 4 | - |
+
+---
+
+## Participante 02
+
+### Dados do Participante
+
+- **Nome / Código:** Participante 02
+- **Perfil (ex.: iniciante / avançado):** Avançado
+- **Data:** 18/06/2025
+- **Moderador:** Gabrielle
+- **Dispositivo / Navegador:** Celular / Safari
+
+
+### Tarefas
+
+| Nº | Descrição da Tarefa | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades | Observações do Usuário |
+|----|----------------------|------------|----------------|---------------|------------------------|--------------------------|
+| 1 | Selecionar a dieta “Low Carb” | 30 s | 52 s | S | - | Tranquilo. |
+| 2 | Informar peso, altura, idade e sexo | 60 s | 21 s | S | - | Tranquilo. |
+| 3 | Escolher 3 alimentos preferidos em cada categoria | 30 s | 64 s | S | - | Tranquilo. |
+| 4 | Gerar o plano alimentar e visualizar as recomendações | 30 s | 61 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 5 | Identificar onde registrar alergias/intolerâncias | 30 s | 70 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+
+### Métricas de Satisfação
+
+| Critério | Nota (1–5) | Comentários |
+|----------|------------|-------------|
+| Facilidade de navegação | 5 | - |
+| Clareza das instruções | 4 | - |
+| Velocidade de resposta | 3 | Precisa melhorar |
+| Layout e design | 5 | - |
+| Confiança ao usar a ferramenta | 3 | Precisa melhorar |
+
+---
+
+
+## Participante 03
+
+### Dados do Participante
+
+- **Nome / Código:** Participante 03
+- **Perfil (ex.: iniciante / avançado):** Iniciante
+- **Data:** 18/06/2025
+- **Moderador:** Vinicius Madureira
+- **Dispositivo / Navegador:** Tablet / Edge
+
+
+
+### Tarefas
+
+| Nº | Descrição da Tarefa | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades | Observações do Usuário |
+|----|----------------------|------------|----------------|---------------|------------------------|--------------------------|
+| 1 | Selecionar a dieta “Low Carb” | 30 s | 61 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 2 | Informar peso, altura, idade e sexo | 60 s | 22 s | S | - | Tranquilo. |
+| 3 | Escolher 3 alimentos preferidos em cada categoria | 30 s | 47 s | S | - | Tranquilo. |
+| 4 | Gerar o plano alimentar e visualizar as recomendações | 30 s | 56 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 5 | Identificar onde registrar alergias/intolerâncias | 30 s | 47 s | S | - | Tranquilo. |
+
+### Métricas de Satisfação
+
+| Critério | Nota (1–5) | Comentários |
+|----------|------------|-------------|
+| Facilidade de navegação | 4 | - |
+| Clareza das instruções | 5 | - |
+| Velocidade de resposta | 3 | Precisa melhorar |
+| Layout e design | 3 | Precisa melhorar |
+| Confiança ao usar a ferramenta | 3 | Precisa melhorar |
+
+---
+
+
+## Participante 04
+
+### Dados do Participante
+
+- **Nome / Código:** Participante 04
+- **Perfil (ex.: iniciante / avançado):** Iniciante
+- **Data:** 18/06/2025
+- **Moderador:** Gabriel Evaristo
+- **Dispositivo / Navegador:** Celular / Safari
+
+
+### Tarefas
+
+| Nº | Descrição da Tarefa | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades | Observações do Usuário |
+|----|----------------------|------------|----------------|---------------|------------------------|--------------------------|
+| 1 | Selecionar a dieta “Low Carb” | 30 s | 56 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 2 | Informar peso, altura, idade e sexo | 60 s | 47 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 3 | Escolher 3 alimentos preferidos em cada categoria | 30 s | 24 s | S | - | Tranquilo. |
+| 4 | Gerar o plano alimentar e visualizar as recomendações | 30 s | 67 s | S | - | Tranquilo. |
+| 5 | Identificar onde registrar alergias/intolerâncias | 30 s | 75 s | S | - | Tranquilo. |
+
+###Métricas de Satisfação
+
+| Critério | Nota (1–5) | Comentários |
+|----------|------------|-------------|
+| Facilidade de navegação | 5 | - |
+| Clareza das instruções | 5 | - |
+| Velocidade de resposta | 5 | - |
+| Layout e design | 3 | Precisa melhorar |
+| Confiança ao usar a ferramenta | 5 | - |
+
+---
+
+
+## Participante 05
+
+### Dados do Participante
+
+- **Nome / Código:** Participante 05
+- **Perfil (ex.: iniciante / avançado):** Intermediário
+- **Data:** 18/06/2025
+- **Moderador:** Vinicius Madureira
+- **Dispositivo / Navegador:** Notebook / Google Chrome
+
+
+
+### Tarefas
+
+| Nº | Descrição da Tarefa | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades | Observações do Usuário |
+|----|----------------------|------------|----------------|---------------|------------------------|--------------------------|
+| 1 | Selecionar a dieta “Low Carb” | 30 s | 28 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 2 | Informar peso, altura, idade e sexo | 60 s | 51 s | S | - | Tranquilo. |
+| 3 | Escolher 3 alimentos preferidos em cada categoria | 30 s | 56 s | S | - | Tranquilo. |
+| 4 | Gerar o plano alimentar e visualizar as recomendações | 30 s | 35 s | S | - | Tranquilo. |
+| 5 | Identificar onde registrar alergias/intolerâncias | 30 s | 67 s | S | - | Tranquilo. |
+
+### Métricas de Satisfação
+
+| Critério | Nota (1–5) | Comentários |
+|----------|------------|-------------|
+| Facilidade de navegação | 3 | Precisa melhorar |
+| Clareza das instruções | 3 | Precisa melhorar |
+| Velocidade de resposta | 5 | - |
+| Layout e design | 5 | - |
+| Confiança ao usar a ferramenta | 5 | - |
+
+---
+
+
+## Participante 06
+
+### Dados do Participante
+
+- **Nome / Código:** Participante 06
+- **Perfil (ex.: iniciante / avançado):** Iniciante
+- **Data:** 18/06/2025
+- **Moderador:** Gabriel Evaristo
+- **Dispositivo / Navegador:** Notebook / Google Chrome
+
+
+
+### Tarefas 
+
+| Nº | Descrição da Tarefa | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades | Observações do Usuário |
+|----|----------------------|------------|----------------|---------------|------------------------|--------------------------|
+| 1 | Selecionar a dieta “Low Carb” | 30 s | 39 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 2 | Informar peso, altura, idade e sexo | 60 s | 67 s | S | - | Tranquilo. |
+| 3 | Escolher 3 alimentos preferidos em cada categoria | 30 s | 49 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 4 | Gerar o plano alimentar e visualizar as recomendações | 30 s | 46 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 5 | Identificar onde registrar alergias/intolerâncias | 30 s | 48 s | S | - | Tranquilo. |
+
+### Métricas de Satisfação
+
+| Critério | Nota (1–5) | Comentários |
+|----------|------------|-------------|
+| Facilidade de navegação | 4 | - |
+| Clareza das instruções | 3 | Precisa melhorar |
+| Velocidade de resposta | 5 | - |
+| Layout e design | 4 | - |
+| Confiança ao usar a ferramenta | 3 | Precisa melhorar |
+
+---
+
+
+## Feedback Aberto
+
+### Participante 01
+
+- **O que você mais gostou?**  
+  _“Gostei da forma como os resultados são exibidos, ficou bem visual e simples.”_
+
+- **O que você achou mais difícil?**  
+  _“Levei um tempinho pra encontrar alguns campos do questionário.”_
+
+- **Sugestões de melhoria:**  
+  _“Talvez colocar dicas visuais ou tutoriais rápidos nas etapas.”_
+
+---
+
+### Participante 02
+
+- **O que você mais gostou?**  
+  _“A apresentação da dieta foi clara e objetiva, curti bastante.”_
+
+- **O que você achou mais difícil?**  
+  _“Algumas perguntas não estavam tão visíveis, acabei pulando sem querer.”_
+
+- **Sugestões de melhoria:**  
+  _“Destacar as etapas e talvez usar ícones pra guiar melhor o usuário.”_
+
+---
+
+### Participante 03
+
+- **O que você mais gostou?**  
+  _“A interface dos resultados é muito limpa e agradável.”_
+
+- **O que você achou mais difícil?**  
+  _“Tive dificuldade em perceber que havia mais perguntas ao rolar.”_
+
+- **Sugestões de melhoria:**  
+  _“Colocar barras de progresso mais visíveis e instruções rápidas no começo.”_
+
+---
+
+### Participante 04
+
+- **O que você mais gostou?**  
+  _“A parte final com o plano alimentar foi o que mais me chamou atenção.”_
+
+- **O que você achou mais difícil?**  
+  _“Achei algumas partes confusas no cadastro.”_
+
+- **Sugestões de melhoria:**  
+  _“Adicionar uma espécie de passo a passo visual ajudaria bastante.”_
+
+---
+
+### Participante 05
+
+- **O que você mais gostou?**  
+  _“Tudo ficou bem organizado, especialmente a tela com os dados pessoais.”_
+
+- **O que você achou mais difícil?**  
+  _“Certos campos pareciam meio escondidos, precisei procurar.”_
+
+- **Sugestões de melhoria:**  
+  _“Colocar ajuda contextual com ícones de interrogação, por exemplo.”_
+
+---
+
+### Participante 06
+
+- **O que você mais gostou?**  
+  _“Gostei de como o sistema resume todas as minhas respostas na tela final.”_
+
+- **O que você achou mais difícil?**  
+  _“Fiquei um pouco perdido no início, sem saber por onde começar.”_
+
+- **Sugestões de melhoria:**  
+  _“Incluir uma introdução curta explicando o processo ajudaria.”_
+
+
+## Conclusões dos moderadores
+
+- **Principais bloqueios encontrados:**  
+  1. Campo de alergia difícil de localizar  
+  2. Falta de feedback ao selecionar alimentos  
+
+- **Pontos fortes observados:**  
+  1. Interface agradável  
+  2. Fluxo de preenchimento intuitivo  
+
+- **Recomendações para próxima iteração:**  
+  1. Melhorar visibilidade de campos críticos  
+  2. Inserir mensagens orientativas durante o fluxo

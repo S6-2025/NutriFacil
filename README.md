@@ -15,8 +15,6 @@ O sistema oferece:
 - Recomendação de alimentos por categoria (proteínas, legumes, verduras, carboidratos);
 
 - Personalização de acordo com objetivos e perfil do usuário.
- 
-
 
 # ⚙𝚃𝚎𝚌𝚗𝚘𝚕𝚘𝚐𝚒𝚊𝚜
 
@@ -89,6 +87,10 @@ Abaixo estão os principais endpoints disponíveis no projeto:
 | DELETE | `/exemplo/{id}`     | Deletar recurso específico por ID    | —                           | `204 No Content`             |
 
 > ℹ️ A API roda localmente por padrão em: `http://localhost:3030`
+
+# 🧪Casos de teste
+
+Para visualizar os casos de testes realizados, veja o arquivo [CASOS DE TESTE](./casosDeTeste.md).
 
 # 📃 Licença
 
