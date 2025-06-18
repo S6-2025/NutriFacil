@@ -62,77 +62,98 @@
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
-
     margin-right: 5rem;
   }
 
- .menu-links a {
-  position: relative;
-  text-decoration: none;
-  color: var(--color3);
-  padding: 0.5rem;
-  text-align: center;
-  font-size: 1.3rem;
-  transition: color 0.3s ease;
-}
+  .menu-links>a,
+  .menu-links>span,
+  .menu-links>.sair {
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--color2);
+    padding: 0.5rem;
+    text-align: center;
+    font-family: var(--font-logo);
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+  }
+ 
 
-.menu-links a::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%) scaleX(0);
-  transform-origin: center;
-  width: 100%;
-  height: 2px;
-  background-color: var(--color3);
-  transition: transform 0.3s ease;
-}
+  .menu-links a::after,
+  span::after,
+  .sair::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color1);
+    transition: transform 0.3s ease;
+  }
 
-#button-logout{
-  width: 10vh;
-  font-size: 1.3rem;
-  background-color: none;
-}
+  .sair::after{
+       background-color: var(--error-bg);
+  }
 
-.menu-links a:hover::after {
-  transform: translateX(-50%) scaleX(1);
-}
+  .menu-links a:hover::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  .menu-links .sair:hover::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  #login-nav {
+    font-weight: 500;
+    font-family: var(--font-logo);
+    color: var(--color2);
+  }
+
+
 
 
   #menu-list {
     display: none;
   }
 
-.super-header{
-   background-color: var(--color6);
-   border-bottom: 2px solid var(--color3);
-   
-}
-.header-container{
-  background-color: var(--color6);
-}
+  .super-header {
+    background-color: var(--color6);
+    height: 8vh;
+
+  }
 
 
-  
-.header-container>.logo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: .2rem;
-  padding: 1rem;
-  font-family: var(--font-logo);
-  text-decoration: none;
-  font-size: 1.3rem;
-  color: var(--color7);
-}
+
+  .header-container {
+    background-color: var(--color6);
+
+    height: 100%;
+  }
 
 
-.logo>.header__SVG {
-  width: 1.3rem;
-  height: 1.3rem;
-  fill: none;
-  stroke: var(--color7);
-}
+
+  .header-container>.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .2rem;
+    padding: 1rem;
+    font-family: var(--font-logo);
+    text-decoration: none;
+    font-size: 2rem;
+    color: var(--color7);
+  }
+
+
+  .logo>.header__SVG {
+    width: 2rem;
+    height: 2rem;
+    fill: none;
+    stroke: var(--color7);
+  }
 
 }

@@ -41,7 +41,7 @@ const Header = () => {
 
           {!isLogged ? (
             <>
-              <Link to="/login" className="links-li">
+              <Link to="/login" className="links-li" id="login-nav">
                 Login
               </Link>
             </>
@@ -50,7 +50,7 @@ const Header = () => {
               <span
                 id="button-logout"
                 onClick={handleLogout}
-                className="links-li"
+                className="sair"
               >
                 Sair
               </span>

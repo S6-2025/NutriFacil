@@ -119,7 +119,12 @@ const Result: React.FC = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="mini-container">
+
+
+    
+    
+    <div className="container-result">
+      <div className="mini-container">
       <div className="user-container">
         <div className="square-profile">
           <svg className="header__SVG">
@@ -383,6 +388,8 @@ const Result: React.FC = () => {
         <br />
       </div>
     </div>
+    </div>
+    
   );
 };
 
