@@ -13,7 +13,7 @@ const Graphic: React.FC = () => {
   const [waterGoal, setWaterGoal] = useState(MAX_CAPACITY);
   const [caloriesConsumed, setCaloriesConsumed] = useState(0);
   const [caloriesTotal, setCaloriesTotal] = useState(1200);
-  const [foodInput, setFoodInput] = useState("");
+/*   const [foodInput, setFoodInput] = useState(""); */
   const [monthTrack, setMonthTrack] = useState<any>(); // Ajuste o tipo conforme necessário
 
   const [modalEstaAberto, setModalEstaAberto] = useState(false);
@@ -179,12 +179,12 @@ const Graphic: React.FC = () => {
 
   const percentage = (waterAmount / waterGoal) * 100;
 
-  const handleFoodSubmit = () => {
+/*   const handleFoodSubmit = () => {
     if (foodInput.trim()) {
       alert(`Comida registrada: ${foodInput}`);
       setFoodInput("");
     }
-  };
+  }; */
 
   return (
     <main className="super-container">

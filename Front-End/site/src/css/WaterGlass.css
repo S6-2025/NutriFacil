@@ -272,7 +272,7 @@
     grid-template-rows: auto auto;
     grid-template-areas:
       "water kcal"
-      "graph graph";
+      "graph1 graph2";
     gap: 2rem;
     padding: 2rem;
     justify-content: center;
@@ -337,10 +337,16 @@
   }
 
   .graph-days-container {
-    grid-area: graph;
+    width: 100%;
     background-color: var(--color8);
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  .graph-days-container:first-child{
+    grid-area: graph1;
+  }
+  .graph-days-container:last-child{
+    grid-area: graph2;
   }
 }
