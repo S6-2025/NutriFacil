@@ -89,6 +89,12 @@
   transition: transform 0.3s ease;
 }
 
+#button-logout{
+  width: 10vh;
+  font-size: 1.3rem;
+  background-color: none;
+}
+
 .menu-links a:hover::after {
   transform: translateX(-50%) scaleX(1);
 }

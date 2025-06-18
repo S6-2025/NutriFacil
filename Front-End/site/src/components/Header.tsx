@@ -1,15 +1,22 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavMenu from "./NavMenu";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
     setIsLogged(!!token);
   }, []);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    setIsLogged(false);
+    navigate("/login");
+  };
 
   return (
     <div className="super-header">
@@ -31,7 +38,24 @@ const Header = () => {
             </>
           )}
           <Link to="/about">Sobre</Link>
-          <Link to="/login">Login</Link>
+
+          {!isLogged ? (
+            <>
+              <Link to="/login" className="links-li">
+                Login
+              </Link>
+            </>
+          ) : (
+            <>
+              <span
+                id="button-logout"
+                onClick={handleLogout}
+                className="links-li"
+              >
+                Sair
+              </span>
+            </>
+          )}
         </div>
 
         <svg

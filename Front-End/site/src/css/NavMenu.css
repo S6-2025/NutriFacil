@@ -55,6 +55,14 @@
   text-align: center;
   font-family: var(--font-logo);
 }
+#button-logout {
+  color: var(--error-bg);
+ 
+}
+li{
+  list-style: none;
+  
+}
 
 hr {
   border: none;
@@ -108,4 +116,5 @@ hr {
   width: 3rem;
   height: 3rem;
 }
+ 
  
