@@ -6,8 +6,8 @@
 }
 
 
-.graph-water-container {
-  max-width:  30rem;
+.graph-water-container, .graph-kcal-container {
+   width:  100%;
   margin: 5rem auto;
   background: rgba(79, 195, 247, 0.15);
   border-radius: 20px;
@@ -120,10 +120,10 @@
 }
 
 .graph-kcal-container {
-  max-width: 300px;
+  border: 1px solid var(--color5);
   margin: 2rem auto;
   padding: 1rem;
-  background-color: #f5faff;
+  background-color:  var(--color6);
   border-radius: 10px;
   box-shadow: 0 0 8px rgba(0, 119, 255, 0.2);
 }
@@ -158,18 +158,10 @@
 }
 
 
-.graph-kcal-container {
-  max-width: 300px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background-color: #f5faff;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 119, 255, 0.2);
-}
-
+ 
 .graph-kcal-container h1 {
   text-align: center;
-  color: #0077ff;
+  color: var(--color7);
   margin: 0 0 1rem 0;
 }
 
@@ -204,11 +196,11 @@
   box-sizing: border-box;
 }
 
-.btn {
+.graph-kcal-container > .btn {
   width: 100%;
   padding: 10px;
   font-weight: bold;
-  background-color: #0077ff;
+  background-color: var(--color7);
   color: white;
   border: none;
   border-radius: 6px;

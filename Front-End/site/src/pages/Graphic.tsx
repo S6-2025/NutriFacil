@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DropWater from "../components/DropWater"; // ajuste o caminho conforme a sua estrutura
 
+import { LineChart } from '@mui/x-charts/LineChart';
+import type {} from '@mui/x-charts/themeAugmentation';
+
 const MAX_CAPACITY = 2500;
 
 const Graphic: React.FC = () => {
@@ -98,7 +101,24 @@ const Graphic: React.FC = () => {
           Registrar
         </button>
       </div>
+
+
+    <div className="graph-days-container"> 
+
+      <LineChart
+  xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+  series={[
+    {
+      data: [2, 5.5, 2, 8.5, 1.5, 5],
+    },
+  ]}
+  height={300}
+/>
+    </div>
+      
       </div>
+
+
 
       
     </main>
