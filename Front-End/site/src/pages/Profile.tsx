@@ -56,6 +56,7 @@ useEffect(() => {
       const response = await axios.get(`http://localhost:3030/user/${username}`, {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json;charset=UTF-8"
         },
       });
 
@@ -110,7 +111,8 @@ useEffect(() => {
           body,
           {
             headers: {
-              Authorization: `Bearer ${token}`
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json;charset=UTF-8",
             },
           }
         );
