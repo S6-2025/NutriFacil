@@ -80,9 +80,10 @@ const Graphic: React.FC = () => {
   return (
     <main className="super-container">
       <div className="graph-water-container">
-
-         <div style={{ margin: "2rem auto", maxWidth: 200, textAlign: "center" }}>
+        <div style={{ margin: "2rem auto", maxWidth: 200, textAlign: "center" }}>
         <h1 style={{ color: "#0077ff" }}>Consumo de água</h1>
+
+        
         <DropWater fillPercent={percentage} />
         <p style={{ fontWeight: "bold", marginTop: 8 }}>
           {(waterAmount / 1000).toFixed(2)} L
@@ -95,9 +96,7 @@ const Graphic: React.FC = () => {
         </div>
       </div>
       </div>
-     
-
-
+      
       <div className="graph-kcal-container"></div>
     </main>
   );
