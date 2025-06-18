@@ -60,6 +60,7 @@ Cenário: Usuário deseja alteraro perfil pessoal.
 ~~~
 
 ## Testes de funcionalidade
+
 > ***Critérios de Aceitação***
 > ✅ Passou: Resultado Obtido igual ao Resultado Esperado
 > ❌ Falhou: Há divergência entre Resultado Obtido e Esperado

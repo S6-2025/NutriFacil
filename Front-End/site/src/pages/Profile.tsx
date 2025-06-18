@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 type UserData = {
   fullname: string | null;
@@ -32,15 +33,26 @@ const Profile: React.FC = () => {
   return d.toISOString().split("T")[0]; // sempre garante YYYY-MM-DD
 }
 
+
+
+
   function getUsernameFromToken(token: string): string | null {
     try {
-      const payload = JSON.parse(atob(token.split(".")[1]));
-      console.log("Payload:", payload);
+      const payload = jwtDecode(token)
       return payload.sub || null;
     } catch {
       return null;
     }
   }
+  // function getUsernameFromToken(token: string): string | null {
+  //   try {
+  //     const payload = JSON.parse(atob(token.split(".")[1]));
+  //     console.log("Payload:", payload);
+  //     return payload.sub || null;
+  //   } catch {
+  //     return null;
+  //   }
+  // }
 
 useEffect(() => {
   const fetchProfile = async () => {

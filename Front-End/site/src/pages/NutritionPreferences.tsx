@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode"; 
 
 type NutritionData = {
   dietType: string;
@@ -45,15 +46,26 @@ const NutritionPreferences: React.FC = () => {
     activityLevel: "",
   });
 
+
+
   function getUsernameFromToken(token: string): string | null {
     try {
-      const payload = JSON.parse(atob(token.split(".")[1]));
+      const payload = jwtDecode(token)
       return payload.sub || null;
-    } catch (e) {
-      console.error("Erro ao decodificar token:", e);
+    } catch {
       return null;
     }
   }
+
+  // function getUsernameFromToken(token: string): string | null {
+  //   try {
+  //     const payload = JSON.parse(atob(token.split(".")[1]));
+  //     return payload.sub || null;
+  //   } catch (e) {
+  //     console.error("Erro ao decodificar token:", e);
+  //     return null;
+  //   }
+  // }
 
    
  useEffect(() => {
