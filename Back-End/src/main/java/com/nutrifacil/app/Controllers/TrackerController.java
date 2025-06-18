@@ -1,9 +1,6 @@
 package com.nutrifacil.app.Controllers;
 
-import com.nutrifacil.app.DTO.CreateMealEntryRequestDTO;
-import com.nutrifacil.app.DTO.CreateWaterEntryRequestDTO;
-import com.nutrifacil.app.DTO.DailyMealTrackerResponseDTO;
-import com.nutrifacil.app.DTO.DailyWaterTrackerResponseDTO;
+import com.nutrifacil.app.DTO.*;
 import com.nutrifacil.app.Services.MealEntryService;
 import com.nutrifacil.app.Services.WaterEntryService;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/tracker")
@@ -31,7 +31,22 @@ public class TrackerController {
             DailyMealTrackerResponseDTO mealTracker = mealService.getDailySummary(username, date);
             DailyWaterTrackerResponseDTO waterTracker = waterService.getDailySummary(username, date);
 
-            return ResponseEntity.ok(new DailyTrackerResponse(mealTracker, waterTracker));
+            return ResponseEntity.ok(new TrackerResponse(mealTracker, waterTracker));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/month")
+    public ResponseEntity<Object> getMonthSummary(@RequestParam(name = "username", required = true, defaultValue = "") String username) {
+        try {
+            List<MealEntryDTO> mealTracker = mealService.getMonthSummary(username);
+            List<WaterEntryDTO> waterTracker = waterService.getMonthSummary(username);
+
+            return ResponseEntity.ok(Map.ofEntries(
+                    Map.entry("mealTracker", mealTracker),
+                    Map.entry("waterTracker", waterTracker)
+            ));
         } catch (RuntimeException e) {
             return ResponseEntity.status(404).body(e.getMessage());
         }
@@ -57,7 +72,7 @@ public class TrackerController {
 }
 
 
-record DailyTrackerResponse(
+record TrackerResponse(
         DailyMealTrackerResponseDTO mealTracker,
         DailyWaterTrackerResponseDTO waterTracker
 ) {

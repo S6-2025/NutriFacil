@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,6 +77,33 @@ public class MealEntryService {
         return new DailyMealTrackerResponseDTO(
                 date, caloriesGoal, totalCalories, (caloriesGoal - totalCalories), entryDTOS
         );
+    }
+
+    public List<MealEntryDTO> getMonthSummary(String username) {
+        Profile profile = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"))
+                .getProfile();
+
+        Double caloriesGoal = profile.getDiet().getCaloriesCosume();
+        int lastDayOfMonth = YearMonth.from(LocalDate.now()).atEndOfMonth().getDayOfMonth();
+        LocalDateTime periodStart = LocalDateTime.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), 1, 0, 0);
+        LocalDateTime periodEnd = LocalDateTime.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), lastDayOfMonth, 0, 0);
+
+        List<MealEntry> todayEntries = mealRepository.findAllWithFoodByUserProfileAndDateRange(profile, periodStart, periodEnd)
+                .orElse(new ArrayList<>());
+
+
+        List<MealEntryDTO> entryDTOS = new ArrayList<>();
+
+        if (!todayEntries.isEmpty()) {
+            entryDTOS = mappingDTO(todayEntries);
+//            totalCalories = todayEntries.stream()
+//                    .mapToDouble(MealEntry::getCaloriesConsumed)
+//                    .sum();
+        }
+
+
+        return entryDTOS;
     }
 
 
