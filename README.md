@@ -74,20 +74,6 @@ Certifique-se de que o Neon PostgreSQL está configurado e rodando. Em seguida, 
  spring.datasource.password=<sua-senha>
  ~~~
 
-# 📡 Endpoints da API
-
-Abaixo estão os principais endpoints disponíveis no projeto:
-
-| Método | Rota                | Descrição                            | Corpo da Requisição (JSON) | Exemplo de Resposta (Resumo) |
-|--------|---------------------|--------------------------------------|-----------------------------|------------------------------|
-| GET    | `/exemplo`          | Descreva o que esse endpoint faz     | —                           | —                            |
-| POST   | `/exemplo`          | Descreva o que esse endpoint faz     | `{ "chave": "valor" }`      | `{ "id": 1, "chave": "valor" }` |
-| GET    | `/exemplo/{id}`     | Buscar recurso específico por ID     | —                           | `{ "id": 1, "chave": "valor" }` |
-| PUT    | `/exemplo/{id}`     | Atualizar recurso específico por ID  | `{ "chave": "novoValor" }`  | `{ "id": 1, "chave": "novoValor" }` |
-| DELETE | `/exemplo/{id}`     | Deletar recurso específico por ID    | —                           | `204 No Content`             |
-
-> ℹ️ A API roda localmente por padrão em: `http://localhost:3030`
-
 # 🧪Casos de teste
 
 Para visualizar os casos de testes realizados, veja o arquivo [CASOS DE TESTE](./casosDeTeste.md).
