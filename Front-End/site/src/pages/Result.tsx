@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode"; 
 
 import { useEffect, useState } from "react";
 import { IgrExpansionPanel, IgrExpansionPanelModule } from "igniteui-react";
@@ -58,7 +59,7 @@ const Result: React.FC = () => {
 
   function getUsernameFromToken(token: string): string | null {
     try {
-      const payload = JSON.parse(atob(token.split(".")[1]));
+      const payload = jwtDecode(token)
       return payload.sub || null;
     } catch {
       return null;
