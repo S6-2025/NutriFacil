@@ -175,7 +175,7 @@ const Result: React.FC = () => {
 
       <div className="results-container">
         <div className="tmb">
-          <h2>Taxa Metabólica Basal</h2>
+          <h2>TMB</h2>
           <h3 className="h3-with-blob">
             {" "}
             {typeof diet?.tmb === "number" ? diet.tmb.toFixed(0) : "-"}
@@ -195,7 +195,7 @@ const Result: React.FC = () => {
         </div>
 
         <div className="imc">
-          <h2>Seu IMC</h2>
+          <h2>IMC</h2>
           <h3 className="h3-with-blob">
             {" "}
             {typeof diet?.imc === "number" ? diet.imc.toFixed(1) : "-"}
@@ -216,7 +216,7 @@ const Result: React.FC = () => {
         </div>
 
         <div className="tmb">
-          <h2>Consumo diário de água</h2>
+          <h2>Água</h2>
           <h3 className="h3-with-blob" id="water">
             {typeof diet?.waterConsume === "number"
               ? `${diet.waterConsume.toFixed(1)} L`

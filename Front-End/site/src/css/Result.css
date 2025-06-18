@@ -371,14 +371,18 @@ th {
   */
 
 @media(min-width: 1024px) {
-
+.container-result{
+  background-color: var(--color8);
+}
   .mini-container>.section-divider {
     display: none;
   }
 
   .mini-container {
     all: unset;
-    margin-top: 3rem;
+    margin-top: 5rem;
+
+    background-color: var(--color8);
     display: grid;
     grid-template-columns: 20rem 1fr;
     grid-template-rows: auto auto;
@@ -393,7 +397,15 @@ th {
   .user-container {
     grid-area: user;
     display: flex;
-    justify-content: center;
+    margin-left: 1rem;
+    background-color: var(--color8);
+
+
+  }
+
+  .square-profile {
+    background-color: var(--color5);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
   }
 
   .results-container {
@@ -401,42 +413,55 @@ th {
 
     display: flex;
     padding: 0px;
-    width:  20rem;
-    margin-top: -100px;
- 
-    background-color: azure;
+    width: 20rem;
+    margin-top: -20rem;
+    margin-left: 1rem;
+
     font-size: 1rem;
 
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
+    /* espaça igualmente na horizontal */
     align-items: center;
 
+    height: 10rem;
 
 
   }
 
-  .results-container  h2{
+  .results-container h2 {
     font-size: .9rem;
+
   }
 
   .kcal-container {
     grid-area: kcal;
+
+    background-color: var(--color8);
   }
 
   .meals-container {
     grid-area: meals;
+
+    background-color: var(--color8);
   }
 
 
   .h3-with-blob {
     padding: 0px;
-    height: 3rem;
-    width: 3rem;
-    font-size: 2rem;
+    height: 4rem;
+    width: 4rem;
+    font-size: 1rem;
+    margin: 0px;
+    margin-top: 1rem;
   }
 
-  .tmb, .imc{
+  .tmb,
+  .imc {
     padding: 0px;
+    width: auto;
+    flex: 1;
+    max-width: 7rem;
   }
 
   .results-container igc-expansion-panel::part(header) {
