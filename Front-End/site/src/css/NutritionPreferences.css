@@ -5,7 +5,7 @@
   gap: 1rem;
   font-family: var(--font-logo);
   align-items: center;
-
+  margin-top: 11vh;
 }
 
 h1{
@@ -25,7 +25,7 @@ font-weight: 700;
   font-size: 1.2em;
   /* background-color: brown; */
   width: 100%;
-  height: 5rem;
+
   padding-left: .4rem;
   padding-right: .4rem;
 
@@ -47,7 +47,7 @@ select{
   -moz-appearance: none;
    
   width: 60%;
-  height: 2.5rem;
+  height: 2rem;
   font-size: 1.5rem;
 
   border: 1px solid var(--color7);
@@ -76,10 +76,11 @@ select option:nth-child(1){
 }
 
 #form-alergies {
-  height: 20rem;
+ 
   display: flex;
+  margin-bottom: 1rem;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
  
@@ -89,9 +90,62 @@ select option:nth-child(1){
   justify-content: center;
   align-items: center;
   gap: .2rem;
+  height: 12rem;
+  
 }
 
 .allergy-buttons > button{
   height: 2.3rem;
   width: 15rem;
+   
+}
+
+ 
+
+
+@media(min-width: 1920px) {
+ .container-profile{
+  background-color: pink;
+ }
+
+}
+
+ 
+@media(min-width: 1366px) and (max-width: 1919px)  {
+ .container-profile {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+  gap: 1rem;
+  font-family: var(--font-logo);
+  margin-top: 11vh;
+  padding: 1.5rem;
+  justify-items: center;
+   
+}
+
+.container-profile > h1 {
+  grid-column: 1 / -1; /* ocupa as 4 colunas */
+  text-align: center;
+  font-size: 1.8rem;
+  width: 100%;
+  padding: 10px;
+}
+
+.form-section,
+#form-alergies {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-wrapper {
+  grid-column: 1 / -1; /* botão ocupa linha inteira */
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+ 
+}
+
+
 }
