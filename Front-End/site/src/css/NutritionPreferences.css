@@ -104,9 +104,40 @@ select option:nth-child(1){
 
 
 @media(min-width: 1920px) {
- .container-profile{
-  background-color: pink;
- }
+  .container-profile {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+  gap: 1rem;
+  font-family: var(--font-logo);
+  margin-top: 11vh;
+  padding: 1.5rem;
+  justify-items: center;
+   
+}
+
+.container-profile > h1 {
+  grid-column: 1 / -1; /* ocupa as 4 colunas */
+  text-align: center;
+  font-size: 1.8rem;
+  width: 100%;
+  padding: 10px;
+}
+
+.form-section,
+#form-alergies {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-wrapper {
+  grid-column: 1 / -1; /* botão ocupa linha inteira */
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+ 
+}
 
 }
 
