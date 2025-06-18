@@ -65,6 +65,7 @@
 }
 
 
+
 button{
   width: 20rem;
   height: 3rem;
@@ -74,6 +75,7 @@ button{
   font-weight: 700;
   text-align: center;
   border: none;
+  cursor: pointer;
 }
 
 .button-wrapper-final{
@@ -191,28 +193,54 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   line-height: 2; 
 }
 
-
-
 @media(min-width: 1024px){
 
-  .questionary-container{
-    background-color: blanchedalmond;
-
-  }
-
-  #image-quest{
-    width: 50%;
-    height: 50%;
-  }
-  .step-image{
-    padding-bottom: 10vh;
-  }
-
-  .step-image > img{
-    width: 50%;
-  }
  
 
+  .questionary-container {
+    display: flex;
+   
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+     
+    
+  
+  }
 
 
+
+
+
+  #image-quest{
+     width: 50%;
+     height: 50%;
+  }
+
+.step-description,
+.step-single,
+.step-image,
+.step-multiple,
+.step-input {
+  height: 70vh;
+  width: 50%;
+
+  padding: 1rem;
+  margin-top: 11vh;
+  margin-bottom: 11vh;
+}
+ 
+#multiples-choices{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colunas iguais */
+  gap: 1rem;
+}
+
+.button-wrapper-final{
+  margin-top: -100px;
+  margin-bottom: 80px;
+}
+
+  
 }

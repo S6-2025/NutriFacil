@@ -323,9 +323,10 @@ input::placeholder {
     height: 20vh;
   }
 
- 
+  
 
  .tooltip-error {
+    top: 85%; 
     background-color: var(--error-bg);
     color: var(--error-text);
     max-width: 300px;

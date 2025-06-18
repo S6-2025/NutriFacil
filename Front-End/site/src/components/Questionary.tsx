@@ -217,7 +217,7 @@ function Questionary() {
     {step.type === "multiple" && (
   <div className="step-multiple">
     <h3>{step.question}</h3>
-    <ul>
+    <ul id="multiples-choices">
      {step.options.map((option) => {
   const enumValue = allergyLabelToEnum[option] || option;
 
@@ -227,7 +227,7 @@ function Questionary() {
 
   return (
     <li key={option}>
-      <button
+      <button id="button-multiples"
         onClick={() => handleOptionClick(option)}
         className={`multiple-options ${isSelected ? "selected" : "no-selected"}`}
       >
