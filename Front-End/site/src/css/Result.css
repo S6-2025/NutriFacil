@@ -370,7 +370,7 @@ th {
 
   */
 
-@media(min-width: 1024px) {
+@media(min-width: 1050px) {
   .container-result {
     background-color: var(--color8);
   }
@@ -546,11 +546,11 @@ th {
 }
 
  
-@media(max-width: 1500px){
+@media (min-height: 735px) and (min-width: 1050px) {
   .mini-container {
     all: unset;
     margin-top:4rem;
- 
+    background-color: blue;
  
     display: grid;
     grid-template-columns: 18rem 1fr;
@@ -580,10 +580,10 @@ th {
 
   .results-container {
     grid-area: results;
-
+    
     display: flex;
     position: absolute;
-    top: 100%;
+    top: 80%;
     padding: 0px;
     width: 18rem;
     margin-top: -17rem;
