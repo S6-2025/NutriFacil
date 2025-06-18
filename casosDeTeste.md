@@ -108,7 +108,7 @@ Cenário: Usuário deseja alteraro perfil pessoal.
 ## Participante 01
 
 - **Nome / Código:** Participante 01
-- **Perfil (ex.: iniciante / avançado):** Avançado
+- **Perfil (ex.: iniciante / avançado):** Iniciante
 - **Data:** 18/06/2025
 - **Moderador:** Gabrielle
 - **Dispositivo / Navegador:** Notebook / Google Chrome
@@ -118,17 +118,17 @@ Cenário: Usuário deseja alteraro perfil pessoal.
 | Nº | Descrição da Tarefa | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades | Observações do Usuário |
 |----|----------------------|------------|----------------|---------------|------------------------|--------------------------|
 | 1 | Selecionar a dieta “Low Carb” | 30 s | 48 s | S | - | Tranquilo. |
-| 2 | Informar peso, altura, idade e sexo | 60 s | 29 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
-| 3 | Escolher 3 alimentos preferidos em cada categoria | 30 s | 49 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
-| 4 | Gerar o plano alimentar e visualizar as recomendações | 30 s | 66 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
-| 5 | Identificar onde registrar alergias/intolerâncias | 30 s | 20 s | S | - | Tranquilo. |
+| 2 | Informar peso, altura, idade e sexo | 60 s | 29 s | S | - | Tranquilo |
+| 3 | Editar dados pessoais| 60 s | 49 s | S | - | Ok |
+| 4 | Visualizar as recomendações de alimentos| 30 s | 66 s | S | - | - |
+| 5 | Identificar onde alterar alergias/intolerâncias | 30 s | 20 s | S | - | Tranquilo. |
 
 ### Métricas de Satisfação
 
 | Critério | Nota (1–5) | Comentários |
 |----------|------------|-------------|
 | Facilidade de navegação | 4 | - |
-| Clareza das instruções | 4 | - |
+| Clareza das instruções | 5 | - |
 | Velocidade de resposta | 4 | - |
 | Layout e design | 5 | - |
 | Confiança ao usar a ferramenta | 4 | - |
@@ -143,18 +143,17 @@ Cenário: Usuário deseja alteraro perfil pessoal.
 - **Perfil (ex.: iniciante / avançado):** Avançado
 - **Data:** 18/06/2025
 - **Moderador:** Gabrielle
-- **Dispositivo / Navegador:** Celular / Safari
-
+- **Dispositivo / Navegador:** Celular / Google Chrome
 
 ### Tarefas
 
 | Nº | Descrição da Tarefa | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades | Observações do Usuário |
 |----|----------------------|------------|----------------|---------------|------------------------|--------------------------|
-| 1 | Selecionar a dieta “Low Carb” | 30 s | 52 s | S | - | Tranquilo. |
-| 2 | Informar peso, altura, idade e sexo | 60 s | 21 s | S | - | Tranquilo. |
-| 3 | Escolher 3 alimentos preferidos em cada categoria | 30 s | 64 s | S | - | Tranquilo. |
-| 4 | Gerar o plano alimentar e visualizar as recomendações | 30 s | 61 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
-| 5 | Identificar onde registrar alergias/intolerâncias | 30 s | 70 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 1 | Selecionar a dieta “Low Carb” | 30 s | 52 s | S | - | Fácil e intuitivo |
+| 2 | Informar peso, altura, idade e sexo | 60 s | 21 s | S | - | Bem tranquilo |
+| 3 | Editar dados pessoais| 60 s | 64 s | S | - | Tranquilo. |
+| 4 | Visualizar as recomendações de alimentos| 30 s | 61 s | S | Campo escondido | Campos poderiam já iniciarem abertos. |
+| 5 | Identificar onde alterar alergias/intolerâncias | 30 s | 20 s | S | - |Normal|
 
 ### Métricas de Satisfação
 
@@ -162,12 +161,11 @@ Cenário: Usuário deseja alteraro perfil pessoal.
 |----------|------------|-------------|
 | Facilidade de navegação | 5 | - |
 | Clareza das instruções | 4 | - |
-| Velocidade de resposta | 3 | Precisa melhorar |
-| Layout e design | 5 | - |
+| Velocidade de resposta | 4 | - |
+| Layout e design | 4 | - |
 | Confiança ao usar a ferramenta | 3 | Precisa melhorar |
 
 ---
-
 
 ## Participante 03
 
@@ -177,19 +175,17 @@ Cenário: Usuário deseja alteraro perfil pessoal.
 - **Perfil (ex.: iniciante / avançado):** Iniciante
 - **Data:** 18/06/2025
 - **Moderador:** Vinicius Madureira
-- **Dispositivo / Navegador:** Tablet / Edge
-
-
+- **Dispositivo / Navegador:** Notebook / Edge
 
 ### Tarefas
 
 | Nº | Descrição da Tarefa | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades | Observações do Usuário |
 |----|----------------------|------------|----------------|---------------|------------------------|--------------------------|
-| 1 | Selecionar a dieta “Low Carb” | 30 s | 61 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
-| 2 | Informar peso, altura, idade e sexo | 60 s | 22 s | S | - | Tranquilo. |
-| 3 | Escolher 3 alimentos preferidos em cada categoria | 30 s | 47 s | S | - | Tranquilo. |
-| 4 | Gerar o plano alimentar e visualizar as recomendações | 30 s | 56 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
-| 5 | Identificar onde registrar alergias/intolerâncias | 30 s | 47 s | S | - | Tranquilo. |
+| 1 | Selecionar a dieta “Low Carb” | 30 s | 20 s | S | - | - |
+| 2 | Informar peso, altura, idade e sexo | 60 s | 52 s | S | - | - |
+| 3 | Editar dados pessoais| 60 s | 57 s | S | - | Tranquilo. |
+| 4 | Visualizar as recomendações de alimentos| 30 s | 56 s | S | Dificuldade ao localizar o campo | Poderia melhorar a percepção que o campo expande |
+| 5 | Identificar onde alterar alergias/intolerâncias | 30 s | 47 s | S | - | - |
 
 ### Métricas de Satisfação
 
@@ -197,9 +193,9 @@ Cenário: Usuário deseja alteraro perfil pessoal.
 |----------|------------|-------------|
 | Facilidade de navegação | 4 | - |
 | Clareza das instruções | 5 | - |
-| Velocidade de resposta | 3 | Precisa melhorar |
-| Layout e design | 3 | Precisa melhorar |
-| Confiança ao usar a ferramenta | 3 | Precisa melhorar |
+| Velocidade de resposta | 5 | Não travou |
+| Layout e design | 3 | Precisa melhorar o entendimento|
+| Confiança ao usar a ferramenta | 4 |-|
 
 ---
 
@@ -212,31 +208,30 @@ Cenário: Usuário deseja alteraro perfil pessoal.
 - **Perfil (ex.: iniciante / avançado):** Iniciante
 - **Data:** 18/06/2025
 - **Moderador:** Gabriel Evaristo
-- **Dispositivo / Navegador:** Celular / Safari
+- **Dispositivo / Navegador:** Celular / Google Chrome
 
 
 ### Tarefas
 
 | Nº | Descrição da Tarefa | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades | Observações do Usuário |
 |----|----------------------|------------|----------------|---------------|------------------------|--------------------------|
-| 1 | Selecionar a dieta “Low Carb” | 30 s | 56 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
-| 2 | Informar peso, altura, idade e sexo | 60 s | 47 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
-| 3 | Escolher 3 alimentos preferidos em cada categoria | 30 s | 24 s | S | - | Tranquilo. |
-| 4 | Gerar o plano alimentar e visualizar as recomendações | 30 s | 67 s | S | - | Tranquilo. |
-| 5 | Identificar onde registrar alergias/intolerâncias | 30 s | 75 s | S | - | Tranquilo. |
+| 1 | Selecionar a dieta “Low Carb” | 30 s | 36 s | S | - | Poderia ser mais direto. |
+| 2 | Informar peso, altura, idade e sexo | 60 s | 57 s | S | - | - |
+| 3 | Editar dados pessoais| 60 s | 84 s | S | - | Demorei a entender onde tinha que clicar primeiro |
+| 4 | Visualizar as recomendações de alimentos| 30 s | 67 s | S | - | - |
+| 5 | Identificar onde alterar alergias/intolerâncias | 30 s | 35 s | S | - | Igual o outro |
 
-###Métricas de Satisfação
+### Métricas de Satisfação
 
 | Critério | Nota (1–5) | Comentários |
 |----------|------------|-------------|
-| Facilidade de navegação | 5 | - |
+| Facilidade de navegação | 4 | - |
 | Clareza das instruções | 5 | - |
 | Velocidade de resposta | 5 | - |
-| Layout e design | 3 | Precisa melhorar |
+| Layout e design | 4 | - |
 | Confiança ao usar a ferramenta | 5 | - |
 
 ---
-
 
 ## Participante 05
 
@@ -246,32 +241,29 @@ Cenário: Usuário deseja alteraro perfil pessoal.
 - **Perfil (ex.: iniciante / avançado):** Intermediário
 - **Data:** 18/06/2025
 - **Moderador:** Vinicius Madureira
-- **Dispositivo / Navegador:** Notebook / Google Chrome
-
-
+- **Dispositivo / Navegador:** Desktop/ Google Chrome
 
 ### Tarefas
 
 | Nº | Descrição da Tarefa | Tempo Alvo | Tempo Real (s) | Sucesso (S/N) | Erros / Dificuldades | Observações do Usuário |
 |----|----------------------|------------|----------------|---------------|------------------------|--------------------------|
-| 1 | Selecionar a dieta “Low Carb” | 30 s | 28 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
-| 2 | Informar peso, altura, idade e sexo | 60 s | 51 s | S | - | Tranquilo. |
-| 3 | Escolher 3 alimentos preferidos em cada categoria | 30 s | 56 s | S | - | Tranquilo. |
-| 4 | Gerar o plano alimentar e visualizar as recomendações | 30 s | 35 s | S | - | Tranquilo. |
-| 5 | Identificar onde registrar alergias/intolerâncias | 30 s | 67 s | S | - | Tranquilo. |
+| 1 | Selecionar a dieta “Low Carb” | 30 s | 28 s | S | - | - |
+| 2 | Informar peso, altura, idade e sexo | 60 s | 51 s | S | - | De boa |
+| 3 | Editar dados pessoais| 60 s | 56 s | S | - | meio chato mas ok |
+| 4 | Visualizar as recomendações de alimentos| 30 s | 35 s | S | - | Normal |
+| 5 | Identificar onde alterar alergias/intolerâncias | 30 s | 67 s | S | - | De boa |
 
 ### Métricas de Satisfação
 
 | Critério | Nota (1–5) | Comentários |
 |----------|------------|-------------|
-| Facilidade de navegação | 3 | Precisa melhorar |
-| Clareza das instruções | 3 | Precisa melhorar |
+| Facilidade de navegação | 5 | - |
+| Clareza das instruções | 4 | Edição não muito clara |
 | Velocidade de resposta | 5 | - |
-| Layout e design | 5 | - |
+| Layout e design | 4 | - |
 | Confiança ao usar a ferramenta | 5 | - |
 
 ---
-
 
 ## Participante 06
 
@@ -281,7 +273,7 @@ Cenário: Usuário deseja alteraro perfil pessoal.
 - **Perfil (ex.: iniciante / avançado):** Iniciante
 - **Data:** 18/06/2025
 - **Moderador:** Gabriel Evaristo
-- **Dispositivo / Navegador:** Notebook / Google Chrome
+- **Dispositivo / Navegador:** Celular / Google Chrome
 
 
 
@@ -291,9 +283,9 @@ Cenário: Usuário deseja alteraro perfil pessoal.
 |----|----------------------|------------|----------------|---------------|------------------------|--------------------------|
 | 1 | Selecionar a dieta “Low Carb” | 30 s | 39 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
 | 2 | Informar peso, altura, idade e sexo | 60 s | 67 s | S | - | Tranquilo. |
-| 3 | Escolher 3 alimentos preferidos em cada categoria | 30 s | 49 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
-| 4 | Gerar o plano alimentar e visualizar as recomendações | 30 s | 46 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
-| 5 | Identificar onde registrar alergias/intolerâncias | 30 s | 48 s | S | - | Tranquilo. |
+| 3 | Editar dados pessoais| 60 s | 49 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 4 | Visualizar as recomendações de alimentos| 30 s | 46 s | N | Dificuldade ao localizar o campo | Poderia ser mais claro. |
+| 5 | Identificar onde alterar alergias/intolerâncias | 30 s | 48 s | S | - | Tranquilo. |
 
 ### Métricas de Satisfação
 
@@ -307,16 +299,15 @@ Cenário: Usuário deseja alteraro perfil pessoal.
 
 ---
 
-
-## Feedback Aberto
+## Feedback
 
 ### Participante 01
 
 - **O que você mais gostou?**  
-  _“Gostei da forma como os resultados são exibidos, ficou bem visual e simples.”_
+  _“Gostei da forma como os resultados são exibidos, ficou bem bonito.”_
 
 - **O que você achou mais difícil?**  
-  _“Levei um tempinho pra encontrar alguns campos do questionário.”_
+  _“Levei um tempinho pra encontrar a recomendação de dieta.”_
 
 - **Sugestões de melhoria:**  
   _“Talvez colocar dicas visuais ou tutoriais rápidos nas etapas.”_
@@ -326,26 +317,26 @@ Cenário: Usuário deseja alteraro perfil pessoal.
 ### Participante 02
 
 - **O que você mais gostou?**  
-  _“A apresentação da dieta foi clara e objetiva, curti bastante.”_
+  _“A interface dos resultados é muito limpa e agradável mas poderia já vir aberta.”_
 
 - **O que você achou mais difícil?**  
-  _“Algumas perguntas não estavam tão visíveis, acabei pulando sem querer.”_
+  _“Nada muito dificil, mas a edição poderia ser mais direta”_
 
 - **Sugestões de melhoria:**  
-  _“Destacar as etapas e talvez usar ícones pra guiar melhor o usuário.”_
+  _“Não precisar clicar no botão "Editar" para mudar as informações, só no "Salvar".”_
 
 ---
 
 ### Participante 03
 
 - **O que você mais gostou?**  
-  _“A interface dos resultados é muito limpa e agradável.”_
+  _“A apresentação da dieta foi objetiva mas não muito clara, porém curti bastante.”_
 
 - **O que você achou mais difícil?**  
-  _“Tive dificuldade em perceber que havia mais perguntas ao rolar.”_
+  _“Sem grandes dificuldades.”_
 
 - **Sugestões de melhoria:**  
-  _“Colocar barras de progresso mais visíveis e instruções rápidas no começo.”_
+  _“ - ”_
 
 ---
 
@@ -355,48 +346,49 @@ Cenário: Usuário deseja alteraro perfil pessoal.
   _“A parte final com o plano alimentar foi o que mais me chamou atenção.”_
 
 - **O que você achou mais difícil?**  
-  _“Achei algumas partes confusas no cadastro.”_
+  _“O login automático após o login me confundiiu um pouco”_
 
 - **Sugestões de melhoria:**  
-  _“Adicionar uma espécie de passo a passo visual ajudaria bastante.”_
+  _“Adicionar uma mensagem ao efetuar o login”_
 
 ---
 
 ### Participante 05
 
 - **O que você mais gostou?**  
-  _“Tudo ficou bem organizado, especialmente a tela com os dados pessoais.”_
+  _“Tudo ficou bem organizado”_
 
 - **O que você achou mais difícil?**  
-  _“Certos campos pareciam meio escondidos, precisei procurar.”_
+  _“Saber se a edição tinha salvado mesmo”_
 
 - **Sugestões de melhoria:**  
-  _“Colocar ajuda contextual com ícones de interrogação, por exemplo.”_
+  _“Adiconar mensagem de "Perfil salvo" ou algo do tipo pra indicar o salvamento”_
 
 ---
 
 ### Participante 06
 
 - **O que você mais gostou?**  
-  _“Gostei de como o sistema resume todas as minhas respostas na tela final.”_
+  _“Gostei de como o sistema mostra meus resultados de imc no final”_
 
 - **O que você achou mais difícil?**  
-  _“Fiquei um pouco perdido no início, sem saber por onde começar.”_
+  _“Fiquei um pouco perdido pra achar os menus, mas depois foi tudo certo.”_
 
 - **Sugestões de melhoria:**  
-  _“Incluir uma introdução curta explicando o processo ajudaria.”_
+  _“Incluir um mini tutorial explicando o cada parte ajudaria.”_
 
 
 ## Conclusões dos moderadores
 
 - **Principais bloqueios encontrados:**  
-  1. Campo de alergia difícil de localizar  
-  2. Falta de feedback ao selecionar alimentos  
+  1. Campo com as dicas de alimentação poderiam iniciar abertas.  
+  2. Menu de editar poderia ser somente salvar.
 
 - **Pontos fortes observados:**  
-  1. Interface agradável  
-  2. Fluxo de preenchimento intuitivo  
+  1. Interface agradável.
+  2. Preenchimento intuitivo.
 
 - **Recomendações para próxima iteração:**  
-  1. Melhorar visibilidade de campos críticos  
-  2. Inserir mensagens orientativas durante o fluxo
+  1. Melhorar visibilidade de campos críticos.
+  2. Inserir mensagens de "Salvo com sucesso" etc.
+  
