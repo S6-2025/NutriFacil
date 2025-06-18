@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode"; 
 
 import { useEffect, useState } from "react";
 import { IgrExpansionPanel, IgrExpansionPanelModule } from "igniteui-react";
@@ -58,19 +57,12 @@ const Result: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   function getUsernameFromToken(token: string): string | null {
-    try{
-      const payload = jwtDecode(token);
-      return payload.sub || null;
-    }catch(error) {
-      console.error("Erro ao decodificar o token:", error);
-      return null;
-    }
-/*     try {
+    try {
       const payload = JSON.parse(atob(token.split(".")[1]));
       return payload.sub || null;
     } catch {
       return null;
-    } */
+    }
   }
 
   useEffect(() => {
@@ -93,7 +85,6 @@ const Result: React.FC = () => {
 
       const headers = {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json;charset=UTF-8"
       };
 
       try {

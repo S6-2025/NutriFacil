@@ -1,7 +1,51 @@
 import React, { useState } from "react";
-// precisa criar esse CSS
 
 const MAX_CAPACITY = 2500; // 2,5L em ml
+
+// Componente da gota de água
+const DropWater = ({ fillPercent }: { fillPercent: number }) => {
+  const svgSize = 96;
+  const viewBoxSize = 24;
+
+  const fillHeight = (fillPercent / 100) * viewBoxSize;
+  const fillY = viewBoxSize - fillHeight;
+
+  return (
+    <svg
+      width={svgSize}
+      height={svgSize}
+      viewBox="0 0 24 24"
+      style={{ display: "block", margin: "auto" }}
+    >
+      <defs>
+        <clipPath id="dropClip">
+          <path d="M12 20a6 6 0 0 1-6-6c0-4 6-10.75 6-10.75S18 10 18 14a6 6 0 0 1-6 6" />
+        </clipPath>
+      </defs>
+
+      {/* Gota base - sempre visível */}
+      <path
+        d="M12 20a6 6 0 0 1-6-6c0-4 6-10.75 6-10.75S18 10 18 14a6 6 0 0 1-6 6"
+        fill="#81d4fa"
+        stroke="#4fc3f7"
+        strokeWidth="1"
+      />
+
+      {/* Água preenchida */}
+      <rect
+        x="0"
+        y={fillY}
+        width="24"
+        height={fillHeight}
+        fill="#0288d1"
+        clipPath="url(#dropClip)"
+        style={{
+          transition: "height 0.5s ease, y 0.5s ease",
+        }}
+      />
+    </svg>
+  );
+};
 
 const Graphic: React.FC = () => {
   const [waterAmount, setWaterAmount] = useState(0);
@@ -18,48 +62,56 @@ const Graphic: React.FC = () => {
 
   return (
     <main className="super-container">
-      <div className="personalize-container">
-        <div className="glass-container">
-<div className="glass">
-  <div className="water-fill" style={{ height: `${percentage}%` }} />
-  {percentage > 0 && (
-    <svg
-      className="wave"
-      viewBox="0 0 200 40"
-      preserveAspectRatio="none"
-      style={{ bottom: `calc(${percentage}% - 10px)` }}
-    >
-      <path
-        d="M0 20 Q 25 0, 50 20 T 100 20 T 150 20 T 200 20 V40 H0 Z"
-        fill="#4fc3f7"
-      >
-        <animateTransform
-          attributeName="transform"
-          attributeType="XML"
-          type="translate"
-          values="0 0; -50 0; 0 0"
-          dur="15s"
-          repeatCount="indefinite"
-        />
-      </path>
-    </svg>
-  )}
-</div>
+      <div className="graph-water-container">
+        <h1 style={{ textAlign: "center", color: "#0077ff" }}>
+          Consumo de água
+        </h1>
 
+        <DropWater fillPercent={percentage} />
 
+        <p style={{ textAlign: "center", fontWeight: "bold", marginTop: 10 }}>
+          {(waterAmount / 1000).toFixed(2)} L
+        </p>
 
-          <p>{(waterAmount / 1000).toFixed(2)} L</p>
-        </div>
-
-        <div className="buttons">
-          <button onClick={() => handleAdd(250)}>+250ml</button>
-          <button onClick={() => handleAdd(500)}>+500ml</button>
-          <button onClick={() => handleAdd(1000)}>+1L</button>
-          <button onClick={() => handleRemove(250)}>-250ml</button>
+        <div
+          className="buttons"
+          style={{
+            marginTop: 16,
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "10px",
+          }}
+        >
+          <button onClick={() => handleAdd(250)} style={buttonStyle}>
+            +250ml
+          </button>
+          <button onClick={() => handleAdd(500)} style={buttonStyle}>
+            +500ml
+          </button>
+          <button onClick={() => handleAdd(1000)} style={buttonStyle}>
+            +1L
+          </button>
+          <button onClick={() => handleRemove(250)} style={buttonStyle}>
+            -250ml
+          </button>
         </div>
       </div>
+
+      <div className="graph-kcal-container"></div>
     </main>
   );
+};
+
+const buttonStyle: React.CSSProperties = {
+  padding: "8px 14px",
+  fontWeight: "bold",
+  cursor: "pointer",
+  backgroundColor: "#0077ff",
+  color: "white",
+  border: "none",
+  borderRadius: 8,
+  boxShadow: "0 2px 6px rgba(0, 119, 255, 0.4)",
 };
 
 export default Graphic;
