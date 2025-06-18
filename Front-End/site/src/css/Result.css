@@ -1,5 +1,5 @@
 .mini-container {
-  height: 100vh;
+  height:  max-content;
 
   margin-top: 9vh;
   display: flex;
@@ -352,8 +352,30 @@ th {
   background-color: black;
 }
 
+.button-graph{
+    width: 100%;
+    margin-bottom: 10rem;
+     
+    display: flex;
+    justify-content: center;
+     
+  }
 
+  .button-graph > .graph-link > button{
+    background-color:var(--color3);
+    color: var(--color8);
+    font-size: 1.5rem;
+    box-shadow: 6px 5px 10px rgba(155, 155, 155, 0.651);
+    cursor: pointer;
 
+  }
+ 
+ .button-graph > .graph-link > button:hover{
+  background-color: var(--color7); /* cor de fundo muda */
+  color: var(--color8);            /* cor do texto muda */
+}
+
+ 
 
 
 /* 
@@ -389,8 +411,14 @@ th {
     grid-template-areas:
       "user        meals"
       "user       kcal"
-      "results     kcal";
+      "results     kcal"
+      ".       graph";
     gap: 20px;
+  }
+
+  .button-graph{
+    grid-area: graph;
+ 
   }
 
   .user-container {
@@ -564,9 +592,22 @@ th {
     grid-template-areas:
       "user        meals"
       "user       kcal"
-      "results     kcal";
+      "results     kcal"
+      ".            graph";
     gap: 20px;
   }
+
+  
+  .button-graph{
+    grid-area: graph;
+ 
+    display: flex;
+    justify-content: center;
+
+  }
+
+  
+
 
   .user-container {
     grid-area: user;

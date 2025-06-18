@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DropWater from "../components/DropWater"; // ajuste o caminho conforme a sua estrutura
 
-import { LineChart } from '@mui/x-charts/LineChart';
-import type {} from '@mui/x-charts/themeAugmentation';
+import { LineChart } from "@mui/x-charts/LineChart";
+import type {} from "@mui/x-charts/themeAugmentation";
 
 const MAX_CAPACITY = 2500;
 
@@ -54,73 +54,72 @@ const Graphic: React.FC = () => {
 
   return (
     <main className="super-container">
-
       <div className="graph-super-container">
-
-<div className="graph-water-container">
-        <div className="water-section">
-          <h1 className="title">Consumo de água</h1>
-          <DropWater fillPercent={percentage} />
-          <p className="water-level">
-            {(waterAmount / 1000).toFixed(2)} L / {(MAX_CAPACITY / 1000).toFixed(1)} L
-          </p>
-          <div className="water-buttons">
-            <button onClick={() => handleAdd(250)} className="btn">+250ml</button>
-            <button onClick={() => handleAdd(500)} className="btn">+500ml</button>
-            <button onClick={() => handleAdd(1000)} className="btn">+1L</button>
-            <button onClick={() => handleRemove(250)} className="btn">-250ml</button>
+        <div className="graph-water-container">
+          <div className="water-section">
+            <h1 className="title">Consumo de água</h1>
+            <DropWater fillPercent={percentage} />
+            <p className="water-level">
+              {(waterAmount / 1000).toFixed(2)} L /{" "}
+              {(MAX_CAPACITY / 1000).toFixed(1)} L
+            </p>
+            <div className="water-buttons">
+              <button onClick={() => handleAdd(250)} className="btn">
+                +250ml
+              </button>
+              <button onClick={() => handleAdd(500)} className="btn">
+                +500ml
+              </button>
+              <button onClick={() => handleAdd(1000)} className="btn">
+                +1L
+              </button>
+              <button onClick={() => handleRemove(250)} className="btn">
+                -250ml
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="graph-kcal-container">
-        <h1 className="title">Calorias</h1>
+        <div className="graph-kcal-container">
+          <h1 className="title">Calorias</h1>
 
-        <p className="calories-info">
-          {caloriesConsumed} / {caloriesTotal} kcal
-        </p>
+          <p className="calories-info">
+            {caloriesConsumed} / {caloriesTotal} kcal
+          </p>
 
-        <div className="progress-bar">
-          <div
-            className="progress-water-fill"
-            style={{ width: `${(caloriesConsumed / caloriesTotal) * 100}%` }}
-          />
+          <div className="progress-bar">
+            <div
+              className="progress-water-fill"
+              style={{ width: `${(caloriesConsumed / caloriesTotal) * 100}%` }}
+            />
 
-          <input
-          type="text"
-          value={foodInput}
-          onChange={(e) => setFoodInput(e.target.value)}
-          placeholder="Registrar comida..."
-          className="input"
-        />
+           
+          </div>
+           <input
+              type="text"
+              value={foodInput}
+              onChange={(e) => setFoodInput(e.target.value)}
+              placeholder="Registrar comida..."
+              className="input"
+            />
 
-        
+          <button onClick={handleFoodSubmit} className="btn">
+            Registrar
+          </button>
         </div>
 
-        <button onClick={handleFoodSubmit} className="btn">
-          Registrar
-        </button>
+        <div className="graph-days-container">
+          <LineChart
+            xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+            series={[
+              {
+                data: [2, 5.5, 2, 8.5, 1.5, 5],
+              },
+            ]}
+            height={300}
+          />
+        </div>
       </div>
-
-
-    <div className="graph-days-container"> 
-
-      <LineChart
-  xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
-  series={[
-    {
-      data: [2, 5.5, 2, 8.5, 1.5, 5],
-    },
-  ]}
-  height={300}
-/>
-    </div>
-      
-      </div>
-
-
-
-      
     </main>
   );
 };

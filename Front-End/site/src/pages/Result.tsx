@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IgrExpansionPanel, IgrExpansionPanelModule } from "igniteui-react";
 import "igniteui-webcomponents/themes/light/bootstrap.css";
@@ -415,7 +415,18 @@ const Result: React.FC = () => {
             <br />
           </div>
         </div>
+
+        <div className="button-graph">
+
+           <Link to="/graph" className="graph-link">
+                   <button>Conferir Gráficos</button>
+              </Link>
+          
+                  
+        </div>
       </div>
+
+    
     </div>
   );
 };
