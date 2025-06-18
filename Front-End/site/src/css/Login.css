@@ -153,13 +153,7 @@ input::placeholder {
   color: var(--color5);
 }
 
-
-.input-wrapper {
-  position: relative;
-  display: flex;
-
-  flex-direction: column;
-}
+ 
 
 .input-error {
 
@@ -167,25 +161,28 @@ input::placeholder {
 }
 
 
+.input-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+   
+}
 .tooltip-error {
   position: absolute;
-  top: 100%;
+    top: 130%; /* posicionado acima do input */
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-8px); /* sobe um pouco */
   background-color: var(--color8);
   color: var(--error-bg);
   font-weight: 700;
   padding: 6px 10px;
   border-radius: 4px;
-  font-size: 1rem;
-  margin-top: 6px;
+  font-size: 0.9rem;
   white-space: nowrap;
   z-index: 10;
-  animation: fadeIn 0.3s ease-in-out;
-  max-width: 90%;
-  text-align: center;
+  animation: fadeInTop 0.3s ease-in-out;
 }
-
 
 .tooltip-error::before {
   display: none;
@@ -224,8 +221,12 @@ input::placeholder {
     display: flex;
     justify-content: center;
     width: 50%;
+     
   }
 
+  .super-form > form{
+    height: 50vh;
+  }
   .super-form {
     width: auto;
     padding: 0 5vw;
@@ -318,5 +319,29 @@ input::placeholder {
   }
 
 
-  /** fim media 1024px */
+  #camp-pass{
+    height: 20vh;
+  }
+
+ 
+
+ .tooltip-error {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    max-width: 300px;
+    animation: fadeDown 0.3s ease-in-out;
+  }
+
+ @keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+ 
 }

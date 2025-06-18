@@ -194,6 +194,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 
 @media(min-width: 1024px){
+
+  .questionary-container{
+    background-color: blanchedalmond;
+
+  }
+
+  #image-quest{
+    width: 50%;
+    height: 50%;
+  }
   .step-image{
     padding-bottom: 10vh;
   }
@@ -201,5 +211,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .step-image > img{
     width: 50%;
   }
+ 
+
+
 
 }

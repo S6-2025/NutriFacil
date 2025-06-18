@@ -66,7 +66,7 @@ function Questionary() {
       {step.type === "image" && (
         <div className="step-image">
           <h2>{step.title}</h2>
-          <img src={step.imageUrl} alt={step.title} />
+          <img src={step.imageUrl} alt={step.title}  id="image-quest"/>
           <p>{step.description}</p>
           <div className="button-wrapper">
             <button

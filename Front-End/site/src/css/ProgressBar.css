@@ -50,3 +50,42 @@
 .arrow > .header__SVG:hover{
   fill: var(--color3);
 }
+
+
+@media(min-width: 1024px){
+
+.progress-container {
+
+  width: 50%;
+  height: 10vh;
+  margin-top: 3vh;
+  background-color: brown;
+}
+
+
+.progress-bar-wrapper {
+display: flex;
+align-items: center;
+background-color: black;
+height: 40px;
+}
+
+
+/* Parte colorida que cresce com base no progresso */
+.progress-bar-fill {
+  height: 100%;
+  width: 0%; /* setado dinamicamente via style */
+  transition: width 0.3s ease-in-out;
+  transform-origin: left; /* garante que cresça da esquerda */
+  background-color: var(--color7); /* seu verde principal */
+}
+
+
+/* Ícone de seta */
+.arrow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+}
