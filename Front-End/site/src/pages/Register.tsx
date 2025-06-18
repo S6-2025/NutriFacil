@@ -69,8 +69,8 @@ if (questionaryDone) {
     <main className="super-container" id="super-container-form">
       
       <div className="login-textImg">
-        <h1>Faça login e começe a ter uma vida mais saudável</h1>
-        <svg><use xlinkHref="/icons.svg#healthy-options"/></svg>
+        <h1 className="h1-login-register">Faça login e começe a ter uma vida mais saudável</h1>
+        <svg className="svg-login-register "><use xlinkHref="/icons.svg#healthy-options"/></svg>
       </div>
       <div className="login-form">
         <section className="super-form-register">
@@ -137,7 +137,7 @@ if (questionaryDone) {
                 placeholder="Digite sua senha"
               />
             </div>
-            <button type="submit">Próxima Etapa</button>
+            <button type="submit" className="login-register-button ">Próxima Etapa</button>
           </form>
           <p className="message-login-register">
             Já tem conta?{" "}

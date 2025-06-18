@@ -48,27 +48,9 @@
     align-items: center;
     width: 50%;
     height: 100vh;
-
-
-    h1{
-      text-align: left;
-      width: 50%;
-      font-family: var(--font-titles);
-      font-weight: bold;
-      color: var(--color4);
-    }
-
-
-    img{
-      width: 50%;
-    }
+  
   }
 
 
-  .login-form{
-    display: flex;
-    justify-content: center;
-    width: 50%;
-  }
   /** fim media 1024px */
 }
