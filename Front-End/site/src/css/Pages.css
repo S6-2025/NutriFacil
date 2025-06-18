@@ -3,6 +3,7 @@
   flex-direction: column;
   background-color: var(--color8);
   align-items: center;
+  padding: 0px;
 }
 
 
@@ -128,6 +129,11 @@
   .text-button-block,
   .text-block{
     width: 50%;
+  }
+
+  .super-container{
+    padding: 0;
+    margin: 0;
   }
 
   .personalize-container{
