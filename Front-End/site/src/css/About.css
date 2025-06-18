@@ -71,20 +71,19 @@
 @media(min-width: 1024px){
 
   .text-block-about{
-    max-width: 80%;
-    padding-bottom:0;
+    max-width: 60%;
+    padding: 0px;
+    margin-top: 12vh;
   }
 
-  #colored{
-    padding-bottom: 2.5rem;
-  }
+ 
 
   .image-block-about{
     width: 30%;
     height: auto;
   }
 
-
+  
   .image-block-about svg{
     width: 100%;
     max-width: 100%;
@@ -92,7 +91,25 @@
     height: auto;
   }
 
-  .text-block-about > .button-wrapper{
-    display: none;
-  }
+ 
+
+
+  .text-block-about-colored{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem; 
+  background-color: var(--color5);
+}
+
+  .text-block-about-colored > .text-block-about{
+  padding: 0px;
+  padding-bottom: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 }
