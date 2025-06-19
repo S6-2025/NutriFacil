@@ -5,7 +5,15 @@
     "**/.hg": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
-    "**/CVS": true
+    "**/CVS": true,
+    "Front-End/node_modules": true,
+    "Front-End/site/node_modules": true,
+    "Front-End/site/eslint.config.js": true
   },
-  "hide-files.files": []
+  "hide-files.files": [
+    "Front-End/node_modules",
+    "Front-End/site/node_modules",
+    "Front-End/site/eslint.config.js",
+    "Back-End"
+  ]
 }

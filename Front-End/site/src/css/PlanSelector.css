@@ -1,0 +1,59 @@
+.plan-selector {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color8);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+
+  /* Inicial: fora da tela acima */
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.plan-selector.open {
+  /* Quando abrir: desliza para dentro */
+  transform: translateY(0);
+}
+
+.close-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-header>.header__SVG {
+  width: 3rem;
+  height: 3rem;
+}
+
+.plans-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+
+
+}
+
+.plan-card {
+  border: 1px solid var(--color4);
+  padding: 1rem;
+  color: var(--color1);
+  border-radius: 1rem;
+  width: 100%;
+}
+
+
+.button-wrapper > button {
+
+  background-color: var(--color4);
+
+}
+
+ 

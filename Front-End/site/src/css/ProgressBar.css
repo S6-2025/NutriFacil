@@ -1,0 +1,92 @@
+.progress-container {
+  z-index: 100;
+  display: flex;
+  top: 0;
+  left: 0;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1vh;
+  width: 100%;
+  height: 5vh;
+  margin-top: 3vh;
+}
+
+
+/* Wrapper que define o tamanho total da barra */
+.progress-bar-wrapper {
+  position: relative;
+  width: 78%;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #e0e0e0;
+}
+
+
+/* Parte colorida que cresce com base no progresso */
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  /* setado dinamicamente via style */
+  transition: width 0.3s ease-in-out;
+  transform-origin: left;
+  /* garante que cresça da esquerda */
+  background-color: var(--color7);
+  /* seu verde principal */
+}
+
+
+/* Ícone de seta */
+.arrow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+.arrow>.header__SVG {
+  fill: var(--color1);
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.arrow>.header__SVG:hover {
+  fill: var(--color3);
+}
+
+
+@media(min-width: 1024px) {
+
+
+
+  .progress-container {
+
+    position:  absolute;
+    
+    width: 100%;
+    height: 10vh;
+    margin-top: 11vh;
+    
+  }
+
+
+  .progress-bar-wrapper {
+    display: flex;
+    align-items: center;
+    height: .7rem;
+  }
+
+
+
+
+
+  .arrow>.header__SVG {
+    fill: var(--color3);
+    width: 2rem;
+    height: 2rem;
+  }
+
+
+
+}

@@ -1,0 +1,346 @@
+#super-container-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color6);
+}
+
+.super-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+  margin-top: 11vh;
+  padding: 0 5vw;
+  border-radius: 25px;
+  background-color: var(--color7);
+  box-shadow: 7px 7px 9px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+
+/* logo */
+.logo-block {
+  width: 100%;
+  height: 10%;
+}
+
+.logo-block>.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo p {
+  font-size: 2.5rem;
+  font-family: var(--font-logo);
+  stroke: var(--color6);
+  color: var(--color6);
+}
+
+#apple-login {
+  width: 2.2rem;
+  height: 2.2rem;
+  stroke: var(--color6);
+}
+
+/* Formulário */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1rem;
+  width: 100%;
+  height: 55vh;
+}
+
+.camps {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  height: 10vh;
+
+}
+
+.camps>label {
+  font-family: var(--font-logo);
+  width: 100%;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+  color: var(--color6);
+}
+
+.camps input {
+  height: 7vh;
+  width: 100%;
+  padding-left: 15px;
+  border: .01rem solid var(--color5);
+  border-radius: 10px;
+  font-family: var(--font-read);
+  font-size: 1.2rem;
+  background-color: var(--color8);
+  color: var(--color1);
+}
+
+.camps > input:focus {
+  outline: none;
+}
+
+.camps > input::placeholder {
+  padding-left: 5px;
+  font-family: var(--font-logo);
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--color1);
+  font-weight: 500;
+}
+
+.login-register-button {
+  width: 14.75rem;
+  height: 2.8rem;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 7px 4px 0px rgba(0, 0, 0, 0.25);
+  font-family: var(--font-logo);
+  font-size: 1.3rem;
+  cursor: pointer;
+  background-color: var(--color6);
+  color: var(--color4);
+}
+
+.login-register-button:hover {
+  font-weight: 700;
+  background-color: var(--color8);
+  color: var(--color4);
+  transform: scale(1.02);
+  transition: 0.2s ease-in-out;
+}
+
+.login-register-button:focus {
+  border-inline: 1px solid var(--color4);
+  color: var(--color7);
+}
+
+.message-login-register {
+  font-family: var(--font-read);
+  font-size: .9rem;
+  font-style: italic;
+  color: var(--color8);
+}
+
+.message-login-register>.link {
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--color5);
+}
+
+.login-textImg {
+  display: none;
+}
+
+/* Tooltip erro */
+.input-error {
+  border: 1px solid red;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.tooltip-error {
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background-color: var(--color8);
+  color: var(--error-bg);
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  z-index: 10;
+  animation: fadeInTop 0.3s ease-in-out;
+}
+
+.tooltip-error::before {
+  display: none;
+}
+
+@keyframes fadeInTop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/*  estilo do register */
+
+
+#form-register {
+  height: 60vh;
+}
+
+
+
+/* Desktop */
+@media (min-width: 1024px) {
+  #super-container-form {
+    flex-direction: row;
+    padding: 2vh;
+    background-color: var(--color1);
+  }
+
+  .login-textImg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100vh;
+  }
+
+
+  .super-form {
+    margin-top: 0;
+    padding: 1.5rem;
+    width: auto;
+    height: 90vh;
+    justify-content: flex-start;
+    background-color: var(--color8);
+  }
+
+  .super-form>form {
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .logo-block {
+    margin-top: 2rem;
+  }
+
+  #form-register {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  #register-button {
+    grid-column: span 2;
+    /* ocupa as 2 colunas */
+    justify-self: center;
+    /* centraliza o botão */
+  }
+
+
+  .logo>p {
+    color: var(--color2);
+    font-size: 3rem;
+  }
+
+  #apple-login {
+    width: 3rem;
+    height: 3rem;
+    stroke: var(--color2);
+  }
+
+  .camps {
+
+    height: 13vh;
+
+
+  }
+
+  .camps>label {
+    color: var(--color2);
+    font-size: 1.4rem;
+  }
+
+  .camps input {
+    flex: 1;
+    height: 6vh;
+    color: var(--color2);
+    font-weight: 600;
+    border-color: var(--color2);
+    background-color: var(--color6);
+  }
+
+  input::placeholder {
+    color: var(--color2);
+    font-weight: 600;
+  }
+
+  .login-register-button {
+    background-color: var(--color1);
+    color: var(--color8);
+  }
+
+  .login-register-button:hover {
+    background-color: var(--color5);
+    color: var(--color2);
+  }
+
+  .message-login-register {
+    font-size: 1rem;
+    color: var(--color2);
+  }
+
+  .message-login-register>.link {
+    text-decoration: underline;
+    color: var(--color4);
+    margin-left: 2px;
+  }
+
+  .h1-login-register {
+    text-align: center;
+    width: 80%;
+    font-family: var(--font-titles);
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color6);
+  }
+
+  .svg-login-register {
+    width: 60%;
+    height: 60%;
+  }
+
+
+  .tooltip-error {
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: absolute;
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    max-width: 300px;
+    animation: fadeDown 0.3s ease-in-out;
+  }
+
+ @keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px); /* já centralizado no eixo X */
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0); /* mantém centralização no X */
+  }
+}
+
+}
