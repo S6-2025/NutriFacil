@@ -187,7 +187,7 @@ const Graphic: React.FC = () => {
   }; */
 
   return (
-    <main className="super-container">
+    <main className="super-container-water">
       <div className="graph-super-container">
         <div className="graph-days-container">
           {chartData.xAxisDataWater.length > 0 ? (
