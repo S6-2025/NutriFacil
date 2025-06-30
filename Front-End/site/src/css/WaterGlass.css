@@ -1,4 +1,4 @@
-.super-container {
+.super-container-water {
   padding: 2rem;
 }
 
@@ -177,7 +177,7 @@
   margin-bottom: 10px;
 }
 
-.progress-bar-water {
+.progress-bar-kcal {
   width: 100%;
   height: 20px;
   background-color: #ddd;
@@ -186,11 +186,10 @@
   margin-bottom: 12px;
 }
 
-.progress-fill,
-.progress-bar-fill,
+.progress-kcal-fill,
 .progress-water-bar-fill {
   height: 100% !important;
-  background-color: #4fc3f7 !important;
+  background-color: brown !important;
   transition: width 0.5s ease;
   width: 0;
 }
@@ -220,7 +219,7 @@
 }
 
 /* Estilos combinados para as barras de progresso */
-.progress-bar-water,
+.progress-bar-kcal,
 .progress-bar-wrapper-water,
 .progress-water-bar-wrapper {
   width: 100%;
@@ -232,9 +231,7 @@
 }
 
 /* Estilos combinados para o preenchimento das barras */
-.progress-fill,
-.progress-bar-fill,
-.progress-water-bar-fill {
+.progress-fill {
   height: 100%;
   background-color: #4fc3f7;
   transition: width 0.5s ease;
@@ -318,7 +315,7 @@
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   }
 
-  .progress-bar-water {
+  .progress-bar-kcal {
     height: 1rem;
   }
 

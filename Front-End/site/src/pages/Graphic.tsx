@@ -187,7 +187,7 @@ const Graphic: React.FC = () => {
   }; */
 
   return (
-    <main className="super-container">
+    <main className="super-container-water">
       <div className="graph-super-container">
         <div className="graph-days-container">
           {chartData.xAxisDataWater.length > 0 ? (
@@ -276,9 +276,9 @@ const Graphic: React.FC = () => {
             {caloriesConsumed} / {caloriesTotal} kcal
           </p>
 
-          <div className="progress-bar-water">
+          <div className="progress-bar-kcal">
             <div
-              className="progress-water-fill"
+              className=" progress-kcal-fill"
               style={{ width: `${(caloriesConsumed / caloriesTotal) * 100}%` }}
             />
           </div>
